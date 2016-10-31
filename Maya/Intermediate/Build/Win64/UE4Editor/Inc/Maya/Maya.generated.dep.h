@@ -5,6 +5,12 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
+#ifndef MAYA_Manager_generated_h
+	#include "Manager.h"
+#endif
 #ifndef MAYA_MayaGameMode_generated_h
 	#include "MayaGameMode.h"
+#endif
+#ifndef MAYA_Polygon_generated_h
+	#include "Polygon.h"
 #endif

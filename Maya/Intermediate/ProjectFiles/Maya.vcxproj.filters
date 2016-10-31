@@ -1,46 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup>
-		<None Include="..\..\Maya.uproject" />
-		<Filter Include="Source">
-			<UniqueIdentifier>{A14D3A8C-3D62-4D36-8EB3-EDF9924A105A}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Source\Maya.Target.cs">
-			<Filter>Source</Filter>
-		</None >
-		<None Include="..\..\Source\MayaEditor.Target.cs">
-			<Filter>Source</Filter>
-		</None >
-		<Filter Include="Config">
-			<UniqueIdentifier>{95D459B3-FC51-4B24-972A-97F70A93048F}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Config\DefaultEngine.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultEditor.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultGame.ini">
-			<Filter>Config</Filter>
-		</None >
-		<Filter Include="Source\Maya">
-			<UniqueIdentifier>{526C5416-5379-4D63-8EF9-13C7C4A9ECFD}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Source\Maya\Maya.Build.cs">
-			<Filter>Source\Maya</Filter>
-		</None >
-		<ClInclude Include="..\..\Source\Maya\Maya.h">
-			<Filter>Source\Maya</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\Maya\Maya.cpp">
-			<Filter>Source\Maya</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\Maya\MayaGameMode.h">
-			<Filter>Source\Maya</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\Maya\MayaGameMode.cpp">
-			<Filter>Source\Maya</Filter>
-		</ClCompile >
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Maya.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{A14D3A8C-3D62-4D36-8EB3-EDF9924A105A}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Maya.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\MayaEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{95D459B3-FC51-4B24-972A-97F70A93048F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Maya">
+      <UniqueIdentifier>{526C5416-5379-4D63-8EF9-13C7C4A9ECFD}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Maya\Maya.Build.cs">
+      <Filter>Source\Maya</Filter>
+    </None>
+    <ClInclude Include="..\..\Source\Maya\Maya.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Maya\Maya.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Maya\MayaGameMode.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Maya\MayaGameMode.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Maya\Manager.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Polygon.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Maya\Manager.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Polygon.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
