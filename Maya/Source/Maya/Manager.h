@@ -39,6 +39,9 @@ public:
 
 	FVector tempPoint;
 	int delay = 0;
+	int delayMax;
+	int randomRepeater;
+
 	int extraSquares = 0;
 
 	TArray<class APolygon*> shapes;
@@ -56,5 +59,34 @@ public:
 	MovementType movementType;
 
 
+	float ManagerDeltaTime;
+
+	// -- setup inventory system -- // 
+
+	void SpawnDefaults();
+
+	UPROPERTY(EditDefaultsOnly, Category = Inventory)
+		TArray<TSubclassOf<class ACube> > DefaultInventoryClasses;
+
+	UPROPERTY(EditDefaultsOnly, Category = Inventory)
+		TArray<class ACube*> Inventory;
+
+	// -- spawn Implementer -- // 
+
+	//UPROPERTY(EditDefaultsOnly, Category = Inventory)
+	//	TSubclassOf<class AImplementer> implementer;
+
+	//void SpawnImplementer();
+
+	ACube* baseCubeClass;
+
+	void PrintOverridenBase();
+
+	void UpdateMovement();
+	void MovementTypeRandomizer();
+
+	FVector CurrentLocation;
+	FVector TargetLocation;
+	FVector GetLocation();
 
 };

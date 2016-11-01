@@ -49,12 +49,30 @@
     <ClInclude Include="..\..\Source\Maya\Polygon.h">
       <Filter>Source\Maya</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Cube.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\MasterCube.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\MasterTrail.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Manager.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Maya\Polygon.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Cube.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\MasterCube.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\MasterTrail.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
   </ItemGroup>
