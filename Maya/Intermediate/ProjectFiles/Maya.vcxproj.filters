@@ -58,6 +58,12 @@
     <ClInclude Include="..\..\Source\Maya\MasterTrail.h">
       <Filter>Source\Maya</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\ManagerTest_001_Movement.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Empty.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Manager.cpp">
@@ -73,6 +79,12 @@
       <Filter>Source\Maya</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Maya\MasterTrail.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Empty.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
   </ItemGroup>

@@ -77,3 +77,7 @@ void ACube::ManagerConnection()
 void ACube::SpawnTrail()
 {
 }
+
+void ACube::MoveAlongLine()
+{
+}

@@ -71,13 +71,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Inventory)
 		TArray<class ACube*> Inventory;
 
-	// -- spawn Implementer -- // 
-
-	//UPROPERTY(EditDefaultsOnly, Category = Inventory)
-	//	TSubclassOf<class AImplementer> implementer;
-
-	//void SpawnImplementer();
-
 	ACube* baseCubeClass;
 
 	void PrintOverridenBase();

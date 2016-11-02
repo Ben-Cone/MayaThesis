@@ -13,10 +13,10 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	{
 	}
 	IMPLEMENT_CLASS(ACube, 2313001445);
-	void AManager::StaticRegisterNativesAManager()
+	void AManagerTest_001_Movement::StaticRegisterNativesAManagerTest_001_Movement()
 	{
 	}
-	IMPLEMENT_CLASS(AManager, 3816718695);
+	IMPLEMENT_CLASS(AManagerTest_001_Movement, 2251415427);
 	void AMasterTrail::StaticRegisterNativesAMasterTrail()
 	{
 	}
@@ -25,6 +25,10 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	{
 	}
 	IMPLEMENT_CLASS(AMasterCube, 1085340285);
+	void AManager::StaticRegisterNativesAManager()
+	{
+	}
+	IMPLEMENT_CLASS(AManager, 3816718695);
 	void AMayaGameMode::StaticRegisterNativesAMayaGameMode()
 	{
 	}
@@ -45,12 +49,14 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 
 	MAYA_API class UClass* Z_Construct_UClass_ACube_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_ACube();
-	MAYA_API class UClass* Z_Construct_UClass_AManager_NoRegister();
-	MAYA_API class UClass* Z_Construct_UClass_AManager();
+	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_001_Movement_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_001_Movement();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterTrail_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterTrail();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube();
+	MAYA_API class UClass* Z_Construct_UClass_AManager_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AManager();
 	MAYA_API class UClass* Z_Construct_UClass_AMayaGameMode_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMayaGameMode();
 	MAYA_API class UClass* Z_Construct_UClass_APolygon_NoRegister();
@@ -89,18 +95,18 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ACube(Z_Construct_UClass_ACube, &ACube::StaticClass, TEXT("ACube"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACube);
-	UClass* Z_Construct_UClass_AManager_NoRegister()
+	UClass* Z_Construct_UClass_AManagerTest_001_Movement_NoRegister()
 	{
-		return AManager::StaticClass();
+		return AManagerTest_001_Movement::StaticClass();
 	}
-	UClass* Z_Construct_UClass_AManager()
+	UClass* Z_Construct_UClass_AManagerTest_001_Movement()
 	{
 		static UClass* OuterClass = NULL;
 		if (!OuterClass)
 		{
 			Z_Construct_UClass_AActor();
 			Z_Construct_UPackage__Script_Maya();
-			OuterClass = AManager::StaticClass();
+			OuterClass = AManagerTest_001_Movement::StaticClass();
 			if (!(OuterClass->ClassFlags & CLASS_Constructed))
 			{
 				UObjectForceRegistration(OuterClass);
@@ -108,23 +114,23 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-				UProperty* NewProp_Inventory = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(Inventory, AManager), 0x0010000000010001);
+				UProperty* NewProp_Inventory = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(Inventory, AManagerTest_001_Movement), 0x0010000000010001);
 				UProperty* NewProp_Inventory_Inner = new(EC_InternalUseOnlyConstructor, NewProp_Inventory, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0000000000000000, Z_Construct_UClass_ACube_NoRegister());
-				UProperty* NewProp_DefaultInventoryClasses = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(DefaultInventoryClasses, AManager), 0x0014000000010001);
+				UProperty* NewProp_DefaultInventoryClasses = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(DefaultInventoryClasses, AManagerTest_001_Movement), 0x0014000000010001);
 				UProperty* NewProp_DefaultInventoryClasses_Inner = new(EC_InternalUseOnlyConstructor, NewProp_DefaultInventoryClasses, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_ACube_NoRegister(), UClass::StaticClass());
-				UProperty* NewProp_polygonSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("polygonSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(polygonSubClass, AManager), 0x0014000000010001, Z_Construct_UClass_APolygon_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_polygonSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("polygonSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(polygonSubClass, AManagerTest_001_Movement), 0x0014000000010001, Z_Construct_UClass_APolygon_NoRegister(), UClass::StaticClass());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
 #if WITH_METADATA
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
-				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Manager.h"));
-				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("ManagerTest_001_Movement.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("ManagerTest_001_Movement.h"));
 				MetaData->SetValue(NewProp_Inventory, TEXT("Category"), TEXT("Inventory"));
-				MetaData->SetValue(NewProp_Inventory, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_Inventory, TEXT("ModuleRelativePath"), TEXT("ManagerTest_001_Movement.h"));
 				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("Category"), TEXT("Inventory"));
-				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("ModuleRelativePath"), TEXT("ManagerTest_001_Movement.h"));
 				MetaData->SetValue(NewProp_polygonSubClass, TEXT("Category"), TEXT("Spawn"));
-				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ModuleRelativePath"), TEXT("ManagerTest_001_Movement.h"));
 				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ToolTip"), TEXT("-- Shapes --"));
 #endif
 			}
@@ -132,8 +138,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_AManager(Z_Construct_UClass_AManager, &AManager::StaticClass, TEXT("AManager"), false, nullptr, nullptr, nullptr);
-	DEFINE_VTABLE_PTR_HELPER_CTOR(AManager);
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AManagerTest_001_Movement(Z_Construct_UClass_AManagerTest_001_Movement, &AManagerTest_001_Movement::StaticClass, TEXT("AManagerTest_001_Movement"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AManagerTest_001_Movement);
 	UClass* Z_Construct_UClass_AMasterTrail_NoRegister()
 	{
 		return AMasterTrail::StaticClass();
@@ -214,6 +220,51 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMasterCube(Z_Construct_UClass_AMasterCube, &AMasterCube::StaticClass, TEXT("AMasterCube"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMasterCube);
+	UClass* Z_Construct_UClass_AManager_NoRegister()
+	{
+		return AManager::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AManager()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AManager::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_Inventory = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(Inventory, AManager), 0x0010000000010001);
+				UProperty* NewProp_Inventory_Inner = new(EC_InternalUseOnlyConstructor, NewProp_Inventory, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0000000000000000, Z_Construct_UClass_ACube_NoRegister());
+				UProperty* NewProp_DefaultInventoryClasses = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(DefaultInventoryClasses, AManager), 0x0014000000010001);
+				UProperty* NewProp_DefaultInventoryClasses_Inner = new(EC_InternalUseOnlyConstructor, NewProp_DefaultInventoryClasses, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_ACube_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_polygonSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("polygonSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(polygonSubClass, AManager), 0x0014000000010001, Z_Construct_UClass_APolygon_NoRegister(), UClass::StaticClass());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Manager.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_Inventory, TEXT("Category"), TEXT("Inventory"));
+				MetaData->SetValue(NewProp_Inventory, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("Category"), TEXT("Inventory"));
+				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_polygonSubClass, TEXT("Category"), TEXT("Spawn"));
+				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ModuleRelativePath"), TEXT("Manager.h"));
+				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ToolTip"), TEXT("-- Shapes --"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AManager(Z_Construct_UClass_AManager, &AManager::StaticClass, TEXT("AManager"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AManager);
 	UClass* Z_Construct_UClass_AMayaGameMode_NoRegister()
 	{
 		return AMayaGameMode::StaticClass();
@@ -300,8 +351,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x86532175;
-			Guid.B = 0x1AC7EF58;
+			Guid.A = 0x54FD0C1B;
+			Guid.B = 0x371C9D40;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

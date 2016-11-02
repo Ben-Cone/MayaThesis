@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Cube.h"
-#include "Manager.h"
+#include "ManagerTest_001_Movement.h"
 #include "MasterTrail.h"
 #include "MasterCube.generated.h"
 
@@ -67,7 +67,7 @@ class AMasterCube : public ACube
 
 	void DrawDebugging() override;
 
-	AManager* manager;
+	AManagerTest_001_Movement* manager;
 
 	USphereComponent* RootNull;
 
@@ -78,4 +78,9 @@ class AMasterCube : public ACube
 	UPROPERTY(EditDefaultsOnly, Category = "Spawn Trail")
 		TSubclassOf<AMasterTrail> SpawnedTrail;
 
+	// -- Testing -- //
+	void MoveAlongLine();
+	int direction = 1;
+
+	float delay;
 };

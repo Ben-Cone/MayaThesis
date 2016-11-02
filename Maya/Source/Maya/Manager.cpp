@@ -61,9 +61,7 @@ void AManager::Tick(float DeltaTime)
 			extraSquares++;
 		}
 	}
-
 	UpdateMovement();
-
 	CurrentLocation = baseCubeClass->GetCurrentLoc();
 	TargetLocation = baseCubeClass->GetTargetLoc();
 	baseCubeClass->MoveCube();

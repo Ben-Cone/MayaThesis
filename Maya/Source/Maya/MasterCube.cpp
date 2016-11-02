@@ -383,7 +383,7 @@ void AMasterCube::DrawDebugging()
 
 void AMasterCube::ManagerConnection()
 {
-	for (TActorIterator<AManager> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	for (TActorIterator<AManagerTest_001_Movement> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		manager = *ActorItr;
 	}
@@ -391,12 +391,11 @@ void AMasterCube::ManagerConnection()
 
 void AMasterCube::MoveCube()
 {
-	FVector masterLocation = manager->GetLocation();
 
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, masterLocation.ToString());
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("-- Current Location --"));
 
-	SetActorLocation(masterLocation, false);
+	SetActorLocation(CurrentLocation, false);
 }
 
 void AMasterCube::SpawnTrail()
@@ -410,4 +409,32 @@ void AMasterCube::SpawnTrail()
 
 	AMasterTrail* SpawnedTrailCube = GetWorld()->SpawnActor<AMasterTrail>(SpawnedTrail, CurrentLocation, SpawnRot, SpawnParams);
 
+}
+
+void AMasterCube::MoveAlongLine()
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, CurrentLocation.ToString());
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" direction: %d "), direction));
+
+
+	if (delay == 0)
+	{
+		if (CurrentLocation.X < 1000 && direction == 1)
+		{
+			CurrentLocation.X += 2;
+		}
+		if (CurrentLocation.X > 0 && direction == -1)
+		{
+			CurrentLocation.X -= 2;
+		}
+		else if (CurrentLocation.X >= 1000 || CurrentLocation.X <= 0)
+		{
+			direction = direction * -1;
+			delay = 300;
+		}
+	}
+	else
+	{
+		delay--;
+	}
 }

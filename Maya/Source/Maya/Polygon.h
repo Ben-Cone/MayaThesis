@@ -13,8 +13,11 @@ class MAYA_API APolygon : public AActor
 public:
 	// Sets default values for this actor's properties
 	APolygon(const FObjectInitializer& ObjectInitializer);
+	~APolygon();
 
+	void Update();
 	FActorSpawnParameters SpawnInfo;
+	USphereComponent* RootNull;
 
 	// -- Spawn -- // 
 
@@ -32,6 +35,8 @@ public:
 
 	void Test();
 
+	void CreateSquareAtLoc(FVector spawnLoc);
+
 	void CreateSquare(
 		FVector squareA,
 		FVector squareB,
@@ -39,6 +44,7 @@ public:
 		FVector squareD);
 	TArray<FVector> squarePoints;
 	TArray<UParticleSystemComponent*> squareLines;
+	void SquareScalePosition(FVector squareCen, float squareLen, int32 forwardVector);
 
 	void CreateCube(FVector cubeCen, float cubeLen);
 	TArray<FVector> cubePoints;
@@ -61,6 +67,16 @@ public:
 
 	FVector tempA = FVector(0.f, 0.f, 0.f);
 	FVector tempB = FVector(100.f, 200.f, 0.f);
+
+	TArray<FVector> polyPoints;
+	TArray<UParticleSystemComponent*> polyLines;
+
+	void DestroySelf();
+
+	int32 forwardVector = 0;
+	FVector spawnLocation;
+	float shapeScaler;
+
 
 };
 

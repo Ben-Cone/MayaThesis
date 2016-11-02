@@ -8,14 +8,17 @@
 #ifndef MAYA_Cube_generated_h
 	#include "Cube.h"
 #endif
-#ifndef MAYA_Manager_generated_h
-	#include "Manager.h"
+#ifndef MAYA_ManagerTest_001_Movement_generated_h
+	#include "ManagerTest_001_Movement.h"
 #endif
 #ifndef MAYA_MasterTrail_generated_h
 	#include "MasterTrail.h"
 #endif
 #ifndef MAYA_MasterCube_generated_h
 	#include "MasterCube.h"
+#endif
+#ifndef MAYA_Manager_generated_h
+	#include "Manager.h"
 #endif
 #ifndef MAYA_MayaGameMode_generated_h
 	#include "MayaGameMode.h"

@@ -11,6 +11,8 @@ APolygon::APolygon(const FObjectInitializer& ObjectInitializer)
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	RootComponent = RootNull;
+
 	ConstructorHelpers::FObjectFinder<UParticleSystem> line(TEXT("ParticleSystem'/Game/Shapes/BeamLine.BeamLine'"));
 	lineComponent = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Line"));
 
@@ -22,6 +24,17 @@ APolygon::APolygon(const FObjectInitializer& ObjectInitializer)
 	lineComponent->bAutoActivate = true;
 	lineComponent->SetHiddenInGame(false);
 
+}
+
+void APolygon::Update()
+{
+	if (shapeScaler < 200)
+	{
+		shapeScaler += 4;
+		SquareScalePosition(spawnLocation, shapeScaler, 0);
+	}
+
+	
 }
 
 void APolygon::CreateSquare(
@@ -111,8 +124,6 @@ void APolygon::CreateCube(FVector cubeCen, float cubeLen)
 
 	SetCubePointLocations();
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("cubeLines: %d"), cubeLines.Num()));
-
 }
 
 void APolygon::SetCubePointLocations()
@@ -181,3 +192,143 @@ void APolygon::SetCubePointLocations()
 	}
 }
 
+void APolygon::CreateSquareAtLoc(FVector spawnLoc)
+{
+
+	for (int i = 0; i < 4; i++)
+	{
+		newLine = UGameplayStatics::SpawnEmitterAtLocation
+			(GetWorld(),
+				lineComponent->Template,
+				tempA,
+				FRotator::ZeroRotator,
+				false
+				);
+
+		polyLines.Add(newLine);
+	}
+
+	polyPoints.Init(tempA, 4);
+	spawnLocation = spawnLoc;
+
+
+}
+
+void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 forwardVector)
+{
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("polyPoints: %d"), polyPoints.Num()));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("polyLines: %d"), polyLines.Num()));
+
+	switch (forwardVector)
+	{
+	case 0: // x
+		polyPoints[0].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[1].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[2].Z = squareCen.Z - (squareLen / 2);
+		polyPoints[3].Z = squareCen.Z - (squareLen / 2);
+
+		polyPoints[0].Y = squareCen.Y - (squareLen / 2);
+		polyPoints[1].Y = squareCen.Y + (squareLen / 2);
+		polyPoints[2].Y = squareCen.Y + (squareLen / 2);
+		polyPoints[3].Y = squareCen.Y - (squareLen / 2);
+
+		polyPoints[0].X = squareCen.X;
+		polyPoints[1].X = squareCen.X;
+		polyPoints[2].X = squareCen.X;
+		polyPoints[3].X = squareCen.X;
+
+		for (int i = 0; i < 4; i++)
+		{
+			polyLines[i]->SetBeamSourcePoint(0, polyPoints[i], 0);
+
+			if (i < 3)
+			{
+				polyLines[i]->SetBeamEndPoint(0, polyPoints[i + 1]);
+			}
+			else if (i == 3)
+			{
+				polyLines[i]->SetBeamEndPoint(0, polyPoints[0]);
+			}
+
+		}
+		break;
+
+	case 1: // x
+		polyPoints[0].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[1].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[2].Z = squareCen.Z - (squareLen / 2);
+		polyPoints[3].Z = squareCen.Z - (squareLen / 2);
+
+		polyPoints[0].X = squareCen.X - (squareLen / 2);
+		polyPoints[1].X = squareCen.X + (squareLen / 2);
+		polyPoints[2].X = squareCen.X + (squareLen / 2);
+		polyPoints[3].X = squareCen.X - (squareLen / 2);
+
+		polyPoints[0].Y = squareCen.Y;
+		polyPoints[1].Y = squareCen.Y;
+		polyPoints[2].Y = squareCen.Y;
+		polyPoints[3].Y = squareCen.Y;
+
+		for (int i = 0; i < 4; i++)
+		{
+			polyLines[i]->SetBeamSourcePoint(0, polyPoints[i], 0);
+
+			if (i < 3)
+			{
+				polyLines[i]->SetBeamEndPoint(0, polyPoints[i + 1]);
+			}
+			else if (i == 3)
+			{
+				polyLines[i]->SetBeamEndPoint(0, polyPoints[0]);
+			}
+
+		}
+		break;
+
+	case 2: // x
+		polyPoints[0].Y = squareCen.Y + (squareLen / 2);
+		polyPoints[1].Y = squareCen.Y + (squareLen / 2);
+		polyPoints[2].Y = squareCen.Y - (squareLen / 2);
+		polyPoints[3].Y = squareCen.Y - (squareLen / 2);
+
+		polyPoints[0].X = squareCen.X - (squareLen / 2);
+		polyPoints[1].X = squareCen.X + (squareLen / 2);
+		polyPoints[2].X = squareCen.X + (squareLen / 2);
+		polyPoints[3].X = squareCen.X - (squareLen / 2);
+
+		for (int i = 0; i < 4; i++)
+		{
+			polyLines[i]->SetBeamSourcePoint(0, polyPoints[i], 0);
+
+			if (i < 3)
+			{
+				polyLines[i]->SetBeamEndPoint(0, polyPoints[i + 1]);
+			}
+			else if (i == 3)
+			{
+				polyLines[i]->SetBeamEndPoint(0, polyPoints[0]);
+			}
+
+		}
+		break;
+	}
+}
+
+void APolygon::DestroySelf()
+{
+	for (int i = 0; i < polyLines.Num(); i++)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT(" destroy "));
+		polyLines[i]->Deactivate();
+	}
+}
+
+APolygon::~APolygon()
+{
+	//for (int i = 0; i < polyLines.Num(); i++)
+	//{
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT(" destroy "));
+	//	polyLines[i]->Deactivate();
+	//}
+}

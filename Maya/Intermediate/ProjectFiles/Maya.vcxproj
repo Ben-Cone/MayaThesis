@@ -407,10 +407,14 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Cube.cpp" />
+    <ClCompile Include="..\..\Source\Maya\Empty.cpp" />
+    <ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp" />
     <ClCompile Include="..\..\Source\Maya\MasterCube.cpp" />
     <ClCompile Include="..\..\Source\Maya\MasterTrail.cpp" />
     <ClCompile Include="..\..\Source\Maya\Polygon.cpp" />
     <ClInclude Include="..\..\Source\Maya\Cube.h" />
+    <ClInclude Include="..\..\Source\Maya\Empty.h" />
+    <ClInclude Include="..\..\Source\Maya\ManagerTest_001_Movement.h" />
     <ClInclude Include="..\..\Source\Maya\MasterCube.h" />
     <ClInclude Include="..\..\Source\Maya\MasterTrail.h" />
     <ClInclude Include="..\..\Source\Maya\Polygon.h" />

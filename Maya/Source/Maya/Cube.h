@@ -36,4 +36,9 @@ class ACube : public AActor
 	virtual void DrawDebugging();
 	virtual void ManagerConnection();
 	virtual void SpawnTrail();
+
+	// -- Testing -- //
+
+	virtual void MoveAlongLine();
+
 };
