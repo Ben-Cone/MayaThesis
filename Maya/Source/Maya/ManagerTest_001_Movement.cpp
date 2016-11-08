@@ -39,7 +39,11 @@ void AManagerTest_001_Movement::Tick(float DeltaTime)
 	baseCubeClass->MoveCube();
 
 	UpdateAnimations();
-	SpawnTrailingAnimations();
+
+	if (CurrentLocation.X < 990 || CurrentLocation.X > 10)
+	{
+		SpawnTrailingAnimations();
+	}	
 }
 
 void AManagerTest_001_Movement::SpawnDefaults()
@@ -74,7 +78,7 @@ void AManagerTest_001_Movement::SpawnPolygon()
 void AManagerTest_001_Movement::SpawnTrailingAnimations()
 {
 	spawningDelay;
-	if (spawningDelay >= 50)
+	if (spawningDelay >= spawningOffset)
 	{
 		SpawnPolygon();
 		spawningDelay = 0;

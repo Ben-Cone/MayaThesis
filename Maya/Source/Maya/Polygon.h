@@ -73,10 +73,14 @@ public:
 
 	void DestroySelf();
 
-	int32 forwardVector = 0;
+//	int32 forwardVector = 0;
 	FVector spawnLocation;
-	float shapeScaler;
+	float shapeScaler = 2;
 
+	UPROPERTY(EditAnywhere, Category = "ShapeManip")
+		float shapeSpeed = 1.5;
+
+	int lifeTime;
 
 };
 

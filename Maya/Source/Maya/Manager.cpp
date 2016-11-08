@@ -50,11 +50,11 @@ void AManager::Tick(float DeltaTime)
 	if (extraSquares < 5)
 	{
 
-		if (delay < 50)
+		if (delay < spawningOffset)
 		{
 			delay++;
 		}
-		else if (delay == 50)
+		else if (delay == spawningOffset)
 		{
 			SpawnPolygon();
 			delay = 0;

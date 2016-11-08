@@ -84,4 +84,7 @@ public:
 
 	void SpawnTrailingAnimations();
 	void UpdateAnimations();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Extra Animation")
+		float spawningOffset = 10;
 };

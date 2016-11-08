@@ -64,6 +64,12 @@
     <ClInclude Include="..\..\Source\Maya\Empty.h">
       <Filter>Source\Maya</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\User.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Manager.cpp">
@@ -85,6 +91,12 @@
       <Filter>Source\Maya</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Maya\Empty.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\User.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
   </ItemGroup>

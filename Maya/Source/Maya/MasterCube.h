@@ -83,4 +83,7 @@ class AMasterCube : public ACube
 	int direction = 1;
 
 	float delay;
+
+	UPROPERTY(EditAnywhere)
+	float moveSpeed = 25;
 };

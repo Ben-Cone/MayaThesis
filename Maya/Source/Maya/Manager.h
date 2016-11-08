@@ -82,4 +82,7 @@ public:
 	FVector TargetLocation;
 	FVector GetLocation();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Extra Animation")
+		float spawningOffset = 10;
+
 };

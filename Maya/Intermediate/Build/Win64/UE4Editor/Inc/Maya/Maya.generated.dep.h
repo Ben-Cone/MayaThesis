@@ -20,9 +20,15 @@
 #ifndef MAYA_Manager_generated_h
 	#include "Manager.h"
 #endif
+#ifndef MAYA_ManagerTest_002_Interaction_generated_h
+	#include "ManagerTest_002_Interaction.h"
+#endif
 #ifndef MAYA_MayaGameMode_generated_h
 	#include "MayaGameMode.h"
 #endif
 #ifndef MAYA_Polygon_generated_h
 	#include "Polygon.h"
+#endif
+#ifndef MAYA_User_generated_h
+	#include "User.h"
 #endif

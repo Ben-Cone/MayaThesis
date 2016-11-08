@@ -421,11 +421,11 @@ void AMasterCube::MoveAlongLine()
 	{
 		if (CurrentLocation.X < 1000 && direction == 1)
 		{
-			CurrentLocation.X += 2;
+			CurrentLocation.X += moveSpeed;
 		}
 		if (CurrentLocation.X > 0 && direction == -1)
 		{
-			CurrentLocation.X -= 2;
+			CurrentLocation.X -= moveSpeed;
 		}
 		else if (CurrentLocation.X >= 1000 || CurrentLocation.X <= 0)
 		{
@@ -438,3 +438,6 @@ void AMasterCube::MoveAlongLine()
 		delay--;
 	}
 }
+
+/*https://answers.unrealengine.com/questions/357144/what-is-the-proper-way-to-use-timelines-from-code.html
+*/

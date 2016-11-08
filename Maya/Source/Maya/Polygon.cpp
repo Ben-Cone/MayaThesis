@@ -28,10 +28,23 @@ APolygon::APolygon(const FObjectInitializer& ObjectInitializer)
 
 void APolygon::Update()
 {
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%f"), shapeSpeed));
+
+
 	if (shapeScaler < 200)
 	{
-		shapeScaler += 4;
+		shapeScaler += shapeSpeed;
 		SquareScalePosition(spawnLocation, shapeScaler, 0);
+	}
+
+	if (lifeTime < 200)
+	{
+		lifeTime++;
+	}
+	else if (lifeTime == 200)
+	{
+		DestroySelf();
+		lifeTime++;
 	}
 
 	
@@ -217,8 +230,8 @@ void APolygon::CreateSquareAtLoc(FVector spawnLoc)
 void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 forwardVector)
 {
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("polyPoints: %d"), polyPoints.Num()));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("polyLines: %d"), polyLines.Num()));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("polyPoints: %d"), polyPoints.Num()));
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("polyLines: %d"), polyLines.Num()));
 
 	switch (forwardVector)
 	{
@@ -319,8 +332,8 @@ void APolygon::DestroySelf()
 {
 	for (int i = 0; i < polyLines.Num(); i++)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT(" destroy "));
 		polyLines[i]->Deactivate();
+		Destroy();
 	}
 }
 

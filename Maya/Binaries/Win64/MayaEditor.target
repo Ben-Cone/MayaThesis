@@ -2,7 +2,7 @@
 	"TargetName" : "MayaEditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "42dfe906-78de-4b53-b63a-0c29b0ce808b",
+	"BuildId" : "ca6d07bc-57bd-4c12-b9e3-cfbbda06cc20",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -15,15 +15,15 @@
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Maya-8183.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Maya-4114.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Maya-8183.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Maya-4114.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Maya-8183.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Maya-4114.lib",
 			"Type" : "ImportLibrary"
 		}
 	],
