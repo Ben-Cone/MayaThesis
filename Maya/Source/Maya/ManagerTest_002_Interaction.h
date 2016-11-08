@@ -20,6 +20,32 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	void SpawnDefaults();
+
+	FActorSpawnParameters SpawnInfo;
+	FVector SpawnLoc = FVector(0.f, 0.f, 0.f);
+	FRotator SpawnRot;
+
+	UPROPERTY(EditDefaultsOnly, Category = Inventory)
+		TArray<TSubclassOf<class ACube> > DefaultInventoryClasses;
+
+	UPROPERTY(EditDefaultsOnly, Category = Inventory)
+		TArray<class ACube*> Inventory;
+
+	ACube* baseCubeClass;
+	ACharacter* userClass;
 	
+	FVector userLocation;
+	FVector cubeLocation;
+	FVector userRadius;
+	FRotator userRotation;
+
+	float preNormalizedAggro;
+	float currentAggro;
+	float avgAggro;
 	
+	void Radii();
+
+	float InverseLerp(float A, float B, float Value);
+
 };

@@ -24,7 +24,7 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	void AMasterCube::StaticRegisterNativesAMasterCube()
 	{
 	}
-	IMPLEMENT_CLASS(AMasterCube, 1325419049);
+	IMPLEMENT_CLASS(AMasterCube, 3070551742);
 	void AManager::StaticRegisterNativesAManager()
 	{
 	}
@@ -32,7 +32,7 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	void AManagerTest_002_Interaction::StaticRegisterNativesAManagerTest_002_Interaction()
 	{
 	}
-	IMPLEMENT_CLASS(AManagerTest_002_Interaction, 1904498307);
+	IMPLEMENT_CLASS(AManagerTest_002_Interaction, 2118724208);
 	void AMayaGameMode::StaticRegisterNativesAMayaGameMode()
 	{
 	}
@@ -217,6 +217,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_avoidanceMultiplier = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("avoidanceMultiplier"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(avoidanceMultiplier, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_moveSpeed = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("moveSpeed"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(moveSpeed, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_SpawnedTrail = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnedTrail"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(SpawnedTrail, AMasterCube), 0x0014000000010001, Z_Construct_UClass_AMasterTrail_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_MoveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MoveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(MoveDistance, AMasterCube), 0x0010000000000001);
@@ -226,6 +227,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
+				MetaData->SetValue(NewProp_avoidanceMultiplier, TEXT("Category"), TEXT("MasterCube"));
+				MetaData->SetValue(NewProp_avoidanceMultiplier, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("Category"), TEXT("MasterCube"));
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("Category"), TEXT("Spawn Trail"));
@@ -306,11 +309,21 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->ClassFlags |= 0x20900080;
 
 
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_Inventory = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(Inventory, AManagerTest_002_Interaction), 0x0010000000010001);
+				UProperty* NewProp_Inventory_Inner = new(EC_InternalUseOnlyConstructor, NewProp_Inventory, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0000000000000000, Z_Construct_UClass_ACube_NoRegister());
+				UProperty* NewProp_DefaultInventoryClasses = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(DefaultInventoryClasses, AManagerTest_002_Interaction), 0x0014000000010001);
+				UProperty* NewProp_DefaultInventoryClasses_Inner = new(EC_InternalUseOnlyConstructor, NewProp_DefaultInventoryClasses, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_ACube_NoRegister(), UClass::StaticClass());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
 #if WITH_METADATA
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("ManagerTest_002_Interaction.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
+				MetaData->SetValue(NewProp_Inventory, TEXT("Category"), TEXT("Inventory"));
+				MetaData->SetValue(NewProp_Inventory, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
+				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("Category"), TEXT("Inventory"));
+				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
 #endif
 			}
 		}
@@ -456,7 +469,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x4A095A8C;
+			Guid.A = 0x052C380D;
 			Guid.B = 0xC3BAD6B4;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;

@@ -1,6 +1,7 @@
 
 #include "Maya.h"
 #include "Engine.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "MasterCube.h"
 
 AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -441,3 +442,14 @@ void AMasterCube::MoveAlongLine()
 
 /*https://answers.unrealengine.com/questions/357144/what-is-the-proper-way-to-use-timelines-from-code.html
 */
+
+void AMasterCube::AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude)
+{
+	CurrentLocation = (UKismetMathLibrary::GetForwardVector(movementAngle) * (amplitude * avoidanceMultiplier)) + currentLocation;
+	MoveCube();
+}
+
+void AMasterCube::MoveTo(FVector inputCurrentLocation)
+{
+	CurrentLocation = inputCurrentLocation;
+}

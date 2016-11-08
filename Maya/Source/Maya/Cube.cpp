@@ -81,3 +81,11 @@ void ACube::SpawnTrail()
 void ACube::MoveAlongLine()
 {
 }
+
+void ACube::AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude)
+{
+}
+
+void ACube::MoveTo(FVector inputCurrentLocation)
+{
+}

@@ -74,6 +74,7 @@ class AMasterCube : public ACube
 	void MoveCube();
 	void ManagerConnection();
 	void SpawnTrail();
+	void MoveTo(FVector inputCurrentLocation);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Spawn Trail")
 		TSubclassOf<AMasterTrail> SpawnedTrail;
@@ -86,4 +87,12 @@ class AMasterCube : public ACube
 
 	UPROPERTY(EditAnywhere)
 	float moveSpeed = 25;
+
+	UPROPERTY(EditAnywhere)
+	float avoidanceMultiplier; 
+
+
+	//
+
+	void AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude);
 };

@@ -36,9 +36,11 @@ class ACube : public AActor
 	virtual void DrawDebugging();
 	virtual void ManagerConnection();
 	virtual void SpawnTrail();
+	virtual void MoveTo(FVector inputCurrentLocation);
 
 	// -- Testing -- //
 
 	virtual void MoveAlongLine();
+	virtual void AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude);
 
 };
