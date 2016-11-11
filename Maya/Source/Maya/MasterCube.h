@@ -91,8 +91,12 @@ class AMasterCube : public ACube
 	UPROPERTY(EditAnywhere)
 	float avoidanceMultiplier; 
 
+	void AvoidanceDiscrete(FRotator movementAngle, float currentAggro);
+	int avoidanceDirection;
+	void AvoidanceNewLocation(FRotator movementAngle, float currentAggro);
+
 
 	//
 
-	void AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude);
+	void AvoidUserBasic(FRotator movementAngleDiscrete, FVector currentLocation, float amplitude);
 };

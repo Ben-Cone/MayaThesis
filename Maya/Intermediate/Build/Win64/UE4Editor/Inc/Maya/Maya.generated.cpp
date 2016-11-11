@@ -25,6 +25,18 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	{
 	}
 	IMPLEMENT_CLASS(AMasterCube, 3070551742);
+	void AFP_FirstPersonCharacter::StaticRegisterNativesAFP_FirstPersonCharacter()
+	{
+	}
+	IMPLEMENT_CLASS(AFP_FirstPersonCharacter, 1584183738);
+	void AFP_FirstPersonGameMode::StaticRegisterNativesAFP_FirstPersonGameMode()
+	{
+	}
+	IMPLEMENT_CLASS(AFP_FirstPersonGameMode, 205047903);
+	void AFP_FirstPersonHUD::StaticRegisterNativesAFP_FirstPersonHUD()
+	{
+	}
+	IMPLEMENT_CLASS(AFP_FirstPersonHUD, 153542681);
 	void AManager::StaticRegisterNativesAManager()
 	{
 	}
@@ -50,12 +62,16 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
 	ENGINE_API class UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
+	ENGINE_API class UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_USoundBase_NoRegister();
+	COREUOBJECT_API class UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	ENGINE_API class UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AGameMode();
+	ENGINE_API class UClass* Z_Construct_UClass_AHUD();
 	ENGINE_API class UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	COREUOBJECT_API class UScriptStruct* Z_Construct_UScriptStruct_FRotator();
-	COREUOBJECT_API class UScriptStruct* Z_Construct_UScriptStruct_FVector();
-	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
-	ENGINE_API class UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 
 	MAYA_API class UClass* Z_Construct_UClass_ACube_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_ACube();
@@ -65,6 +81,12 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	MAYA_API class UClass* Z_Construct_UClass_AMasterTrail();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube();
+	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonCharacter_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonCharacter();
+	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonGameMode_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonGameMode();
+	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonHUD_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonHUD();
 	MAYA_API class UClass* Z_Construct_UClass_AManager_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AManager();
 	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_002_Interaction_NoRegister();
@@ -243,6 +265,152 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMasterCube(Z_Construct_UClass_AMasterCube, &AMasterCube::StaticClass, TEXT("AMasterCube"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMasterCube);
+	UClass* Z_Construct_UClass_AFP_FirstPersonCharacter_NoRegister()
+	{
+		return AFP_FirstPersonCharacter::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AFP_FirstPersonCharacter()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_ACharacter();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AFP_FirstPersonCharacter::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20800080;
+
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_WeaponDamage = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("WeaponDamage"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(WeaponDamage, AFP_FirstPersonCharacter), 0x0010000000000005);
+				UProperty* NewProp_WeaponRange = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("WeaponRange"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(WeaponRange, AFP_FirstPersonCharacter), 0x0010000000000005);
+				UProperty* NewProp_FireAnimation = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FireAnimation"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FireAnimation, AFP_FirstPersonCharacter), 0x0010000000000005, Z_Construct_UClass_UAnimMontage_NoRegister());
+				UProperty* NewProp_FireSound = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FireSound"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FireSound, AFP_FirstPersonCharacter), 0x0010000000000005, Z_Construct_UClass_USoundBase_NoRegister());
+				UProperty* NewProp_GunOffset = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("GunOffset"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(GunOffset, AFP_FirstPersonCharacter), 0x0010000000000005, Z_Construct_UScriptStruct_FVector());
+				UProperty* NewProp_BaseLookUpRate = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("BaseLookUpRate"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(BaseLookUpRate, AFP_FirstPersonCharacter), 0x0010000000020015);
+				UProperty* NewProp_BaseTurnRate = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("BaseTurnRate"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(BaseTurnRate, AFP_FirstPersonCharacter), 0x0010000000020015);
+				UProperty* NewProp_FirstPersonCameraComponent = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FirstPersonCameraComponent"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FirstPersonCameraComponent, AFP_FirstPersonCharacter), 0x00400000000a001d, Z_Construct_UClass_UCameraComponent_NoRegister());
+				UProperty* NewProp_FP_Gun = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FP_Gun"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FP_Gun, AFP_FirstPersonCharacter), 0x00400000000b0009, Z_Construct_UClass_USkeletalMeshComponent_NoRegister());
+				UProperty* NewProp_Mesh1P = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Mesh1P"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Mesh1P, AFP_FirstPersonCharacter), 0x00400000000b0009, Z_Construct_UClass_USkeletalMeshComponent_NoRegister());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->ClassConfigName = FName(TEXT("Game"));
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("HideCategories"), TEXT("Navigation"));
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_WeaponDamage, TEXT("Category"), TEXT("Gameplay"));
+				MetaData->SetValue(NewProp_WeaponDamage, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_WeaponDamage, TEXT("ToolTip"), TEXT("This is multiplied by the direction vector when the weapon trace hits something to apply velocity to the component that is hit"));
+				MetaData->SetValue(NewProp_WeaponRange, TEXT("Category"), TEXT("Gameplay"));
+				MetaData->SetValue(NewProp_WeaponRange, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_WeaponRange, TEXT("ToolTip"), TEXT("This is when calculating the trace to determine what the weapon has hit"));
+				MetaData->SetValue(NewProp_FireAnimation, TEXT("Category"), TEXT("Gameplay"));
+				MetaData->SetValue(NewProp_FireAnimation, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_FireAnimation, TEXT("ToolTip"), TEXT("AnimMontage to play each time we fire"));
+				MetaData->SetValue(NewProp_FireSound, TEXT("Category"), TEXT("Gameplay"));
+				MetaData->SetValue(NewProp_FireSound, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_FireSound, TEXT("ToolTip"), TEXT("Sound to play each time we fire"));
+				MetaData->SetValue(NewProp_GunOffset, TEXT("Category"), TEXT("Gameplay"));
+				MetaData->SetValue(NewProp_GunOffset, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_GunOffset, TEXT("ToolTip"), TEXT("Gun muzzle's offset from the characters location"));
+				MetaData->SetValue(NewProp_BaseLookUpRate, TEXT("Category"), TEXT("Camera"));
+				MetaData->SetValue(NewProp_BaseLookUpRate, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_BaseLookUpRate, TEXT("ToolTip"), TEXT("Base look up/down rate, in deg/sec. Other scaling may affect final rate."));
+				MetaData->SetValue(NewProp_BaseTurnRate, TEXT("Category"), TEXT("Camera"));
+				MetaData->SetValue(NewProp_BaseTurnRate, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_BaseTurnRate, TEXT("ToolTip"), TEXT("Base turn rate, in deg/sec. Other scaling may affect final turn rate."));
+				MetaData->SetValue(NewProp_FirstPersonCameraComponent, TEXT("AllowPrivateAccess"), TEXT("true"));
+				MetaData->SetValue(NewProp_FirstPersonCameraComponent, TEXT("Category"), TEXT("Camera"));
+				MetaData->SetValue(NewProp_FirstPersonCameraComponent, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_FirstPersonCameraComponent, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_FirstPersonCameraComponent, TEXT("ToolTip"), TEXT("First person camera"));
+				MetaData->SetValue(NewProp_FP_Gun, TEXT("Category"), TEXT("Mesh"));
+				MetaData->SetValue(NewProp_FP_Gun, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_FP_Gun, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_Mesh1P, TEXT("Category"), TEXT("Mesh"));
+				MetaData->SetValue(NewProp_Mesh1P, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_Mesh1P, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonCharacter.h"));
+				MetaData->SetValue(NewProp_Mesh1P, TEXT("ToolTip"), TEXT("Pawn mesh: 1st person view (arms; seen only by self)"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AFP_FirstPersonCharacter(Z_Construct_UClass_AFP_FirstPersonCharacter, &AFP_FirstPersonCharacter::StaticClass, TEXT("AFP_FirstPersonCharacter"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AFP_FirstPersonCharacter);
+	UClass* Z_Construct_UClass_AFP_FirstPersonGameMode_NoRegister()
+	{
+		return AFP_FirstPersonGameMode::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AFP_FirstPersonGameMode()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AGameMode();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AFP_FirstPersonGameMode::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x2088028C;
+
+
+				OuterClass->ClassConfigName = FName(TEXT("Game"));
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("HideCategories"), TEXT("Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering Utilities|Transformation"));
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("FP_FirstPerson/FP_FirstPersonGameMode.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonGameMode.h"));
+				MetaData->SetValue(OuterClass, TEXT("ShowCategories"), TEXT("Input|MouseInput Input|TouchInput"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AFP_FirstPersonGameMode(Z_Construct_UClass_AFP_FirstPersonGameMode, &AFP_FirstPersonGameMode::StaticClass, TEXT("AFP_FirstPersonGameMode"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AFP_FirstPersonGameMode);
+	UClass* Z_Construct_UClass_AFP_FirstPersonHUD_NoRegister()
+	{
+		return AFP_FirstPersonHUD::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AFP_FirstPersonHUD()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AHUD();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AFP_FirstPersonHUD::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x2080028C;
+
+
+				OuterClass->ClassConfigName = FName(TEXT("Game"));
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("HideCategories"), TEXT("Rendering Actor Input Replication"));
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("FP_FirstPerson/FP_FirstPersonHUD.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("FP_FirstPerson/FP_FirstPersonHUD.h"));
+				MetaData->SetValue(OuterClass, TEXT("ShowCategories"), TEXT("Input|MouseInput Input|TouchInput"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AFP_FirstPersonHUD(Z_Construct_UClass_AFP_FirstPersonHUD, &AFP_FirstPersonHUD::StaticClass, TEXT("AFP_FirstPersonHUD"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AFP_FirstPersonHUD);
 	UClass* Z_Construct_UClass_AManager_NoRegister()
 	{
 		return AManager::StaticClass();
@@ -469,8 +637,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x052C380D;
-			Guid.B = 0xC3BAD6B4;
+			Guid.A = 0x8003AA44;
+			Guid.B = 0x115B980B;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

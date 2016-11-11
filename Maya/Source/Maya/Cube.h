@@ -42,5 +42,6 @@ class ACube : public AActor
 
 	virtual void MoveAlongLine();
 	virtual void AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude);
-
+	virtual void AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro);
+	virtual void AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro);
 };

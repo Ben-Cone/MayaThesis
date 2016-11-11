@@ -17,6 +17,15 @@
 #ifndef MAYA_MasterCube_generated_h
 	#include "MasterCube.h"
 #endif
+#ifndef MAYA_FP_FirstPersonCharacter_generated_h
+	#include "FP_FirstPerson/FP_FirstPersonCharacter.h"
+#endif
+#ifndef MAYA_FP_FirstPersonGameMode_generated_h
+	#include "FP_FirstPerson/FP_FirstPersonGameMode.h"
+#endif
+#ifndef MAYA_FP_FirstPersonHUD_generated_h
+	#include "FP_FirstPerson/FP_FirstPersonHUD.h"
+#endif
 #ifndef MAYA_Manager_generated_h
 	#include "Manager.h"
 #endif

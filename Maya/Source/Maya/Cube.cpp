@@ -89,3 +89,11 @@ void ACube::AvoidUserBasic(FRotator movementAngle, FVector currentLocation, floa
 void ACube::MoveTo(FVector inputCurrentLocation)
 {
 }
+
+void ACube::AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro)
+{
+}
+
+void ACube::AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro)
+{
+}

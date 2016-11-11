@@ -53,7 +53,7 @@ void AMasterCube::NewTargetLocationDiscrete() // picks new direction / location 
 {
 	CurrentLocation = TargetLocation;
 
-	DirectionToMove = FMath::RandRange(0, 2);
+	DirectionToMove = FMath::RandRange(0, 1);
 
 	StartLocation = CurrentLocation;
 
@@ -265,30 +265,6 @@ void AMasterCube::NewTargetLocationRotate()
 
 	}
 
-
-
-	//switch (DirectionToMove) {
-
-	//case 0:
-
-	//	if (CurrentLocation.X < Boundary - RotatorOffset)
-	//	{
-	//		RadiusCenter = CurrentLocation;
-	//		RadiusCenter.X = RotatorOffset;
-	//	}
-
-
-	//	break;
-
-	//case 1:
-
-	//	break;
-
-	//case 2:
-
-	//	break;
-	//}
-
 }
 
 FVector AMasterCube::MoveDiscrete()
@@ -452,4 +428,121 @@ void AMasterCube::AvoidUserBasic(FRotator movementAngle, FVector currentLocation
 void AMasterCube::MoveTo(FVector inputCurrentLocation)
 {
 	CurrentLocation = inputCurrentLocation;
+}
+
+void AMasterCube::AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro)
+{
+	//DrawDebugPoint(GWorld, CurrentLocation, 5, FColor::Orange, false, 10.f, 0.f);
+
+	// angle between X, do X, pos / neg
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, movementAngleDiscrete.ToString());
+
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, CurrentLocation.ToString());
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TargetLocation.ToString());
+
+	if (FVector::Dist(TargetLocation, CurrentLocation) < 5.f)
+	{
+		AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+	}
+
+
+	switch (DirectionToMove) {
+
+	case 0:
+
+		CurrentLocation.X += (12 * currentAggro * Direction.X);
+
+		break;
+
+	case 1:
+
+		CurrentLocation.Y += (12 * currentAggro * Direction.Y);
+
+		break;
+
+	case 2:
+
+		CurrentLocation.Z += (12 * currentAggro * Direction.Z);
+
+		break;
+	}
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, CurrentLocation.ToString());
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TargetLocation.ToString());
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %d "), Direction.X));
+}
+
+void AMasterCube::AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro)
+{
+	CurrentLocation = TargetLocation;
+
+	DirectionToMove = FMath::RandRange(0, 1);
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %d "), DirectionToMove));
+
+	StartLocation = CurrentLocation;
+
+	if (movementAngleDiscrete.Yaw < 180 && movementAngleDiscrete.Yaw > 0)
+	{
+		Direction.Y = 1;
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, Direction.ToString());
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, movementAngleDiscrete.ToString());
+	}
+	else if (movementAngleDiscrete.Yaw > 180 && movementAngleDiscrete.Yaw < 360)
+	{
+		Direction.Y = -1;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, Direction.ToString());
+	}
+
+	if (movementAngleDiscrete.Yaw > 270 || movementAngleDiscrete.Yaw < 90)
+	{
+		Direction.X = 1;
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, Direction.ToString());
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, movementAngleDiscrete.ToString());
+	}
+	else if (movementAngleDiscrete.Yaw > 90 && movementAngleDiscrete.Yaw < 270)
+	{
+		Direction.X = -1;
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, Direction.ToString());
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, movementAngleDiscrete.ToString());
+	}
+
+	switch (DirectionToMove) {
+
+	case 0:
+
+		if (Direction.X == -1) {
+			TargetLocation.X = (CurrentLocation.X + MoveDistance * Direction.X);
+		}
+
+		else if (Direction.X == 1) {
+			TargetLocation.X = (CurrentLocation.X + MoveDistance * Direction.X);
+		}
+		break;
+
+	case 1:
+
+		if (Direction.Y == -1) {
+			TargetLocation.Y = (CurrentLocation.Y + MoveDistance * Direction.Y);
+		}
+
+		else if (Direction.Y == 1) {
+			TargetLocation.Y = (CurrentLocation.Y + MoveDistance * Direction.Y);
+		}
+		break;
+
+	case 2:
+
+		if (Direction.Z == -1) {
+			TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+		}
+
+		else if (Direction.Z == 1) {
+			TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+		}
+		break;
+	}
 }

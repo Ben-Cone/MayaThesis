@@ -30,7 +30,7 @@ void AManagerTest_002_Interaction::BeginPlay()
 void AManagerTest_002_Interaction::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-	Radii();
+	Spectra();
 	baseCubeClass->SpawnTrail();
 
 }
@@ -53,51 +53,61 @@ void AManagerTest_002_Interaction::SpawnDefaults()
 
 }
 
-void AManagerTest_002_Interaction::Radii()
+void AManagerTest_002_Interaction::Spectra()
 {
 	cubeLocation = baseCubeClass->GetCurrentLoc();
-//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, cubeLocation.ToString());
-
 	userLocation = userClass->GetActorLocation();
-//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, userLocation.ToString());
-
-	userRadius = userLocation - cubeLocation;
-//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, userRadius.ToString());
-
-	DrawDebugSphere(
-		GetWorld(),
-		cubeLocation,
-		450,
-		32,
-		FColor(255, 0, 0));
-
-	DrawDebugSphere(
-		GetWorld(),
-		cubeLocation,
-		100,
-		32,
-		FColor(160, 160, 0));
-
-
-	preNormalizedAggro = sqrt((pow(userRadius.X,2)) + (pow(userRadius.Y,2)));
-
-	currentAggro = InverseLerp(450, 0, preNormalizedAggro);
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%f"), currentAggro));
-
+	userRadiusToCube = userLocation - cubeLocation;
 	userRotation = UKismetMathLibrary::FindLookAtRotation(cubeLocation, userLocation);
-
 	userRotation.Yaw += 180.f;
+	DrawDebugSphere(GetWorld(), cubeLocation, 450, 32, FColor(255, 0, 0));
+	DrawDebugSphere(GetWorld(), cubeLocation, 100, 32, FColor(160, 160, 0));
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, userRotation.ToString());
+
+
+	currentAggro = InverseLerp(450, 0, (sqrt((pow(userRadiusToCube.X, 2)) + (pow(userRadiusToCube.Y, 2)))));
+
+	// currentAggro's stored in array
+	// function adds to array, sets avgAggro
+	// from there, use current/avgAggro's in other spectra
+	//
+	// > potentially break down further to (last 10 sec, last 5 sec, last 2 sec)
+	// > > speed?  needs to be quick at avoiding user 
+
+
+	// -- avoid user -- //
 
 	if (currentAggro > 0)
 	{
-		baseCubeClass->AvoidUserBasic(userRotation, cubeLocation, currentAggro);
-		//baseCubeClass->MoveTo(cubeLocation);
+		if (aggroCount < 1000)
+		{
+			aggroCount++;
+		}
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%d"), aggroCount));
+
+		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + currentAggro / aggroCount;
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%f"), avgAggro));
+
+		baseCubeClass->AvoidanceDiscrete(userRotation, currentAggro);
+		baseCubeClass->MoveCube();
+		
+		
+		//baseCubeClass->AvoidUserBasic(userRotation, cubeLocation, currentAggro);
+	}
+	else if (currentAggro < 0)
+	{
+		if (aggroCount < 1000)
+		{
+			aggroCount++;
+		}
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%d"), aggroCount));
+
+		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + 0 / aggroCount;
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%f"), avgAggro));
+
 	}
 
-	//baseCubeClass->MoveTo(cubeLocation);
+
 
 }
 

@@ -37,14 +37,16 @@ public:
 	
 	FVector userLocation;
 	FVector cubeLocation;
-	FVector userRadius;
+	FVector userRadiusToCube;
 	FRotator userRotation;
+	TArray<float> aggroHistory;
 
-	float preNormalizedAggro;
+	int aggroCount;
+
 	float currentAggro;
 	float avgAggro;
 	
-	void Radii();
+	void Spectra();
 
 	float InverseLerp(float A, float B, float Value);
 
