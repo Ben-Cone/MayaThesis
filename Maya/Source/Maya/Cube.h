@@ -44,4 +44,6 @@ class ACube : public AActor
 	virtual void AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude);
 	virtual void AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro);
 	virtual void AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro);
+	virtual void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
+	virtual void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
 };

@@ -15,15 +15,21 @@ AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(Ob
 	CurrentLocation = FVector(0.f, 0.f, 0.f);
 
 	Direction = FVector(1.f, 1.f, 1.f);
+	currentAxisDirection = FVector(1.f, 1.f, 1.f);
+	nextAxisDirection = FVector(1.f, 1.f, 1.f);
 
 	CurrentLocation = FVector(0.f, 0.f, 0.f);
 
-	MoveDistance = 100.f;
+	MoveDistance = 40.f;
 	Boundary = 600.f;
 	InterpSpeed = .02f;
 	RotatorOffset = 200.f;
 	RadiusCenter = CurrentLocation;
 	RadiusCenter.X += RotatorOffset;
+
+	directionsXYZ.Add(TEXT("X"));
+	directionsXYZ.Add(TEXT("Y"));
+	directionsXYZ.Add(TEXT("Z"));
 
 }
 
@@ -53,14 +59,14 @@ void AMasterCube::NewTargetLocationDiscrete() // picks new direction / location 
 {
 	CurrentLocation = TargetLocation;
 
-	DirectionToMove = FMath::RandRange(0, 1);
+	DirectionToMoveXYZ = FMath::RandRange(0, 1);
 
-	StartLocation = CurrentLocation;
+	//StartLocation = CurrentLocation;
 
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%d"), DirectionToMove));
 
 
-	switch (DirectionToMove) {
+	switch (DirectionToMoveXYZ) {
 
 	case 0:
 
@@ -134,7 +140,7 @@ void AMasterCube::NewTargetLocationLinear()
 	TargetLocation.Y = FMath::RandRange(Boundary * -1, Boundary);
 	TargetLocation.Z = FMath::RandRange(Boundary * -1, Boundary);
 
-	StartLocation = CurrentLocation;
+	//StartLocation = CurrentLocation;
 	InterpolationAlpha = TargetLocation - StartLocation;
 
 }
@@ -143,12 +149,12 @@ void AMasterCube::NewTargetLocationRotate()
 {
 	CurrentLocation = TargetLocation;
 
-	DirectionToMove = FMath::RandRange(0, 2);
+	DirectionToMoveXYZ = FMath::RandRange(0, 2);
 
-	StartLocation = CurrentLocation;
+	//StartLocation = CurrentLocation;
 	InterpolationAlpha = FVector(0.f, 0.f, 0.f);
 
-	switch (DirectionToMove) {
+	switch (DirectionToMoveXYZ) {
 
 	case 0:
 
@@ -271,7 +277,7 @@ FVector AMasterCube::MoveDiscrete()
 {
 	//DrawDebugPoint(GWorld, CurrentLocation, 5, FColor::Orange, false, 10.f, 0.f);
 
-	switch (DirectionToMove) {
+	switch (DirectionToMoveXYZ) {
 
 	case 0:
 
@@ -310,28 +316,28 @@ FVector AMasterCube::MoveLinear()
 FVector AMasterCube::MoveRotate()
 {
 
-	switch (DirectionToMove) {
+	switch (DirectionToMoveXYZ) {
 
 	case 0:
 		InterpolationAlpha.X += (1.57 * InterpSpeed);
-		CurrentLocation.X = (((StartLocation.X - RadiusCenter.X) * FMath::Cos(InterpolationAlpha.X)) - ((StartLocation.Y - RadiusCenter.Y) * FMath::Sin(InterpolationAlpha.X))) + RadiusCenter.X;
-		CurrentLocation.Y = (((StartLocation.Y - RadiusCenter.Y) * FMath::Cos(InterpolationAlpha.X)) - ((StartLocation.X - RadiusCenter.X) * FMath::Sin(InterpolationAlpha.X))) + RadiusCenter.Y;
+		//CurrentLocation.X = (((StartLocation.X - RadiusCenter.X) * FMath::Cos(InterpolationAlpha.X)) - ((StartLocation.Y - RadiusCenter.Y) * FMath::Sin(InterpolationAlpha.X))) + RadiusCenter.X;
+		//CurrentLocation.Y = (((StartLocation.Y - RadiusCenter.Y) * FMath::Cos(InterpolationAlpha.X)) - ((StartLocation.X - RadiusCenter.X) * FMath::Sin(InterpolationAlpha.X))) + RadiusCenter.Y;
 
 		break;
 
 	case 1:
 
 		InterpolationAlpha.Y += (1.57 * InterpSpeed);
-		CurrentLocation.Y = (((StartLocation.Y - RadiusCenter.Y) * FMath::Cos(InterpolationAlpha.Y)) - ((StartLocation.X - RadiusCenter.X) * FMath::Sin(InterpolationAlpha.Y))) + RadiusCenter.Y;
-		CurrentLocation.X = (((StartLocation.X - RadiusCenter.X) * FMath::Cos(InterpolationAlpha.Y)) - ((StartLocation.Y - RadiusCenter.Y) * FMath::Sin(InterpolationAlpha.Y))) + RadiusCenter.X;
+		//CurrentLocation.Y = (((StartLocation.Y - RadiusCenter.Y) * FMath::Cos(InterpolationAlpha.Y)) - ((StartLocation.X - RadiusCenter.X) * FMath::Sin(InterpolationAlpha.Y))) + RadiusCenter.Y;
+		//CurrentLocation.X = (((StartLocation.X - RadiusCenter.X) * FMath::Cos(InterpolationAlpha.Y)) - ((StartLocation.Y - RadiusCenter.Y) * FMath::Sin(InterpolationAlpha.Y))) + RadiusCenter.X;
 
 		break;
 
 	case 2:
 
 		InterpolationAlpha.Z += (1.57 * InterpSpeed);
-		CurrentLocation.Z = (((StartLocation.Z - RadiusCenter.Z) * FMath::Cos(InterpolationAlpha.Z)) - ((StartLocation.X - RadiusCenter.X) * FMath::Sin(InterpolationAlpha.Z))) + RadiusCenter.Z;
-		CurrentLocation.X = (((StartLocation.X - RadiusCenter.X) * FMath::Cos(InterpolationAlpha.Z)) - ((StartLocation.Z - RadiusCenter.Z) * FMath::Sin(InterpolationAlpha.Z))) + RadiusCenter.X;
+		//CurrentLocation.Z = (((StartLocation.Z - RadiusCenter.Z) * FMath::Cos(InterpolationAlpha.Z)) - ((StartLocation.X - RadiusCenter.X) * FMath::Sin(InterpolationAlpha.Z))) + RadiusCenter.Z;
+		//CurrentLocation.X = (((StartLocation.X - RadiusCenter.X) * FMath::Cos(InterpolationAlpha.Z)) - ((StartLocation.Z - RadiusCenter.Z) * FMath::Sin(InterpolationAlpha.Z))) + RadiusCenter.X;
 
 
 		break;
@@ -432,23 +438,87 @@ void AMasterCube::MoveTo(FVector inputCurrentLocation)
 
 void AMasterCube::AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro)
 {
-	//DrawDebugPoint(GWorld, CurrentLocation, 5, FColor::Orange, false, 10.f, 0.f);
 
-	// angle between X, do X, pos / neg
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, CurrentLocation.ToString());
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TargetLocation.ToString());
 
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, movementAngleDiscrete.ToString());
-
-
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, CurrentLocation.ToString());
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TargetLocation.ToString());
-
-	if (FVector::Dist(TargetLocation, CurrentLocation) < 5.f)
+	if (Direction.X == 1 || Direction.Y == 1 || Direction.Z == 1)
 	{
-		AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+
+		switch (DirectionToMoveXYZ) {
+
+		case 0:
+
+			if (FMath::Abs(TargetLocation.X) - FMath::Abs(CurrentLocation.X) <= 0)
+			{
+				AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+			}
+
+			break;
+
+		case 1:
+
+			if (FMath::Abs(TargetLocation.Y) - FMath::Abs(CurrentLocation.Y) <= 0)
+			{
+				AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+			}
+
+			break;
+
+		case 2:
+
+			if (FMath::Abs(TargetLocation.Z) - FMath::Abs(CurrentLocation.Z) <= 0)
+			{
+				AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+			}
+
+			break;
+
+		}
+	}
+	else if (Direction.X == -1 || Direction.Y == -1 || Direction.Z == -1)
+	{
+
+		switch (DirectionToMoveXYZ) {
+
+		case 0:
+
+			if (FMath::Abs(TargetLocation.X) - FMath::Abs(CurrentLocation.X) <= 0)
+			{
+				AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+			}
+
+			break;
+
+		case 1:
+
+			if (FMath::Abs(TargetLocation.Y) - FMath::Abs(CurrentLocation.Y) <= 0)
+			{
+				AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+			}
+
+			break;
+
+		case 2:
+
+			if (FMath::Abs(TargetLocation.Z) - FMath::Abs(CurrentLocation.Z) <= 0)
+			{
+				AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+			}
+
+			break;
+
+		}
 	}
 
 
-	switch (DirectionToMove) {
+	//if (FVector::Dist(TargetLocation, CurrentLocation) < 5.f)
+	//{
+	//	AvoidanceNewLocation(movementAngleDiscrete, currentAggro);
+	//}
+
+
+	switch (DirectionToMoveXYZ) {
 
 	case 0:
 
@@ -469,80 +539,278 @@ void AMasterCube::AvoidanceDiscrete(FRotator movementAngleDiscrete, float curren
 		break;
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, CurrentLocation.ToString());
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TargetLocation.ToString());
-
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %d "), Direction.X));
 }
 
 void AMasterCube::AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro)
 {
-	CurrentLocation = TargetLocation;
-
-	DirectionToMove = FMath::RandRange(0, 1);
+	DirectionToMoveXYZ = FMath::RandRange(0, 2);
 
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %d "), DirectionToMove));
 
-	StartLocation = CurrentLocation;
+	//StartLocation = CurrentLocation;
 
 	if (movementAngleDiscrete.Yaw < 180 && movementAngleDiscrete.Yaw > 0)
 	{
 		Direction.Y = 1;
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, Direction.ToString());
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, movementAngleDiscrete.ToString());
 	}
 	else if (movementAngleDiscrete.Yaw > 180 && movementAngleDiscrete.Yaw < 360)
 	{
 		Direction.Y = -1;
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, Direction.ToString());
 	}
 
 	if (movementAngleDiscrete.Yaw > 270 || movementAngleDiscrete.Yaw < 90)
 	{
 		Direction.X = 1;
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, Direction.ToString());
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, movementAngleDiscrete.ToString());
 	}
 	else if (movementAngleDiscrete.Yaw > 90 && movementAngleDiscrete.Yaw < 270)
 	{
 		Direction.X = -1;
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, Direction.ToString());
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, movementAngleDiscrete.ToString());
 	}
 
-	switch (DirectionToMove) {
+	if (CurrentLocation.Z < 140 && CurrentLocation.Z > 10)
+	{
+		int32 randDirection = FMath::RandRange(0, 1);
+
+		if (randDirection == 0)
+		{
+			Direction.Z = -1;
+		}
+		else if (randDirection == 1)
+		{
+			Direction.Z = 1;
+		}
+
+	}
+	else if (CurrentLocation.Z > 140)
+	{
+		Direction.Z = -1;
+	}
+	else if (CurrentLocation.Z < 10)
+	{
+		Direction.Z = 1;
+	}
+
+	//
+
+	switch (DirectionToMoveXYZ) {
 
 	case 0:
-
-		if (Direction.X == -1) {
+		if (DirectionToMoveXYZ == previousXYZ && previousDirection.X == Direction.X)
+		{
 			TargetLocation.X = (CurrentLocation.X + MoveDistance * Direction.X);
+			previousDirection.X = -1;
+		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 001")));
+		}
+		else if (DirectionToMoveXYZ == previousXYZ && previousDirection.X != Direction.X)
+		{
+			TargetLocation.X = (CurrentLocation.X + MoveDistance * (Direction.X * -1));
+			previousDirection.X = Direction.X * -1;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 002")));
+		}
+		else if (DirectionToMoveXYZ != previousXYZ)
+		{
+			if (Direction.X == -1) {
+				TargetLocation.X = (CurrentLocation.X + MoveDistance * Direction.X);
+				previousDirection.X = -1;
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 003")));
+			}
+
+			else if (Direction.X == 1) {
+				TargetLocation.X = (CurrentLocation.X + MoveDistance * Direction.X);
+				previousDirection.X = 1;
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 004")));
+			}
 		}
 
-		else if (Direction.X == 1) {
-			TargetLocation.X = (CurrentLocation.X + MoveDistance * Direction.X);
-		}
-		break;
+	previousXYZ = 0;
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" case 0")));
+
+	break;
 
 	case 1:
 
-		if (Direction.Y == -1) {
+		if (DirectionToMoveXYZ == previousXYZ && previousDirection.Y == Direction.Y)
+		{
 			TargetLocation.Y = (CurrentLocation.Y + MoveDistance * Direction.Y);
+			previousDirection.Y = -1;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT(" 001")));
+		}
+		else if (DirectionToMoveXYZ == previousXYZ && previousDirection.Y != Direction.Y)
+		{
+			TargetLocation.Y = (CurrentLocation.Y + MoveDistance * (Direction.Y * -1));
+			previousDirection.Y = Direction.Y * -1;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT(" 002")));
+		}
+		else if (DirectionToMoveXYZ != previousXYZ)
+		{
+			if (Direction.Y == -1) {
+				TargetLocation.Y = (CurrentLocation.Y + MoveDistance * Direction.Y);
+				previousDirection.Y = -1;
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT(" 003")));
+			}
+
+			else if (Direction.Y == 1) {
+				TargetLocation.Y = (CurrentLocation.Y + MoveDistance * Direction.Y);
+				previousDirection.Y = 1;
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT(" 004")));
+			}
 		}
 
-		else if (Direction.Y == 1) {
-			TargetLocation.Y = (CurrentLocation.Y + MoveDistance * Direction.Y);
-		}
+		previousXYZ = 1;
+
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT(" case 1")));
+
 		break;
 
 	case 2:
 
-		if (Direction.Z == -1) {
+		if (DirectionToMoveXYZ == previousXYZ && previousDirection.Z == Direction.Z)
+		{
 			TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+			previousDirection.Z = -1;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 001")));
+		}
+		else if (DirectionToMoveXYZ == previousXYZ && previousDirection.Z != Direction.Z)
+		{
+			TargetLocation.Z = (CurrentLocation.Z + MoveDistance * (Direction.Z * -1));
+			previousDirection.Z = Direction.Z * -1;
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 002")));
+		}
+		else if (DirectionToMoveXYZ != previousXYZ)
+		{
+			if (Direction.Z == -1) {
+				TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+				previousDirection.Z = -1;
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 003")));
+			}
+
+			else if (Direction.Z == 1) {
+				TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+				previousDirection.Z = 1;
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 004")));
+			}
 		}
 
-		else if (Direction.Z == 1) {
-			TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
-		}
+		previousXYZ = 2;
+
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" case 2")));
+
+		//if (DirectionToMoveXYZ == previousXYZ && previousDirection.Z == Direction.Z)
+		//{
+		//	previousXYZ = 2;
+
+		//	if (Direction.Z == -1) {
+		//		TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+		//		previousDirection.Z = -1;
+		//	}
+
+		//	else if (Direction.Z == 1) {
+		//		TargetLocation.Z = (CurrentLocation.Z + MoveDistance * Direction.Z);
+		//		previousDirection.Z = 1;
+		//	}
+		//}
 		break;
 	}
+
+
+}
+
+void AMasterCube::CubeMovementDiscrete(FRotator movementAngle, float currentAggro)
+{
+
+	currentAxisDirection[DirectionToMoveXYZ] = nextAxisDirection[DirectionToMoveXYZ];
+	currentDirectionXYZ = DirectionToMoveXYZ;
+
+	if (distanceComplete < MoveDistance)
+	{
+		CurrentLocation[DirectionToMoveXYZ] += (12 * currentAggro * nextAxisDirection[DirectionToMoveXYZ]);
+		distanceComplete += (12 * currentAggro);
+	}
+	else if (distanceComplete >= MoveDistance)
+	{
+		CurrentLocation = TargetLocation;
+		CubeMovementNewLocation(movementAngle, currentAggro);
+	}
+	
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), distanceComplete));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
+}
+
+void AMasterCube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
+{
+	DirectionToMoveXYZ = FMath::RandRange(0, 2);
+
+	distanceComplete = 0.f;
+
+	// new X direction
+
+	if (movementAngle.Yaw > 270 || movementAngle.Yaw < 90)
+	{
+		nextAxisDirection.X = 1;
+	}
+	else if (movementAngle.Yaw > 90 && movementAngle.Yaw < 270)
+	{
+		nextAxisDirection.X = -1;
+	}
+
+	// new y direction
+
+	if (movementAngle.Yaw < 180 && movementAngle.Yaw > 0)
+	{
+		nextAxisDirection.Y = 1;
+	}
+	else if (movementAngle.Yaw > 180 && movementAngle.Yaw < 360)
+	{
+		nextAxisDirection.Y = -1;
+	}
+
+	// new z direction
+
+
+	if (CurrentLocation.Z < 160 && CurrentLocation.Z > 0)
+	{
+		int zChoice = FMath::RandRange(0, 1);
+
+		if (currentDirectionXYZ == DirectionToMoveXYZ)
+		{
+			switch (zChoice)
+			{
+			case 0:
+				nextAxisDirection.Z = currentAxisDirection.Z;
+				break;
+
+			case 1:
+				CubeMovementNewLocation(movementAngle, currentAggro);
+				break;
+			}
+		}
+		else
+		{
+			switch (zChoice)
+			{
+			case 0:
+				nextAxisDirection.Z = 1;
+				break;
+
+			case 1:
+				nextAxisDirection.Z = -1;
+				break;
+			}
+		}
+	}
+	else if (CurrentLocation.Z >= 160)
+	{
+		nextAxisDirection.Z = -1;
+	}
+	else if (CurrentLocation.Z <= 0)
+	{
+		nextAxisDirection.Z = 1;
+	}
+
+
+	// new location
+
+	TargetLocation[DirectionToMoveXYZ] = CurrentLocation[DirectionToMoveXYZ] + (MoveDistance * nextAxisDirection[DirectionToMoveXYZ]);
 }

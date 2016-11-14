@@ -97,3 +97,12 @@ void ACube::AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro
 void ACube::AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro)
 {
 }
+
+void ACube::CubeMovementDiscrete(FRotator movementAngleDiscrete, float currentAggro)
+{
+}
+
+void ACube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
+{
+}
+

@@ -33,6 +33,9 @@ void AManagerTest_002_Interaction::Tick( float DeltaTime )
 	Spectra();
 	baseCubeClass->SpawnTrail();
 
+	cubeLocation = baseCubeClass->GetCurrentLoc();
+	userLocation = userClass->GetActorLocation();
+
 }
 
 void AManagerTest_002_Interaction::SpawnDefaults()
@@ -55,8 +58,7 @@ void AManagerTest_002_Interaction::SpawnDefaults()
 
 void AManagerTest_002_Interaction::Spectra()
 {
-	cubeLocation = baseCubeClass->GetCurrentLoc();
-	userLocation = userClass->GetActorLocation();
+
 	userRadiusToCube = userLocation - cubeLocation;
 	userRotation = UKismetMathLibrary::FindLookAtRotation(cubeLocation, userLocation);
 	userRotation.Yaw += 180.f;
@@ -70,12 +72,12 @@ void AManagerTest_002_Interaction::Spectra()
 	// currentAggro's stored in array
 	// function adds to array, sets avgAggro
 	// from there, use current/avgAggro's in other spectra
-	//
+	// 
 	// > potentially break down further to (last 10 sec, last 5 sec, last 2 sec)
 	// > > speed?  needs to be quick at avoiding user 
 
 
-	// -- avoid user -- //
+	// -- current / avg aggro -- //
 
 	if (currentAggro > 0)
 	{
@@ -83,16 +85,11 @@ void AManagerTest_002_Interaction::Spectra()
 		{
 			aggroCount++;
 		}
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%d"), aggroCount));
 
 		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + currentAggro / aggroCount;
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%f"), avgAggro));
 
-		baseCubeClass->AvoidanceDiscrete(userRotation, currentAggro);
+		baseCubeClass->CubeMovementDiscrete(userRotation, currentAggro);
 		baseCubeClass->MoveCube();
-		
-		
-		//baseCubeClass->AvoidUserBasic(userRotation, cubeLocation, currentAggro);
 	}
 	else if (currentAggro < 0)
 	{
@@ -100,10 +97,8 @@ void AManagerTest_002_Interaction::Spectra()
 		{
 			aggroCount++;
 		}
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%d"), aggroCount));
 
 		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + 0 / aggroCount;
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%f"), avgAggro));
 
 	}
 

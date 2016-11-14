@@ -33,13 +33,13 @@ class AMasterCube : public ACube
 
 	float InterpSpeed;
 
-	int DirectionToMove;
+	int DirectionToMoveXYZ;
 	FVector Direction;
 
 	// -- Location Picking -- // 
 
 	FVector CurrentLocation;
-	FVector StartLocation;
+	float StartLocation;
 	FVector TargetLocation;
 
 	void NewTargetLocationDiscrete() override;
@@ -82,6 +82,8 @@ class AMasterCube : public ACube
 	// -- Testing -- //
 	void MoveAlongLine();
 	int direction = 1;
+	FVector previousDirection;
+	int previousXYZ;
 
 	float delay;
 
@@ -95,8 +97,23 @@ class AMasterCube : public ACube
 	int avoidanceDirection;
 	void AvoidanceNewLocation(FRotator movementAngle, float currentAggro);
 
+	//
+
+	void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
+	void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
+	TArray<FString> directionsXYZ;
+	FVector currentAxisDirection;
+	FVector nextAxisDirection;
+	float distanceComplete;
+	int currentDirectionXYZ;
 
 	//
 
 	void AvoidUserBasic(FRotator movementAngleDiscrete, FVector currentLocation, float amplitude);
 };
+
+
+
+
+
+
