@@ -20,14 +20,6 @@ class ACube : public AActor
 
 	// -- Movement -- //
 
-	virtual void NewTargetLocationDiscrete();
-	virtual void NewTargetLocationLinear();
-	virtual void NewTargetLocationRotate();
-
-	virtual FVector MoveDiscrete();
-	virtual FVector MoveLinear();
-	virtual FVector MoveRotate();
-
 	virtual void MoveCube();
 
 	virtual FVector GetCurrentLoc();
@@ -41,9 +33,6 @@ class ACube : public AActor
 	// -- Testing -- //
 
 	virtual void MoveAlongLine();
-	virtual void AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude);
-	virtual void AvoidanceDiscrete(FRotator movementAngleDiscrete, float currentAggro);
-	virtual void AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro);
 	virtual void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
 	virtual void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
 };

@@ -42,39 +42,20 @@ class AMasterCube : public ACube
 	float StartLocation;
 	FVector TargetLocation;
 
-	void NewTargetLocationDiscrete() override;
-	void NewTargetLocationLinear() override;
-	void NewTargetLocationRotate() override;
-
-	// -- Movement -- //
-
-	FVector MoveDiscrete() override;
-	FVector MoveLinear() override;
-	FVector MoveRotate() override;
-
 	UPROPERTY(EditAnywhere, Category = "Location Change")
 		float MoveDistance;
 
 	float Boundary;
-
-	FVector RadiusCenter;
-	float RotatorOffset;
-
-	FVector InterpolationAlpha;
 
 	FVector GetCurrentLoc() override;
 	FVector GetTargetLoc() override;
 
 	void DrawDebugging() override;
 
-	AManagerTest_001_Movement* manager;
-
 	USphereComponent* RootNull;
 
 	void MoveCube();
-	void ManagerConnection();
 	void SpawnTrail();
-	void MoveTo(FVector inputCurrentLocation);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Spawn Trail")
 		TSubclassOf<AMasterTrail> SpawnedTrail;
@@ -90,13 +71,6 @@ class AMasterCube : public ACube
 	UPROPERTY(EditAnywhere)
 	float moveSpeed = 25;
 
-	UPROPERTY(EditAnywhere)
-	float avoidanceMultiplier; 
-
-	void AvoidanceDiscrete(FRotator movementAngle, float currentAggro);
-	int avoidanceDirection;
-	void AvoidanceNewLocation(FRotator movementAngle, float currentAggro);
-
 	//
 
 	void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
@@ -107,9 +81,6 @@ class AMasterCube : public ACube
 	float distanceComplete;
 	int currentDirectionXYZ;
 
-	//
-
-	void AvoidUserBasic(FRotator movementAngleDiscrete, FVector currentLocation, float amplitude);
 };
 
 
