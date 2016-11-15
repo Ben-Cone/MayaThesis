@@ -13,6 +13,7 @@ AManagerTest_002_Interaction::AManagerTest_002_Interaction()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	currentAggro = 0.f;
 
 }
 
@@ -23,14 +24,13 @@ void AManagerTest_002_Interaction::BeginPlay()
 
 	SpawnDefaults();
 
-	
 }
 
 // Called every frame
 void AManagerTest_002_Interaction::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-	Spectra();
+	SpectraMaster();
 	baseCubeClass->SpawnTrail();
 
 	cubeLocation = baseCubeClass->GetCurrentLoc();
@@ -56,7 +56,7 @@ void AManagerTest_002_Interaction::SpawnDefaults()
 
 }
 
-void AManagerTest_002_Interaction::Spectra()
+void AManagerTest_002_Interaction::SpectraMaster()
 {
 
 	userRadiusToCube = userLocation - cubeLocation;
@@ -67,43 +67,49 @@ void AManagerTest_002_Interaction::Spectra()
 
 
 
-	currentAggro = InverseLerp(450, 0, (sqrt((pow(userRadiusToCube.X, 2)) + (pow(userRadiusToCube.Y, 2)))));
+	currentTempAggro = InverseLerp(450, 0, (sqrt((pow(userRadiusToCube.X, 2)) + (pow(userRadiusToCube.Y, 2)))));
 
-	// currentAggro's stored in array
-	// function adds to array, sets avgAggro
-	// from there, use current/avgAggro's in other spectra
-	// 
-	// > potentially break down further to (last 10 sec, last 5 sec, last 2 sec)
-	// > > speed?  needs to be quick at avoiding user 
+	currentAggro = FMath::Clamp(currentTempAggro, 0.f, 1.f);
 
-
-	// -- current / avg aggro -- //
-
-	if (currentAggro > 0)
+	if (aggroCount < 500)
 	{
-		if (aggroCount < 1000)
-		{
-			aggroCount++;
-		}
-
-		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + currentAggro / aggroCount;
-
-		baseCubeClass->CubeMovementDiscrete(userRotation, currentAggro);
-		baseCubeClass->MoveCube();
+		aggroCount++;
 	}
-	else if (currentAggro < 0)
+	else if (aggroCount == 500)
 	{
-		if (aggroCount < 1000)
-		{
-			aggroCount++;
-		}
-
-		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + 0 / aggroCount;
-
+		aggroCount = 0;
+		overwriteArray = true;
 	}
 
+	if (overwriteArray)
+	{
+		aggroHistory.RemoveAt(aggroCount - 1);
+	}
+	aggroHistory.Insert(currentAggro, aggroCount - 1);
 
+	for (int i = 0; i < aggroHistory.Num(); i++)
+	{
+		aggroTempSum += aggroHistory[i];
+	}
 
+	aggroSum = aggroTempSum;
+
+	avgAggro = aggroSum / aggroHistory.Num();
+
+	aggroTempSum = 0;
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("avgAggro: %f "), avgAggro));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("aggroHist: %d "), aggroHistory.Num()));
+
+	// -- spectra -- //
+
+	SpectrumRoughness(currentAggro, avgAggro);
+	SpectrumJitteriness(currentAggro, avgAggro);
+	SpectrumCurviness(currentAggro, avgAggro);
+	SpectrumBeatProgression(currentAggro, avgAggro);
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("current: %f "), currentAggro));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("average: %f "), avgAggro));
 }
 
 
@@ -124,4 +130,26 @@ float AManagerTest_002_Interaction::InverseLerp(float A, float B, float Value)
 	{
 		return ((Value - A) / (B - A));
 	}
+}
+
+float AManagerTest_002_Interaction::SpectrumRoughness(float current, float avg)
+{
+	//roughness = (current
+
+	return roughness;
+}
+
+float AManagerTest_002_Interaction::SpectrumJitteriness(float current, float avg)
+{
+	return jitter;
+}
+
+float AManagerTest_002_Interaction::SpectrumCurviness(float current, float avg)
+{
+	return curviness;
+}
+
+float AManagerTest_002_Interaction::SpectrumBeatProgression(float current, float avg)
+{
+	return beatProgression;
 }

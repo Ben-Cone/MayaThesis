@@ -10,29 +10,6 @@ class AMasterCube : public ACube
 {
 	GENERATED_UCLASS_BODY()
 
-		void Print() override;
-
-	// -- Derived class may not use non-base derived functions -- //
-
-	void NonBaseFunc();
-
-	// -- Derived class may override base class variables / functions -- //
-
-	int Num;
-
-	// -- Only Derived functions need to override base class functions -- // 
-	// -- Derived class specific variables are allowed -- //
-
-	int NumNonBaseVar;
-
-	// -- Derived class functions must override Base virtual functions -- //
-
-	int NumRet() override;
-
-	// -- IMPLEMENT CUBE MOVEMENT
-
-	float InterpSpeed;
-
 	int DirectionToMoveXYZ;
 	FVector Direction;
 

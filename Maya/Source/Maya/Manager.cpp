@@ -131,17 +131,17 @@ void AManager::UpdateMovement()
 			switch (movementType)
 			{
 			case Discrete:
-				baseCubeClass->NewTargetLocationDiscrete();
+				//baseCubeClass->NewTargetLocationDiscrete();
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("-- DISCRETE --"));
 				break;
 
 			case Linear:
-				baseCubeClass->NewTargetLocationLinear();
+				//baseCubeClass->NewTargetLocationLinear();
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("-- LINEAR --"));
 				break;
 
 			case Rotate:
-				baseCubeClass->NewTargetLocationRotate();
+				//baseCubeClass->NewTargetLocationRotate();
 				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("-- ROTATE --"));
 				break;
 			}
@@ -153,17 +153,17 @@ void AManager::UpdateMovement()
 		switch (movementType)
 		{
 		case Discrete:
-			baseCubeClass->MoveDiscrete();
+			//baseCubeClass->MoveDiscrete();
 			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("-- Discrete --"));
 			break;
 
 		case Linear:
-			baseCubeClass->MoveLinear();
+			//baseCubeClass->MoveLinear();
 			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("-- Linear --"));
 			break;
 
 		case Rotate:
-			baseCubeClass->MoveRotate();
+			//baseCubeClass->MoveRotate();
 			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("-- Rotate --"));
 			break;
 		}

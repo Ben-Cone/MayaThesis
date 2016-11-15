@@ -6,13 +6,7 @@
 
 AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
-	NumNonBaseVar = 666;
-
-	// -- Movement Initializaiton -- //
-
 	RootComponent = RootNull;
-
-	CurrentLocation = FVector(0.f, 0.f, 0.f);
 
 	Direction = FVector(1.f, 1.f, 1.f);
 	currentAxisDirection = FVector(1.f, 1.f, 1.f);
@@ -22,10 +16,6 @@ AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(Ob
 
 	MoveDistance = 40.f;
 	Boundary = 600.f;
-	InterpSpeed = .02f;
-	RotatorOffset = 200.f;
-	RadiusCenter = CurrentLocation;
-	RadiusCenter.X += RotatorOffset;
 
 	directionsXYZ.Add(TEXT("X"));
 	directionsXYZ.Add(TEXT("Y"));
@@ -74,9 +64,6 @@ void AMasterCube::SpawnTrail()
 
 void AMasterCube::MoveAlongLine()
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, CurrentLocation.ToString());
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" direction: %d "), direction));
-
 
 	if (delay == 0)
 	{
@@ -100,11 +87,6 @@ void AMasterCube::MoveAlongLine()
 	}
 }
 
-void AMasterCube::MoveTo(FVector inputCurrentLocation)
-{
-	CurrentLocation = inputCurrentLocation;
-}
-
 void AMasterCube::CubeMovementDiscrete(FRotator movementAngle, float currentAggro)
 {
 
@@ -122,8 +104,8 @@ void AMasterCube::CubeMovementDiscrete(FRotator movementAngle, float currentAggr
 		CubeMovementNewLocation(movementAngle, currentAggro);
 	}
 	
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), distanceComplete));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), distanceComplete));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
 }
 
 void AMasterCube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
@@ -202,3 +184,4 @@ void AMasterCube::CubeMovementNewLocation(FRotator movementAngle, float currentA
 
 	TargetLocation[DirectionToMoveXYZ] = CurrentLocation[DirectionToMoveXYZ] + (MoveDistance * nextAxisDirection[DirectionToMoveXYZ]);
 }
+

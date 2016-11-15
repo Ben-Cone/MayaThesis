@@ -8,16 +8,6 @@ class ACube : public AActor
 
 	GENERATED_UCLASS_BODY()
 
-		virtual void Print();
-
-	int Num;
-
-	// -- Base class may have members not used by ALL derived classes -- //
-
-	virtual void Nothing();
-
-	virtual int NumRet();
-
 	// -- Movement -- //
 
 	virtual void MoveCube();
@@ -28,7 +18,6 @@ class ACube : public AActor
 	virtual void DrawDebugging();
 	virtual void ManagerConnection();
 	virtual void SpawnTrail();
-	virtual void MoveTo(FVector inputCurrentLocation);
 
 	// -- Testing -- //
 

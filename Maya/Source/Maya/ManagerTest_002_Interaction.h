@@ -39,15 +39,28 @@ public:
 	FVector cubeLocation;
 	FVector userRadiusToCube;
 	FRotator userRotation;
-	TArray<float> aggroHistory;
 
 	int aggroCount;
 
+	float currentTempAggro;
 	float currentAggro;
+	TArray<float> aggroHistory;
+	float aggroSum;
+	float aggroTempSum;
 	float avgAggro;
+	bool overwriteArray = false;
 	
-	void Spectra();
+	// -- spectra -- //
 
+	void SpectraMaster();
+	float SpectrumRoughness(float current, float avg);
+	float roughness;
+	float SpectrumJitteriness(float current, float avg);
+	float jitter;
+	float SpectrumCurviness(float current, float avg);
+	float curviness;
+	float SpectrumBeatProgression(float current, float avg);
+	float beatProgression;
 	float InverseLerp(float A, float B, float Value);
 
 };

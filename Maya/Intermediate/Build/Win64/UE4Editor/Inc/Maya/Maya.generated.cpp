@@ -24,7 +24,7 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	void AMasterCube::StaticRegisterNativesAMasterCube()
 	{
 	}
-	IMPLEMENT_CLASS(AMasterCube, 3070551742);
+	IMPLEMENT_CLASS(AMasterCube, 1325419049);
 	void AFP_FirstPersonCharacter::StaticRegisterNativesAFP_FirstPersonCharacter()
 	{
 	}
@@ -239,7 +239,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-				UProperty* NewProp_avoidanceMultiplier = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("avoidanceMultiplier"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(avoidanceMultiplier, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_moveSpeed = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("moveSpeed"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(moveSpeed, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_SpawnedTrail = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnedTrail"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(SpawnedTrail, AMasterCube), 0x0014000000010001, Z_Construct_UClass_AMasterTrail_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_MoveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MoveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(MoveDistance, AMasterCube), 0x0010000000000001);
@@ -249,8 +248,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
-				MetaData->SetValue(NewProp_avoidanceMultiplier, TEXT("Category"), TEXT("MasterCube"));
-				MetaData->SetValue(NewProp_avoidanceMultiplier, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("Category"), TEXT("MasterCube"));
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("Category"), TEXT("Spawn Trail"));
@@ -637,7 +634,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x8003AA44;
+			Guid.A = 0xB4C88F35;
 			Guid.B = 0x115B980B;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
