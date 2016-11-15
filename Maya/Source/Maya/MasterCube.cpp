@@ -23,6 +23,11 @@ AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(Ob
 
 }
 
+void AMasterCube::Update(float roughness, float jitter, float curviness, float beatProgression)
+{
+
+}
+
 FVector AMasterCube::GetCurrentLoc()
 {
 	return CurrentLocation;

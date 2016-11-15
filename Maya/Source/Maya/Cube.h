@@ -24,4 +24,6 @@ class ACube : public AActor
 	virtual void MoveAlongLine();
 	virtual void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
 	virtual void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
+	virtual void Update(float roughness, float jitter, float curviness, float beatProgression);
+
 };

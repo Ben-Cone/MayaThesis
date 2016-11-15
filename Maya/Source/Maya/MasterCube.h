@@ -50,6 +50,8 @@ class AMasterCube : public ACube
 
 	//
 
+	void Update(float roughness, float jitter, float curviness, float beatProgression);
+
 	void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
 	void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
 	TArray<FString> directionsXYZ;

@@ -53,13 +53,13 @@ public:
 	// -- spectra -- //
 
 	void SpectraMaster();
-	float SpectrumRoughness(float current, float avg);
+	void SpectrumRoughness(float current, float avg);
 	float roughness;
-	float SpectrumJitteriness(float current, float avg);
+	void SpectrumJitteriness(float current, float avg);
 	float jitter;
-	float SpectrumCurviness(float current, float avg);
+	void SpectrumCurviness(float current, float avg);
 	float curviness;
-	float SpectrumBeatProgression(float current, float avg);
+	void SpectrumBeatProgression(float current, float avg);
 	float beatProgression;
 	float InverseLerp(float A, float B, float Value);
 

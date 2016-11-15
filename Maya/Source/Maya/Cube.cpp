@@ -48,3 +48,6 @@ void ACube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
 {
 }
 
+void ACube::Update(float roughness, float jitter, float curviness, float beatProgression)
+{
+}
