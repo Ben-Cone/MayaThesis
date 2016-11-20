@@ -30,7 +30,7 @@ void AManager::BeginPlay()
 
 	delayMax = 2;
 	randomRepeater = 0;
-	baseCubeClass->ManagerConnection();
+
 
 }
 

@@ -5,7 +5,7 @@
 
 AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
-	NumNonBaseVar = 666;
+
 
 	// -- Movement Initializaiton -- //
 
@@ -32,25 +32,6 @@ AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(Ob
 
 }
 
-void AMasterCube::Print()
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("overriden"));
-}
-
-void AMasterCube::NonBaseFunc()
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Derived Function"));
-}
-
-int AMasterCube::NumRet()
-{
-
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("-- NumRet executed --"));
-
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %d "), NumNonBaseVar));
-	return NumNonBaseVar;
-
-}
 
 // -- Movement Functions -- //
 
@@ -363,14 +344,6 @@ void AMasterCube::DrawDebugging()
 	//DrawDebugLine(GWorld, TargetLocation, CurrentLocation, FColor::Yellow, false, -1.f, 1, 10.f);
 }
 
-void AMasterCube::ManagerConnection()
-{
-	for (TActorIterator<AManagerTest_001_Movement> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-	{
-		manager = *ActorItr;
-	}
-}
-
 void AMasterCube::MoveCube()
 {
 
@@ -420,9 +393,6 @@ void AMasterCube::MoveAlongLine()
 		delay--;
 	}
 }
-
-/*https://answers.unrealengine.com/questions/357144/what-is-the-proper-way-to-use-timelines-from-code.html
-*/
 
 void AMasterCube::AvoidUserBasic(FRotator movementAngle, FVector currentLocation, float amplitude)
 {
@@ -722,94 +692,126 @@ void AMasterCube::CubeMovementDiscrete(FRotator movementAngle, float currentAggr
 	currentAxisDirection[DirectionToMoveXYZ] = nextAxisDirection[DirectionToMoveXYZ];
 	currentDirectionXYZ = DirectionToMoveXYZ;
 
-	if (distanceComplete < MoveDistance)
+
+
+	if (distanceComplete < distanceMultiplier)
 	{
 		CurrentLocation[DirectionToMoveXYZ] += (12 * currentAggro * nextAxisDirection[DirectionToMoveXYZ]);
 		distanceComplete += (12 * currentAggro);
 	}
-	else if (distanceComplete >= MoveDistance)
+	else if (distanceComplete >= distanceMultiplier)
 	{
 		CurrentLocation = TargetLocation;
 		CubeMovementNewLocation(movementAngle, currentAggro);
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), distanceComplete));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), distanceComplete));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
 }
 
 void AMasterCube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
 {
-	DirectionToMoveXYZ = FMath::RandRange(0, 2);
+	DirectionToMoveXYZ = FMath::RandRange(0, 1);
+
+	distanceMultiplier = FMath::Ceil(currentAggro * 500);
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" distance: %f "), distanceMultiplier));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" poop")));
 
 	distanceComplete = 0.f;
 
-	// new X direction
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" new location ")));
 
-	if (movementAngle.Yaw > 270 || movementAngle.Yaw < 90)
-	{
-		nextAxisDirection.X = 1;
-	}
-	else if (movementAngle.Yaw > 90 && movementAngle.Yaw < 270)
-	{
-		nextAxisDirection.X = -1;
+	switch (DirectionToMoveXYZ) {
+
+	case 0:
+
+		// new X direction
+
+		if (movementAngle.Yaw >= 315 || movementAngle.Yaw < 45)
+		{
+			nextAxisDirection.X = 1;
+		}
+		else if (movementAngle.Yaw >= 135 && movementAngle.Yaw < 225)
+		{
+			nextAxisDirection.X = -1;
+		}
+
+		break;
+
+	case 1:
+
+		// new y direction
+
+		if (movementAngle.Yaw < 135 && movementAngle.Yaw >= 45)
+		{
+			nextAxisDirection.Y = 1;
+		}
+		else if (movementAngle.Yaw >= 225 && movementAngle.Yaw < 315)
+		{
+			nextAxisDirection.Y = -1;
+		}
+
+		break;
 	}
 
-	// new y direction
 
-	if (movementAngle.Yaw < 180 && movementAngle.Yaw > 0)
-	{
-		nextAxisDirection.Y = 1;
-	}
-	else if (movementAngle.Yaw > 180 && movementAngle.Yaw < 360)
-	{
-		nextAxisDirection.Y = -1;
-	}
+	TargetLocation[DirectionToMoveXYZ] = CurrentLocation[DirectionToMoveXYZ] + (distanceMultiplier * nextAxisDirection[DirectionToMoveXYZ]);
+
+
 
 	// new z direction
 
 
-	if (CurrentLocation.Z < 160 && CurrentLocation.Z > 0)
-	{
-		int zChoice = FMath::RandRange(0, 1);
+	//if (CurrentLocation.Z < 160 && CurrentLocation.Z > 0)
+	//{
+	//	int zChoice = FMath::RandRange(0, 1);
 
-		if (currentDirectionXYZ == DirectionToMoveXYZ)
-		{
-			switch (zChoice)
-			{
-			case 0:
-				nextAxisDirection.Z = currentAxisDirection.Z;
-				break;
+	//	if (currentDirectionXYZ == DirectionToMoveXYZ)
+	//	{
+	//		switch (zChoice)
+	//		{
+	//		case 0:
+	//			nextAxisDirection.Z = currentAxisDirection.Z;
+	//			break;
 
-			case 1:
-				CubeMovementNewLocation(movementAngle, currentAggro);
-				break;
-			}
-		}
-		else
-		{
-			switch (zChoice)
-			{
-			case 0:
-				nextAxisDirection.Z = 1;
-				break;
+	//		case 1:
+	//			CubeMovementNewLocation(movementAngle, currentAggro);
+	//			break;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		switch (zChoice)
+	//		{
+	//		case 0:
+	//			nextAxisDirection.Z = 1;
+	//			break;
 
-			case 1:
-				nextAxisDirection.Z = -1;
-				break;
-			}
-		}
-	}
-	else if (CurrentLocation.Z >= 160)
-	{
-		nextAxisDirection.Z = -1;
-	}
-	else if (CurrentLocation.Z <= 0)
-	{
-		nextAxisDirection.Z = 1;
-	}
+	//		case 1:
+	//			nextAxisDirection.Z = -1;
+	//			break;
+	//		}
+	//	}
+	//}
+	//else if (CurrentLocation.Z >= 160)
+	//{
+	//	nextAxisDirection.Z = -1;
+	//}
+	//else if (CurrentLocation.Z <= 0)
+	//{
+	//	nextAxisDirection.Z = 1;
+	//}
 
 
 	// new location
 
-	TargetLocation[DirectionToMoveXYZ] = CurrentLocation[DirectionToMoveXYZ] + (MoveDistance * nextAxisDirection[DirectionToMoveXYZ]);
+	
+}
+
+void AMasterCube::Movement_A_Linear(FRotator movementAngle, float currentAggro)
+{
+
+
+
 }

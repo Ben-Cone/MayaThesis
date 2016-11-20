@@ -21,7 +21,6 @@ void AManagerTest_001_Movement::BeginPlay()
 	SpawnPolygon();
 
 	delayMax = 2;
-	baseCubeClass->ManagerConnection();
 
 
 }

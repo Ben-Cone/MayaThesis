@@ -70,10 +70,6 @@ void ACube::MoveCube()
 {
 }
 
-void ACube::ManagerConnection()
-{
-}
-
 void ACube::SpawnTrail()
 {
 }
@@ -103,5 +99,9 @@ void ACube::CubeMovementDiscrete(FRotator movementAngleDiscrete, float currentAg
 }
 
 void ACube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_A_Linear(FRotator movementAngle, float currentAggro)
 {
 }

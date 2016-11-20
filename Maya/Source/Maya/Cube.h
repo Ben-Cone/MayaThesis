@@ -34,7 +34,6 @@ class ACube : public AActor
 	virtual FVector GetTargetLoc();
 
 	virtual void DrawDebugging();
-	virtual void ManagerConnection();
 	virtual void SpawnTrail();
 	virtual void MoveTo(FVector inputCurrentLocation);
 
@@ -46,4 +45,12 @@ class ACube : public AActor
 	virtual void AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro);
 	virtual void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
 	virtual void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
+
+
+
+	// -- Movement -- //
+
+	virtual void Movement_A_Linear(FRotator movementAngle, float currentAggro);
+
+
 };

@@ -64,14 +64,68 @@ FVector AMovement::NewPointBDiscrete(FVector directionXYZ, FVector currentLoc)
 FVector AMovement::DiscretePathing(FVector currentLoc, FVector endLocation)
 {
 
-	if ((endLocation.X - currentLoc.X) > 0)
-	{
-		
+	DirectionToMoveXYZ = FMath::RandRange(0, 2);
+	
+	directionAmplitude = FVector(0.f, 0.f, 0.f);
+
+	switch (DirectionToMoveXYZ) {
+
+	case 0:
+
+		if (endLocation.X - currentLoc.X > 0)
+		{
+			directionAmplitude.X = 1.f;
+		}
+		else if (endLocation.X - currentLoc.X < 0)
+		{
+			directionAmplitude.X = -1.f;
+		}
+
+		if (currentLoc.X + moveDistance > endLocation.X)
+		{
+			NewPointBDiscrete(directionAmplitude, currentLoc);
+		}
+		else if (currentLoc.X + moveDistance <= endLocation.X)
+		{
+			NewPointBDiscrete(directionAmplitude, currentLoc);
+		}
+
+		break;
+
+	case 1:
+
+		if (endLocation.Y - currentLoc.Y > 0)
+		{
+			directionAmplitude.Y = 1.f;
+		}
+		else if (endLocation.Y - currentLoc.Y < 0)
+		{
+			directionAmplitude.Y = -1.f;
+		}
+			break;
+	case 2:
+
+		if (endLocation.Z - currentLoc.Z > 0)
+		{
+			directionAmplitude.Z = 1.f;
+		}
+		else if (endLocation.Z - currentLoc.Z < 0)
+		{
+			directionAmplitude.Z = -1.f;
+		}
+
 	}
 
-	NewPointBDiscrete(currentLoc, endLocation);
+	NewPointBDiscrete(directionAmplitude, currentLoc);
 
 
 	return currentLoc;
 
 }
+
+
+
+
+
+
+

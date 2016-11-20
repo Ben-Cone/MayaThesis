@@ -40,5 +40,7 @@ public:
 
 	float returnTest;
 	float movementAmount;
+	int DirectionToMoveXYZ;
+	FVector directionAmplitude;
 	
 };

@@ -40,12 +40,30 @@ public:
 	TArray<float> aggroHistory;
 
 	int aggroCount;
-
-	float currentAggro;
-	float avgAggro;
-
 	void Spectra();
 
 	float InverseLerp(float A, float B, float Value);
+
+	float currentTempAggro;
+	float currentAggro;
+	float aggroSum;
+	float aggroTempSum;
+	float avgAggro;
+	bool overwriteArray = false;
+
+	// -- spectra -- //
+
+	void SpectraMaster();
+	void SpectrumRoughness(float current, float avg);
+	float roughness;
+	void SpectrumJitteriness(float current, float avg);
+	float jitter;
+	void SpectrumCurviness(float current, float avg);
+	float curviness;
+	void SpectrumMusic(float current, float avg);
+	float beatProgression;
+	int currentBeatProgress;
+	UPROPERTY(EditAnywhere, Category = "Variables")
+		float beatProgressionLimit;
 
 };

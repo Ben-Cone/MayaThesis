@@ -123,3 +123,51 @@ float AManagerTest_002_Interaction::InverseLerp(float A, float B, float Value)
 		return ((Value - A) / (B - A));
 	}
 }
+
+
+void AManagerTest_002_Interaction::SpectrumRoughness(float current, float avg)
+{
+	roughness = (current * .4f) + (avg * .7f);
+	roughness = FMath::Clamp(roughness, 0.f, 1.f);
+}
+
+void AManagerTest_002_Interaction::SpectrumJitteriness(float current, float avg)
+{
+	jitter = (current * .6f) + (avg * .2f);
+	jitter = FMath::Clamp(roughness, 0.f, 1.f);
+}
+
+void AManagerTest_002_Interaction::SpectrumCurviness(float current, float avg)
+{
+	curviness = (current * .1f) + (avg * .85f);
+	curviness = FMath::Clamp(roughness, 0.f, 1.f);
+}
+
+
+void AManagerTest_002_Interaction::SpectrumMusic(float current, float avg)
+{
+	if (currentAggro > 0)
+	{
+		beatProgression += current * .9f;
+		beatProgression = FMath::Clamp(beatProgression, 0.f, beatProgressionLimit);
+
+	}
+
+
+	if (beatProgression >= (beatProgressionLimit / 8) * currentBeatProgress && beatProgression < (beatProgressionLimit / 8) * (currentBeatProgress + 1))
+	{
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" %d "), currentBeatProgress));
+	}
+	else if (beatProgression < beatProgressionLimit / 8)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 001 ")));
+	}
+	else if (beatProgression >= (beatProgressionLimit / 8) * (currentBeatProgress + 1))
+	{
+		currentBeatProgress++;
+	}
+
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("%f"), beatProgression));
+}
