@@ -39,13 +39,13 @@ void ACurves::Tick( float DeltaTime )
 
 }
 
-float ACurves::InterpAlongCurve()
+float ACurves::InterpAlongCurve(float lengthSeconds)
 {
 
 	time += timeDelta;
 	interpInput += timeDelta;
 
-	interpolated = this->InterpAlong(interpInput, timeLength);
+	interpolated = this->InterpAlong(interpInput, lengthSeconds);
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("time: %f "), time));
 

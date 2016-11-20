@@ -22,6 +22,12 @@ void AMovement::BeginPlay()
 
 }
 
+void AMovement::SpawnDefaults()
+{
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Curves = GetWorld()->SpawnActor<ACurves>(CurvesSubClass, SpawnInfo);
+}
+
 // Called every frame
 void AMovement::Tick( float DeltaTime )
 {
@@ -35,6 +41,9 @@ FVector AMovement::NewPointBDiscrete(FVector directionXYZ, FVector currentLoc)
 
 	pointA = currentLoc;
 	pointB = pointA;
+
+	// which direction isn't 0, (0, 1, 0)
+	// pointB = direction + moveDistance
 
 	if (directionXYZ.X != 0)
 	{
@@ -52,29 +61,15 @@ FVector AMovement::NewPointBDiscrete(FVector directionXYZ, FVector currentLoc)
 	return pointB;
 }
 
-void AMovement::SpawnDefaults()
+FVector AMovement::DiscretePathing(FVector currentLoc, FVector endLocation)
 {
-	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	Curves = GetWorld()->SpawnActor<ACurves>(CurvesSubClass, SpawnInfo);
-}
 
-
-
-FVector AMovement::DicretePathing(FVector currentLoc, FVector endLocation)
-{
-	float movementAmount;
-	FVector pointB;
-	// if currentLoc.X < pointB.X  movement++
-	// if movement > moved, currentLoc =
-
-
-
-	if (currentLoc.X < pointB.X)
+	if ((endLocation.X - currentLoc.X) > 0)
 	{
 		
 	}
 
-	NewPointBDiscrete(currentLoc);
+	NewPointBDiscrete(currentLoc, endLocation);
 
 
 	return currentLoc;

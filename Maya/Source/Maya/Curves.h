@@ -31,7 +31,7 @@ public:
 		void TestEvent(float pointOnCurve);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
-		float InterpAlong(float inputVal, float length);
+		float InterpAlong(float speedX, float lengthSeconds);
 
 	float interpInput;
 	
@@ -45,7 +45,7 @@ public:
 
 	float interpolated;
 
-	float InterpAlongCurve();
+	float InterpAlongCurve(float lengthSeconds);
 
 };
  

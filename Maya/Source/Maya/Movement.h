@@ -39,6 +39,6 @@ public:
 	FActorSpawnParameters SpawnInfo;
 
 	float returnTest;
-
+	float movementAmount;
 	
 };

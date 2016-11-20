@@ -1,3 +1,3 @@
-I:\T H E S I S\Test_Scenes\MayaThesis\MayaThesis\Maya\Source\Maya\Maya.Build.cs
-I:\T H E S I S\Test_Scenes\MayaThesis\MayaThesis\Maya\Source\Maya.Target.cs
-I:\T H E S I S\Test_Scenes\MayaThesis\MayaThesis\Maya\Source\MayaEditor.Target.cs
+I:\_Thesis\MayaThesis\Maya\Source\Maya\Maya.Build.cs
+I:\_Thesis\MayaThesis\Maya\Source\Maya.Target.cs
+I:\_Thesis\MayaThesis\Maya\Source\MayaEditor.Target.cs

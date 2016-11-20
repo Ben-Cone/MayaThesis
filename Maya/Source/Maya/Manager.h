@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "GameFramework/Actor.h"
 #include "Manager.generated.h"
 
