@@ -9,6 +9,8 @@
 #include "Maya.generated.dep.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCode1Maya() {}
+FName MAYA_InterpAlong = FName(TEXT("InterpAlong"));
+FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void ACube::StaticRegisterNativesACube()
 	{
 	}
@@ -24,7 +26,25 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	void AMasterCube::StaticRegisterNativesAMasterCube()
 	{
 	}
-	IMPLEMENT_CLASS(AMasterCube, 1325419049);
+	IMPLEMENT_CLASS(AMasterCube, 341686368);
+	float ACurves::InterpAlong(float inputVal, float length)
+	{
+		Curves_eventInterpAlong_Parms Parms;
+		Parms.inputVal=inputVal;
+		Parms.length=length;
+		ProcessEvent(FindFunctionChecked(MAYA_InterpAlong),&Parms);
+		return Parms.ReturnValue;
+	}
+	void ACurves::TestEvent(float pointOnCurve)
+	{
+		Curves_eventTestEvent_Parms Parms;
+		Parms.pointOnCurve=pointOnCurve;
+		ProcessEvent(FindFunctionChecked(MAYA_TestEvent),&Parms);
+	}
+	void ACurves::StaticRegisterNativesACurves()
+	{
+	}
+	IMPLEMENT_CLASS(ACurves, 3627132268);
 	void AFP_FirstPersonCharacter::StaticRegisterNativesAFP_FirstPersonCharacter()
 	{
 	}
@@ -44,11 +64,15 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	void AManagerTest_002_Interaction::StaticRegisterNativesAManagerTest_002_Interaction()
 	{
 	}
-	IMPLEMENT_CLASS(AManagerTest_002_Interaction, 2118724208);
+	IMPLEMENT_CLASS(AManagerTest_002_Interaction, 4260556714);
 	void AMayaGameMode::StaticRegisterNativesAMayaGameMode()
 	{
 	}
 	IMPLEMENT_CLASS(AMayaGameMode, 1327354493);
+	void AMovement::StaticRegisterNativesAMovement()
+	{
+	}
+	IMPLEMENT_CLASS(AMovement, 3203371848);
 	void APolygon::StaticRegisterNativesAPolygon()
 	{
 	}
@@ -62,6 +86,8 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
 	ENGINE_API class UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_UTimelineComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API class UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USoundBase_NoRegister();
@@ -81,6 +107,10 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	MAYA_API class UClass* Z_Construct_UClass_AMasterTrail();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube();
+	MAYA_API class UFunction* Z_Construct_UFunction_ACurves_InterpAlong();
+	MAYA_API class UFunction* Z_Construct_UFunction_ACurves_TestEvent();
+	MAYA_API class UClass* Z_Construct_UClass_ACurves_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_ACurves();
 	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonCharacter_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonCharacter();
 	MAYA_API class UClass* Z_Construct_UClass_AFP_FirstPersonGameMode_NoRegister();
@@ -93,6 +123,8 @@ void EmptyLinkFunctionForGeneratedCode1Maya() {}
 	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_002_Interaction();
 	MAYA_API class UClass* Z_Construct_UClass_AMayaGameMode_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMayaGameMode();
+	MAYA_API class UClass* Z_Construct_UClass_AMovement_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AMovement();
 	MAYA_API class UClass* Z_Construct_UClass_APolygon_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_APolygon();
 	MAYA_API class UClass* Z_Construct_UClass_AUser_NoRegister();
@@ -239,6 +271,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_MovementSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MovementSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(MovementSubClass, AMasterCube), 0x0014000000010001, Z_Construct_UClass_AMovement_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_moveSpeed = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("moveSpeed"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(moveSpeed, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_SpawnedTrail = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnedTrail"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(SpawnedTrail, AMasterCube), 0x0014000000010001, Z_Construct_UClass_AMasterTrail_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_MoveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MoveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(MoveDistance, AMasterCube), 0x0010000000000001);
@@ -248,6 +281,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
+				MetaData->SetValue(NewProp_MovementSubClass, TEXT("Category"), TEXT("Inventory"));
+				MetaData->SetValue(NewProp_MovementSubClass, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("Category"), TEXT("MasterCube"));
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("Category"), TEXT("Spawn Trail"));
@@ -262,6 +297,92 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMasterCube(Z_Construct_UClass_AMasterCube, &AMasterCube::StaticClass, TEXT("AMasterCube"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMasterCube);
+	UFunction* Z_Construct_UFunction_ACurves_InterpAlong()
+	{
+		UObject* Outer=Z_Construct_UClass_ACurves();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("InterpAlong"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x08020800, 65535, sizeof(Curves_eventInterpAlong_Parms));
+			UProperty* NewProp_ReturnValue = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("ReturnValue"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(ReturnValue, Curves_eventInterpAlong_Parms), 0x0010000000000580);
+			UProperty* NewProp_length = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("length"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(length, Curves_eventInterpAlong_Parms), 0x0010000000000080);
+			UProperty* NewProp_inputVal = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("inputVal"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(inputVal, Curves_eventInterpAlong_Parms), 0x0010000000000080);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("Curves"));
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UFunction* Z_Construct_UFunction_ACurves_TestEvent()
+	{
+		UObject* Outer=Z_Construct_UClass_ACurves();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("TestEvent"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x08020800, 65535, sizeof(Curves_eventTestEvent_Parms));
+			UProperty* NewProp_pointOnCurve = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("pointOnCurve"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(pointOnCurve, Curves_eventTestEvent_Parms), 0x0010000000000080);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("Curves"));
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UClass* Z_Construct_UClass_ACurves_NoRegister()
+	{
+		return ACurves::StaticClass();
+	}
+	UClass* Z_Construct_UClass_ACurves()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = ACurves::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+				OuterClass->LinkChild(Z_Construct_UFunction_ACurves_InterpAlong());
+				OuterClass->LinkChild(Z_Construct_UFunction_ACurves_TestEvent());
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_timeLength = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("timeLength"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(timeLength, ACurves), 0x0010000000000001);
+				UProperty* NewProp_FCurve_001 = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FCurve_001"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FCurve_001, ACurves), 0x0010000000010001, Z_Construct_UClass_UCurveFloat_NoRegister());
+				UProperty* NewProp_Timeline_001 = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Timeline_001"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Timeline_001, ACurves), 0x0010000000090009, Z_Construct_UClass_UTimelineComponent_NoRegister());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_InterpAlong(), "InterpAlong"); // 83570775
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_TestEvent(), "TestEvent"); // 2626672573
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Curves.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(OuterClass, TEXT("ObjectInitializerConstructorDeclared"), TEXT(""));
+				MetaData->SetValue(NewProp_timeLength, TEXT("Category"), TEXT("Interpolation"));
+				MetaData->SetValue(NewProp_timeLength, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_FCurve_001, TEXT("Category"), TEXT("Curves"));
+				MetaData->SetValue(NewProp_FCurve_001, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_Timeline_001, TEXT("Category"), TEXT("Curves"));
+				MetaData->SetValue(NewProp_Timeline_001, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_Timeline_001, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_ACurves(Z_Construct_UClass_ACurves, &ACurves::StaticClass, TEXT("ACurves"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(ACurves);
 	UClass* Z_Construct_UClass_AFP_FirstPersonCharacter_NoRegister()
 	{
 		return AFP_FirstPersonCharacter::StaticClass();
@@ -475,6 +596,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_beatProgressionLimit = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("beatProgressionLimit"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(beatProgressionLimit, AManagerTest_002_Interaction), 0x0010000000000001);
+				UProperty* NewProp_MovementSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MovementSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(MovementSubClass, AManagerTest_002_Interaction), 0x0014000000010001, Z_Construct_UClass_AMovement_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_Inventory = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(Inventory, AManagerTest_002_Interaction), 0x0010000000010001);
 				UProperty* NewProp_Inventory_Inner = new(EC_InternalUseOnlyConstructor, NewProp_Inventory, TEXT("Inventory"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0000000000000000, Z_Construct_UClass_ACube_NoRegister());
 				UProperty* NewProp_DefaultInventoryClasses = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("DefaultInventoryClasses"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(DefaultInventoryClasses, AManagerTest_002_Interaction), 0x0014000000010001);
@@ -485,6 +608,10 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("ManagerTest_002_Interaction.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
+				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("Category"), TEXT("Variables"));
+				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
+				MetaData->SetValue(NewProp_MovementSubClass, TEXT("Category"), TEXT("Inventory"));
+				MetaData->SetValue(NewProp_MovementSubClass, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
 				MetaData->SetValue(NewProp_Inventory, TEXT("Category"), TEXT("Inventory"));
 				MetaData->SetValue(NewProp_Inventory, TEXT("ModuleRelativePath"), TEXT("ManagerTest_002_Interaction.h"));
 				MetaData->SetValue(NewProp_DefaultInventoryClasses, TEXT("Category"), TEXT("Inventory"));
@@ -531,6 +658,45 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMayaGameMode(Z_Construct_UClass_AMayaGameMode, &AMayaGameMode::StaticClass, TEXT("AMayaGameMode"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMayaGameMode);
+	UClass* Z_Construct_UClass_AMovement_NoRegister()
+	{
+		return AMovement::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AMovement()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AMovement::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_CurvesSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurvesSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(CurvesSubClass, AMovement), 0x0014000000010001, Z_Construct_UClass_ACurves_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_moveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("moveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(moveDistance, AMovement), 0x0010000000000001);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Movement.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
+				MetaData->SetValue(NewProp_CurvesSubClass, TEXT("Category"), TEXT("Curves"));
+				MetaData->SetValue(NewProp_CurvesSubClass, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
+				MetaData->SetValue(NewProp_moveDistance, TEXT("Category"), TEXT("Movement"));
+				MetaData->SetValue(NewProp_moveDistance, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AMovement(Z_Construct_UClass_AMovement, &AMovement::StaticClass, TEXT("AMovement"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AMovement);
 	UClass* Z_Construct_UClass_APolygon_NoRegister()
 	{
 		return APolygon::StaticClass();
@@ -634,8 +800,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xB4C88F35;
-			Guid.B = 0x115B980B;
+			Guid.A = 0x2F00404D;
+			Guid.B = 0x090F1DEE;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\Maya.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{32953DF8-DE62-4764-A4F1-8B28EE9F5D6E}</UniqueIdentifier>
+			<UniqueIdentifier>{4BFA2005-0170-46E8-ABD0-1268338986C3}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\Maya.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{8C99CEF3-00D1-42E9-8912-B6664105DEA8}</UniqueIdentifier>
+			<UniqueIdentifier>{3323563A-D161-4048-846F-BAFDB8BD328D}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEngine.ini">
 			<Filter>Config</Filter>
@@ -28,7 +28,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\Maya">
-			<UniqueIdentifier>{AC7F5F6D-C304-4D21-BDF9-BE1352265277}</UniqueIdentifier>
+			<UniqueIdentifier>{2EAE1666-FF8C-4273-881E-DEBFF59AB11D}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\Maya\Maya.Build.cs">
 			<Filter>Source\Maya</Filter>
@@ -45,6 +45,36 @@
 		<ClCompile Include="..\..\Source\Maya\MayaGameMode.cpp">
 			<Filter>Source\Maya</Filter>
 		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\MasterCube.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\Cube.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Curves.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Movement.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Cube.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\MasterCube.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Curves.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Movement.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
 		<ClInclude Include="..\..\Source\Maya\MasterTrail.h">
 			<Filter>Source\Maya</Filter>
 		</ClInclude >
@@ -55,9 +85,6 @@
 			<Filter>Source\Maya</Filter>
 		</ClInclude >
 		<ClCompile Include="..\..\Source\Maya\Empty.cpp">
-			<Filter>Source\Maya</Filter>
-		</ClCompile >
-		<ClCompile Include="..\..\Source\Maya\Manager.cpp">
 			<Filter>Source\Maya</Filter>
 		</ClCompile >
 		<ClInclude Include="..\..\Source\Maya\Manager.h">
@@ -72,35 +99,20 @@
 		<ClCompile Include="..\..\Source\Maya\Polygon.cpp">
 			<Filter>Source\Maya</Filter>
 		</ClCompile >
-		<ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp">
-			<Filter>Source\Maya</Filter>
-		</ClCompile >
 		<ClInclude Include="..\..\Source\Maya\User.h">
 			<Filter>Source\Maya</Filter>
 		</ClInclude >
-		<ClInclude Include="..\..\Source\Maya\Cube.h">
-			<Filter>Source\Maya</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\Maya\Cube.cpp">
-			<Filter>Source\Maya</Filter>
-		</ClCompile >
 		<ClCompile Include="..\..\Source\Maya\User.cpp">
 			<Filter>Source\Maya</Filter>
 		</ClCompile >
-		<ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h">
-			<Filter>Source\Maya</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\Maya\MasterCube.cpp">
+		<ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp">
 			<Filter>Source\Maya</Filter>
 		</ClCompile >
-		<ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp">
+		<ClCompile Include="..\..\Source\Maya\Manager.cpp">
 			<Filter>Source\Maya</Filter>
 		</ClCompile >
-		<ClInclude Include="..\..\Source\Maya\MasterCube.h">
-			<Filter>Source\Maya</Filter>
-		</ClInclude >
 		<Filter Include="Source\Maya\FP_FirstPerson">
-			<UniqueIdentifier>{90ECFAC8-B980-4F8C-987E-6BD50569F68F}</UniqueIdentifier>
+			<UniqueIdentifier>{7F95836B-AD63-4E7E-BFD4-3D0BACACA16E}</UniqueIdentifier>
 		</Filter>
 		<ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.cpp">
 			<Filter>Source\Maya\FP_FirstPerson</Filter>

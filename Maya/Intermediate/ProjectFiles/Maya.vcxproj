@@ -84,7 +84,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{39FE01CE-8E52-4736-9EFF-B27DD755DE45}</ProjectGuid>
+		<ProjectGuid>{56CE7FFA-0418-4C3B-9C2B-8341DDD5D26B}</ProjectGuid>
 		<Keyword>MakeFileProj</Keyword>
 		<RootNamespace>Maya</RootNamespace>
        <PlatformToolset>v140</PlatformToolset>
@@ -419,24 +419,28 @@
 		<ClCompile Include="..\..\Source\Maya\Maya.cpp" />
 		<ClInclude Include="..\..\Source\Maya\MayaGameMode.h" />
 		<ClCompile Include="..\..\Source\Maya\MayaGameMode.cpp" />
+		<ClInclude Include="..\..\Source\Maya\MasterCube.h" />
+		<ClInclude Include="..\..\Source\Maya\Cube.h" />
+		<ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h" />
+		<ClCompile Include="..\..\Source\Maya\Curves.cpp" />
+		<ClInclude Include="..\..\Source\Maya\Movement.h" />
+		<ClCompile Include="..\..\Source\Maya\Cube.cpp" />
+		<ClCompile Include="..\..\Source\Maya\MasterCube.cpp" />
+		<ClInclude Include="..\..\Source\Maya\Curves.h" />
+		<ClCompile Include="..\..\Source\Maya\Movement.cpp" />
+		<ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp" />
 		<ClInclude Include="..\..\Source\Maya\MasterTrail.h" />
 		<ClCompile Include="..\..\Source\Maya\MasterTrail.cpp" />
 		<ClInclude Include="..\..\Source\Maya\Empty.h" />
 		<ClCompile Include="..\..\Source\Maya\Empty.cpp" />
-		<ClCompile Include="..\..\Source\Maya\Manager.cpp" />
 		<ClInclude Include="..\..\Source\Maya\Manager.h" />
 		<ClInclude Include="..\..\Source\Maya\ManagerTest_001_Movement.h" />
 		<ClInclude Include="..\..\Source\Maya\Polygon.h" />
 		<ClCompile Include="..\..\Source\Maya\Polygon.cpp" />
-		<ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp" />
 		<ClInclude Include="..\..\Source\Maya\User.h" />
-		<ClInclude Include="..\..\Source\Maya\Cube.h" />
-		<ClCompile Include="..\..\Source\Maya\Cube.cpp" />
 		<ClCompile Include="..\..\Source\Maya\User.cpp" />
-		<ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h" />
-		<ClCompile Include="..\..\Source\Maya\MasterCube.cpp" />
-		<ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp" />
-		<ClInclude Include="..\..\Source\Maya\MasterCube.h" />
+		<ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp" />
+		<ClCompile Include="..\..\Source\Maya\Manager.cpp" />
 		<ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.cpp" />
 		<ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.h" />
 		<ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonHUD.cpp" />

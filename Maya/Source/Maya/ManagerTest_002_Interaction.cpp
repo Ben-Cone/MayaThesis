@@ -6,6 +6,7 @@
 #include "User.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "ManagerTest_002_Interaction.h"
+#include "Movement.h"
 
 
 // Sets default values
@@ -15,6 +16,8 @@ AManagerTest_002_Interaction::AManagerTest_002_Interaction()
 	PrimaryActorTick.bCanEverTick = true;
 	currentAggro = 0.f;
 
+	currentBeatProgress = 1;
+
 }
 
 // Called when the game starts or when spawned
@@ -23,6 +26,8 @@ void AManagerTest_002_Interaction::BeginPlay()
 	Super::BeginPlay();
 
 	SpawnDefaults();
+
+	//Movement->NewPointBDiscrete();
 
 }
 
@@ -53,6 +58,9 @@ void AManagerTest_002_Interaction::SpawnDefaults()
 
 		Inventory.AddUnique(baseCubeClass);
 	}
+
+	//SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	//Movement = GetWorld()->SpawnActor<AMovement>(MovementSubClass, SpawnInfo);
 
 
 	userClass = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
@@ -106,7 +114,7 @@ void AManagerTest_002_Interaction::SpectraMaster()
 	SpectrumRoughness(currentAggro, avgAggro);
 	SpectrumJitteriness(currentAggro, avgAggro);
 	SpectrumCurviness(currentAggro, avgAggro);
-	SpectrumBeatProgression(currentAggro, avgAggro);
+	SpectrumMusic(currentAggro, avgAggro);
 
 	baseCubeClass->Update(roughness, jitter, curviness, beatProgression);
 
@@ -143,17 +151,39 @@ void AManagerTest_002_Interaction::SpectrumRoughness(float current, float avg)
 void AManagerTest_002_Interaction::SpectrumJitteriness(float current, float avg)
 {
 	jitter = (current * .6f) + (avg * .2f);
-	jitter = FMath::Clamp(roughness, 0.f, 1.f);
+	jitter = FMath::Clamp(jitter, 0.f, 1.f);
 }
 
 void AManagerTest_002_Interaction::SpectrumCurviness(float current, float avg)
 {
 	curviness = (current * .1f) + (avg * .85f);
-	curviness = FMath::Clamp(roughness, 0.f, 1.f);
+	curviness = FMath::Clamp(curviness, 0.f, 1.f);
 }
 
-void AManagerTest_002_Interaction::SpectrumBeatProgression(float current, float avg)
+void AManagerTest_002_Interaction::SpectrumMusic(float current, float avg)
 {
-	beatProgression = avg * .9f;
-	beatProgression = FMath::Clamp(roughness, 0.f, 1.f);
+	if (currentAggro > 0)
+	{
+		beatProgression += current * .9f;
+		beatProgression = FMath::Clamp(beatProgression, 0.f, beatProgressionLimit);
+
+	}
+
+	
+	if (beatProgression >= (beatProgressionLimit / 8) * currentBeatProgress && beatProgression < (beatProgressionLimit / 8) * (currentBeatProgress + 1))
+	{
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" %d "), currentBeatProgress));
+	}
+	else if (beatProgression < beatProgressionLimit / 8)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 001 ")));
+	}
+	else if (beatProgression >= (beatProgressionLimit / 8) * (currentBeatProgress + 1))
+	{
+		currentBeatProgress++;
+	}
+
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("%f"), beatProgression));
 }

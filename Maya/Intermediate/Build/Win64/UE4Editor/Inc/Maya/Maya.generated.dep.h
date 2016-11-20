@@ -17,6 +17,9 @@
 #ifndef MAYA_MasterCube_generated_h
 	#include "MasterCube.h"
 #endif
+#ifndef MAYA_Curves_generated_h
+	#include "Curves.h"
+#endif
 #ifndef MAYA_FP_FirstPersonCharacter_generated_h
 	#include "FP_FirstPerson/FP_FirstPersonCharacter.h"
 #endif
@@ -34,6 +37,9 @@
 #endif
 #ifndef MAYA_MayaGameMode_generated_h
 	#include "MayaGameMode.h"
+#endif
+#ifndef MAYA_Movement_generated_h
+	#include "Movement.h"
 #endif
 #ifndef MAYA_Polygon_generated_h
 	#include "Polygon.h"

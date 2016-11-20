@@ -32,6 +32,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Inventory)
 		TArray<class ACube*> Inventory;
 
+	UPROPERTY(EditDefaultsOnly, Category = Inventory)
+		TSubclassOf<class AMovement> MovementSubClass;
+
+
+	AMovement* Movement;
 	ACube* baseCubeClass;
 	ACharacter* userClass;
 	
@@ -59,8 +64,11 @@ public:
 	float jitter;
 	void SpectrumCurviness(float current, float avg);
 	float curviness;
-	void SpectrumBeatProgression(float current, float avg);
+	void SpectrumMusic(float current, float avg);
 	float beatProgression;
+	int currentBeatProgress;
+	UPROPERTY(EditAnywhere, Category = "Variables")
+		float beatProgressionLimit;
 	float InverseLerp(float A, float B, float Value);
 
 };

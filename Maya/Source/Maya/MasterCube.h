@@ -60,6 +60,15 @@ class AMasterCube : public ACube
 	float distanceComplete;
 	int currentDirectionXYZ;
 
+	// new movement
+
+	void SpawnDefaults();
+	FActorSpawnParameters SpawnInfo;
+	UPROPERTY(EditDefaultsOnly, Category = Inventory)
+		TSubclassOf<class AMovement> MovementSubClass;
+
+	AMovement* Movement;
+
 };
 
 

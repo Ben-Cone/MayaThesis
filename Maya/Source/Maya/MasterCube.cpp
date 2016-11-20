@@ -2,6 +2,7 @@
 #include "Maya.h"
 #include "Engine.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Movement.h"
 #include "MasterCube.h"
 
 AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -21,6 +22,13 @@ AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(Ob
 	directionsXYZ.Add(TEXT("Y"));
 	directionsXYZ.Add(TEXT("Z"));
 
+	//Movement->NewPointBDiscrete();
+}
+
+void AMasterCube::SpawnDefaults()
+{
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Movement = GetWorld()->SpawnActor<AMovement>(MovementSubClass, SpawnInfo);
 }
 
 void AMasterCube::Update(float roughness, float jitter, float curviness, float beatProgression)
