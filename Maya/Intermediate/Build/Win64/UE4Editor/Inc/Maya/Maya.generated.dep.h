@@ -35,11 +35,17 @@
 #ifndef MAYA_ManagerTest_002_Interaction_generated_h
 	#include "ManagerTest_002_Interaction.h"
 #endif
+#ifndef MAYA_Master_generated_h
+	#include "Master.h"
+#endif
 #ifndef MAYA_MayaGameMode_generated_h
 	#include "MayaGameMode.h"
 #endif
 #ifndef MAYA_Movement_generated_h
 	#include "Movement.h"
+#endif
+#ifndef MAYA_Orchestrator_generated_h
+	#include "Orchestrator.h"
 #endif
 #ifndef MAYA_Polygon_generated_h
 	#include "Polygon.h"

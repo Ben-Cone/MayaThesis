@@ -35,11 +35,9 @@ void ACurves::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
-	timeDelta = DeltaTime;
-
 }
 
-float ACurves::InterpAlongCurve(float lengthSeconds)
+float ACurves::InterpAlongCurve(float lengthSeconds, float timeDelta)
 {
 
 	time += timeDelta;
@@ -47,7 +45,7 @@ float ACurves::InterpAlongCurve(float lengthSeconds)
 
 	interpolated = this->InterpAlong(interpInput, lengthSeconds);
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("time: %f "), time));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("time: %f "), interpolated));
 
 	return interpolated;
 

@@ -102,6 +102,42 @@ void ACube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
 {
 }
 
+void ACube::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentAggro, float avgAggro)
+{
+}
+
 void ACube::Movement_A_Linear(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_B_Discrete(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_C_SquareWave(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_D_SinWave(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_E_Spiral3D(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_F_Swimming(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::Movement_G_Bouncing(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::CubeMovementSquareWave(FRotator movementAngle, float currentAggro)
+{
+}
+
+void ACube::CubeMovementSinWave(FRotator movementAngle, float currentAggro)
 {
 }

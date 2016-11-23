@@ -26,7 +26,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void AMasterCube::StaticRegisterNativesAMasterCube()
 	{
 	}
-	IMPLEMENT_CLASS(AMasterCube, 3070551742);
+	IMPLEMENT_CLASS(AMasterCube, 2903387679);
 	float ACurves::InterpAlong(float speedX, float lengthSeconds)
 	{
 		Curves_eventInterpAlong_Parms Parms;
@@ -65,6 +65,10 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	{
 	}
 	IMPLEMENT_CLASS(AManagerTest_002_Interaction, 1557857849);
+	void AMaster::StaticRegisterNativesAMaster()
+	{
+	}
+	IMPLEMENT_CLASS(AMaster, 287744784);
 	void AMayaGameMode::StaticRegisterNativesAMayaGameMode()
 	{
 	}
@@ -73,10 +77,14 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	{
 	}
 	IMPLEMENT_CLASS(AMovement, 3203371848);
+	void AOrchestrator::StaticRegisterNativesAOrchestrator()
+	{
+	}
+	IMPLEMENT_CLASS(AOrchestrator, 4182263656);
 	void APolygon::StaticRegisterNativesAPolygon()
 	{
 	}
-	IMPLEMENT_CLASS(APolygon, 719996189);
+	IMPLEMENT_CLASS(APolygon, 3784806056);
 #if USE_COMPILED_IN_NATIVES
 // Cross Module References
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
@@ -117,10 +125,14 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	MAYA_API class UClass* Z_Construct_UClass_AManager();
 	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_002_Interaction_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_002_Interaction();
+	MAYA_API class UClass* Z_Construct_UClass_AMaster_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AMaster();
 	MAYA_API class UClass* Z_Construct_UClass_AMayaGameMode_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMayaGameMode();
 	MAYA_API class UClass* Z_Construct_UClass_AMovement_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMovement();
+	MAYA_API class UClass* Z_Construct_UClass_AOrchestrator_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_AOrchestrator();
 	MAYA_API class UClass* Z_Construct_UClass_APolygon_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_APolygon();
 	MAYA_API class UPackage* Z_Construct_UPackage__Script_Maya();
@@ -268,7 +280,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_avoidanceMultiplier = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("avoidanceMultiplier"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(avoidanceMultiplier, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_moveSpeed = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("moveSpeed"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(moveSpeed, AMasterCube), 0x0010000000000001);
 				UProperty* NewProp_SpawnedTrail = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnedTrail"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(SpawnedTrail, AMasterCube), 0x0014000000010001, Z_Construct_UClass_AMasterTrail_NoRegister(), UClass::StaticClass());
-				UProperty* NewProp_MoveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MoveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(MoveDistance, AMasterCube), 0x0010000000000001);
+				UProperty* NewProp_DiscreteMoveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("DiscreteMoveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(DiscreteMoveDistance, AMasterCube), 0x0010000000000001);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
 #if WITH_METADATA
@@ -281,8 +293,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(NewProp_moveSpeed, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("Category"), TEXT("Spawn Trail"));
 				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
-				MetaData->SetValue(NewProp_MoveDistance, TEXT("Category"), TEXT("Location Change"));
-				MetaData->SetValue(NewProp_MoveDistance, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
+				MetaData->SetValue(NewProp_DiscreteMoveDistance, TEXT("Category"), TEXT("Location Change"));
+				MetaData->SetValue(NewProp_DiscreteMoveDistance, TEXT("ModuleRelativePath"), TEXT("MasterCube.h"));
 #endif
 			}
 		}
@@ -615,6 +627,59 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AManagerTest_002_Interaction(Z_Construct_UClass_AManagerTest_002_Interaction, &AManagerTest_002_Interaction::StaticClass, TEXT("AManagerTest_002_Interaction"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AManagerTest_002_Interaction);
+	UClass* Z_Construct_UClass_AMaster_NoRegister()
+	{
+		return AMaster::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AMaster()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AMaster::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_polygonSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("polygonSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(polygonSubClass, AMaster), 0x0014000000010001, Z_Construct_UClass_APolygon_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_lengthSeconds = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("lengthSeconds"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(lengthSeconds, AMaster), 0x0010000000010001);
+				UProperty* NewProp_distanceMultiplier = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("distanceMultiplier"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(distanceMultiplier, AMaster), 0x0010000000010001);
+				UProperty* NewProp_spawningOffset = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("spawningOffset"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(spawningOffset, AMaster), 0x0010000000010001);
+				UProperty* NewProp_SpawnedTrail = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnedTrail"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(SpawnedTrail, AMaster), 0x0014000000010001, Z_Construct_UClass_AMasterTrail_NoRegister(), UClass::StaticClass());
+				UProperty* NewProp_CurvesClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurvesClass"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(CurvesClass, AMaster), 0x0014000000000001);
+				UProperty* NewProp_CurvesClass_Inner = new(EC_InternalUseOnlyConstructor, NewProp_CurvesClass, TEXT("CurvesClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_ACurves_NoRegister(), UClass::StaticClass());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Master.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_polygonSubClass, TEXT("Category"), TEXT("Spawn"));
+				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_lengthSeconds, TEXT("Category"), TEXT("Speed"));
+				MetaData->SetValue(NewProp_lengthSeconds, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_distanceMultiplier, TEXT("Category"), TEXT("Speed"));
+				MetaData->SetValue(NewProp_distanceMultiplier, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_spawningOffset, TEXT("Category"), TEXT("Master Spawn"));
+				MetaData->SetValue(NewProp_spawningOffset, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("Category"), TEXT("Spawn Trail"));
+				MetaData->SetValue(NewProp_SpawnedTrail, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_CurvesClass, TEXT("Category"), TEXT("Master Spawn"));
+				MetaData->SetValue(NewProp_CurvesClass, TEXT("ModuleRelativePath"), TEXT("Master.h"));
+				MetaData->SetValue(NewProp_CurvesClass, TEXT("ToolTip"), TEXT("-- Defaults --"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AMaster(Z_Construct_UClass_AMaster, &AMaster::StaticClass, TEXT("AMaster"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AMaster);
 	UClass* Z_Construct_UClass_AMayaGameMode_NoRegister()
 	{
 		return AMayaGameMode::StaticClass();
@@ -688,6 +753,47 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMovement(Z_Construct_UClass_AMovement, &AMovement::StaticClass, TEXT("AMovement"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMovement);
+	UClass* Z_Construct_UClass_AOrchestrator_NoRegister()
+	{
+		return AOrchestrator::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AOrchestrator()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = AOrchestrator::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_beatProgressionLimit = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("beatProgressionLimit"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(beatProgressionLimit, AOrchestrator), 0x0010000000000001);
+				UProperty* NewProp_MasterClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MasterClass"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(MasterClass, AOrchestrator), 0x0014000000000001);
+				UProperty* NewProp_MasterClass_Inner = new(EC_InternalUseOnlyConstructor, NewProp_MasterClass, TEXT("MasterClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_AMaster_NoRegister(), UClass::StaticClass());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("Category"), TEXT("Variables"));
+				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_MasterClass, TEXT("Category"), TEXT("Master Spawn"));
+				MetaData->SetValue(NewProp_MasterClass, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_MasterClass, TEXT("ToolTip"), TEXT("-- Spawning --"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AOrchestrator(Z_Construct_UClass_AOrchestrator, &AOrchestrator::StaticClass, TEXT("AOrchestrator"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AOrchestrator);
 	UClass* Z_Construct_UClass_APolygon_NoRegister()
 	{
 		return APolygon::StaticClass();
@@ -707,7 +813,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-				UProperty* NewProp_shapeSpeed = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("shapeSpeed"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(shapeSpeed, APolygon), 0x0010000000000001);
 				UProperty* NewProp_lineType = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("lineType"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(lineType, APolygon), 0x0010000000010001, Z_Construct_UClass_UParticleSystem_NoRegister());
 				UProperty* NewProp_SpawnRot = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnRot"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(SpawnRot, APolygon), 0x0010000000010001, Z_Construct_UScriptStruct_FRotator());
 				UProperty* NewProp_SpawnLoc = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnLoc"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(SpawnLoc, APolygon), 0x0010000000010001, Z_Construct_UScriptStruct_FVector());
@@ -718,8 +823,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Polygon.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Polygon.h"));
 				MetaData->SetValue(OuterClass, TEXT("ObjectInitializerConstructorDeclared"), TEXT(""));
-				MetaData->SetValue(NewProp_shapeSpeed, TEXT("Category"), TEXT("ShapeManip"));
-				MetaData->SetValue(NewProp_shapeSpeed, TEXT("ModuleRelativePath"), TEXT("Polygon.h"));
 				MetaData->SetValue(NewProp_lineType, TEXT("Category"), TEXT("Beam"));
 				MetaData->SetValue(NewProp_lineType, TEXT("ModuleRelativePath"), TEXT("Polygon.h"));
 				MetaData->SetValue(NewProp_SpawnRot, TEXT("Category"), TEXT("Spawning Object"));
@@ -743,8 +846,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x1391A40D;
-			Guid.B = 0xF07225AF;
+			Guid.A = 0x8E52FAC7;
+			Guid.B = 0xE6D584B7;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

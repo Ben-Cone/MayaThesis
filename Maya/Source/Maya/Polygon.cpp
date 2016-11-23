@@ -34,7 +34,7 @@ void APolygon::Update()
 	if (shapeScaler < 200)
 	{
 		shapeScaler += shapeSpeed;
-		SquareScalePosition(spawnLocation, shapeScaler, 0);
+		SquareScalePosition(spawnLocation, shapeScaler);
 	}
 
 	if (lifeTime < 200)
@@ -205,8 +205,9 @@ void APolygon::SetCubePointLocations()
 	}
 }
 
-void APolygon::CreateSquareAtLoc(FVector spawnLoc)
+void APolygon::CreateSquareAtLoc(FVector spawnLoc, int forwardVec)
 {
+	forwardVector = forwardVec;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -227,7 +228,7 @@ void APolygon::CreateSquareAtLoc(FVector spawnLoc)
 
 }
 
-void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 forwardVector)
+void APolygon::SquareScalePosition(FVector squareCen, float squareLen)
 {
 
 //	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("polyPoints: %d"), polyPoints.Num()));
@@ -236,20 +237,23 @@ void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 for
 	switch (forwardVector)
 	{
 	case 0: // x
-		polyPoints[0].Z = squareCen.Z + (squareLen / 2);
-		polyPoints[1].Z = squareCen.Z + (squareLen / 2);
-		polyPoints[2].Z = squareCen.Z - (squareLen / 2);
-		polyPoints[3].Z = squareCen.Z - (squareLen / 2);
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 000 ")));
+
+		polyPoints[0].X = squareCen.X;
+		polyPoints[1].X = squareCen.X;
+		polyPoints[2].X = squareCen.X;
+		polyPoints[3].X = squareCen.X;
 
 		polyPoints[0].Y = squareCen.Y - (squareLen / 2);
 		polyPoints[1].Y = squareCen.Y + (squareLen / 2);
 		polyPoints[2].Y = squareCen.Y + (squareLen / 2);
 		polyPoints[3].Y = squareCen.Y - (squareLen / 2);
 
-		polyPoints[0].X = squareCen.X;
-		polyPoints[1].X = squareCen.X;
-		polyPoints[2].X = squareCen.X;
-		polyPoints[3].X = squareCen.X;
+		polyPoints[0].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[1].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[2].Z = squareCen.Z - (squareLen / 2);
+		polyPoints[3].Z = squareCen.Z - (squareLen / 2);
 
 		for (int i = 0; i < 4; i++)
 		{
@@ -267,11 +271,10 @@ void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 for
 		}
 		break;
 
-	case 1: // x
-		polyPoints[0].Z = squareCen.Z + (squareLen / 2);
-		polyPoints[1].Z = squareCen.Z + (squareLen / 2);
-		polyPoints[2].Z = squareCen.Z - (squareLen / 2);
-		polyPoints[3].Z = squareCen.Z - (squareLen / 2);
+	case 1: // y
+
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 001 ")));
 
 		polyPoints[0].X = squareCen.X - (squareLen / 2);
 		polyPoints[1].X = squareCen.X + (squareLen / 2);
@@ -283,6 +286,11 @@ void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 for
 		polyPoints[2].Y = squareCen.Y;
 		polyPoints[3].Y = squareCen.Y;
 
+		polyPoints[0].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[1].Z = squareCen.Z + (squareLen / 2);
+		polyPoints[2].Z = squareCen.Z - (squareLen / 2);
+		polyPoints[3].Z = squareCen.Z - (squareLen / 2);
+
 		for (int i = 0; i < 4; i++)
 		{
 			polyLines[i]->SetBeamSourcePoint(0, polyPoints[i], 0);
@@ -299,7 +307,7 @@ void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 for
 		}
 		break;
 
-	case 2: // x
+	case 2: // z
 		polyPoints[0].Y = squareCen.Y + (squareLen / 2);
 		polyPoints[1].Y = squareCen.Y + (squareLen / 2);
 		polyPoints[2].Y = squareCen.Y - (squareLen / 2);
@@ -310,15 +318,15 @@ void APolygon::SquareScalePosition(FVector squareCen, float squareLen, int32 for
 		polyPoints[2].X = squareCen.X + (squareLen / 2);
 		polyPoints[3].X = squareCen.X - (squareLen / 2);
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			polyLines[i]->SetBeamSourcePoint(0, polyPoints[i], 0);
 
-			if (i < 3)
+			if (i < 2)
 			{
 				polyLines[i]->SetBeamEndPoint(0, polyPoints[i + 1]);
 			}
-			else if (i == 3)
+			else if (i == 2)
 			{
 				polyLines[i]->SetBeamEndPoint(0, polyPoints[0]);
 			}

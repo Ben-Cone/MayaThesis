@@ -20,7 +20,6 @@ class AMasterCube : public ACube
 	// -- Location Picking -- // 
 
 	FVector CurrentLocation;
-	float StartLocation;
 	FVector TargetLocation;
 
 	void NewTargetLocationDiscrete() override;
@@ -34,7 +33,7 @@ class AMasterCube : public ACube
 	FVector MoveRotate() override;
 
 	UPROPERTY(EditAnywhere, Category = "Location Change")
-		float MoveDistance;
+		float DiscreteMoveDistance;
 
 	float Boundary;
 
@@ -80,9 +79,6 @@ class AMasterCube : public ACube
 
 	//
 
-	void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
-	void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
-	
 	TArray<FString> directionsXYZ;
 	
 	FVector currentAxisDirection;
@@ -100,9 +96,27 @@ class AMasterCube : public ACube
 
 	// -- Spectrum Movement -- //
 
+	int currentSection;
+	int upOverDownOver;
+	FVector StartLocation;
+	float sin;
+	float cos;
+
+	void CubeMovementLinear(FRotator movementAngle, float currentAggro);
+	void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
+	void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
+	void CubeMovementSquareWave(FRotator movementAngle, float currentAggro);
+	void CubeMovementSinWave(FRotator movementAngle, float currentAggro);
+
+	void SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentAggro, float avgAggro);
+
 	void Movement_A_Linear(FRotator movementAngle, float currentAggro);
-
-
+	void Movement_B_Discrete(FRotator movementAngle, float currentAggro);
+	void Movement_C_SquareWave(FRotator movementAngle, float currentAggro);
+	void Movement_D_SinWave(FRotator movementAngle, float currentAggro);
+	void Movement_E_Spiral3D(FRotator movementAngle, float currentAggro);
+	void Movement_F_Swimming(FRotator movementAngle, float currentAggro);
+	void Movement_G_Bouncing(FRotator movementAngle, float currentAggro);
 };
 
 

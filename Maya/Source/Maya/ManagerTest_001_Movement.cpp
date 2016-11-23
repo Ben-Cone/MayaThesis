@@ -69,8 +69,8 @@ void AManagerTest_001_Movement::SpawnPolygon()
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, CurrentLocation.ToString());
 
 	shapes.Add(polygon);
-	polygon->CreateSquareAtLoc(CurrentLocation);
-	polygon->SquareScalePosition(CurrentLocation, 0, 0);
+	//polygon->CreateSquareAtLoc(CurrentLocation);
+	//polygon->SquareScalePosition(CurrentLocation, 0, 0);
 
 }
 

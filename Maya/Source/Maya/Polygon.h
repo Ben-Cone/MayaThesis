@@ -35,7 +35,8 @@ public:
 
 	void Test();
 
-	void CreateSquareAtLoc(FVector spawnLoc);
+	void CreateSquareAtLoc(FVector spawnLoc, int forwardVec);
+	int forwardVector;
 
 	void CreateSquare(
 		FVector squareA,
@@ -44,7 +45,7 @@ public:
 		FVector squareD);
 	TArray<FVector> squarePoints;
 	TArray<UParticleSystemComponent*> squareLines;
-	void SquareScalePosition(FVector squareCen, float squareLen, int32 forwardVector);
+	void SquareScalePosition(FVector squareCen, float squareLen);
 
 	void CreateCube(FVector cubeCen, float cubeLen);
 	TArray<FVector> cubePoints;
@@ -77,8 +78,7 @@ public:
 	FVector spawnLocation;
 	float shapeScaler = 2;
 
-	UPROPERTY(EditAnywhere, Category = "ShapeManip")
-		float shapeSpeed = 1.5;
+	float shapeSpeed = 2;
 
 	int lifeTime;
 

@@ -34,8 +34,7 @@ public:
 		float InterpAlong(float speedX, float lengthSeconds);
 
 	float interpInput;
-	
-	float timeDelta;
+
 	float time;
 
 	bool i = true;
@@ -45,7 +44,7 @@ public:
 
 	float interpolated;
 
-	float InterpAlongCurve(float lengthSeconds);
+	float InterpAlongCurve(float lengthSeconds, float timeDelta);
 
 };
  

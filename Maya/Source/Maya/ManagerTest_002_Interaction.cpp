@@ -86,7 +86,7 @@ void AManagerTest_002_Interaction::Spectra()
 
 		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + currentAggro / aggroCount;
 
-		baseCubeClass->CubeMovementDiscrete(userRotation, currentAggro);
+		baseCubeClass->SpectrumUpdate(userRotation, currentBeatProgress, currentAggro, avgAggro);
 		baseCubeClass->MoveCube();
 	}
 	else if (currentAggro < 0)
@@ -100,7 +100,7 @@ void AManagerTest_002_Interaction::Spectra()
 
 	}
 
-
+	SpectrumMusic(currentAggro, avgAggro);
 
 }
 
@@ -134,13 +134,13 @@ void AManagerTest_002_Interaction::SpectrumRoughness(float current, float avg)
 void AManagerTest_002_Interaction::SpectrumJitteriness(float current, float avg)
 {
 	jitter = (current * .6f) + (avg * .2f);
-	jitter = FMath::Clamp(roughness, 0.f, 1.f);
+	jitter = FMath::Clamp(jitter, 0.f, 1.f);
 }
 
 void AManagerTest_002_Interaction::SpectrumCurviness(float current, float avg)
 {
 	curviness = (current * .1f) + (avg * .85f);
-	curviness = FMath::Clamp(roughness, 0.f, 1.f);
+	curviness = FMath::Clamp(curviness, 0.f, 1.f);
 }
 
 
@@ -150,13 +150,12 @@ void AManagerTest_002_Interaction::SpectrumMusic(float current, float avg)
 	{
 		beatProgression += current * .9f;
 		beatProgression = FMath::Clamp(beatProgression, 0.f, beatProgressionLimit);
-
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("%f"), beatProgression));
 	}
 
 
 	if (beatProgression >= (beatProgressionLimit / 8) * currentBeatProgress && beatProgression < (beatProgressionLimit / 8) * (currentBeatProgress + 1))
 	{
-
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" %d "), currentBeatProgress));
 	}
 	else if (beatProgression < beatProgressionLimit / 8)
@@ -168,6 +167,4 @@ void AManagerTest_002_Interaction::SpectrumMusic(float current, float avg)
 		currentBeatProgress++;
 	}
 
-
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("%f"), beatProgression));
 }

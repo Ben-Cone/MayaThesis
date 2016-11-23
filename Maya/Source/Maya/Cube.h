@@ -45,12 +45,19 @@ class ACube : public AActor
 	virtual void AvoidanceNewLocation(FRotator movementAngleDiscrete, float currentAggro);
 	virtual void CubeMovementDiscrete(FRotator movementAngle, float currentAggro);
 	virtual void CubeMovementNewLocation(FRotator movementAngle, float currentAggro);
-
-
+	virtual void CubeMovementSquareWave(FRotator movementAngle, float currentAggro);
+	virtual void CubeMovementSinWave(FRotator movementAngle, float currentAggro);
 
 	// -- Movement -- //
 
-	virtual void Movement_A_Linear(FRotator movementAngle, float currentAggro);
+	virtual void SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentAggro, float avgAggro);
 
+	virtual void Movement_A_Linear(FRotator movementAngle, float currentAggro);
+	virtual void Movement_B_Discrete(FRotator movementAngle, float currentAggro);
+	virtual void Movement_C_SquareWave(FRotator movementAngle, float currentAggro);
+	virtual void Movement_D_SinWave(FRotator movementAngle, float currentAggro);
+	virtual void Movement_E_Spiral3D(FRotator movementAngle, float currentAggro);
+	virtual void Movement_F_Swimming(FRotator movementAngle, float currentAggro);
+	virtual void Movement_G_Bouncing(FRotator movementAngle, float currentAggro);
 
 };
