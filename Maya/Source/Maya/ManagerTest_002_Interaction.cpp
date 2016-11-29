@@ -150,7 +150,7 @@ void AManagerTest_002_Interaction::SpectrumMusic(float current, float avg)
 	{
 		beatProgression += current * .9f;
 		beatProgression = FMath::Clamp(beatProgression, 0.f, beatProgressionLimit);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("%f"), beatProgression));
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("%f"), beatProgression));
 	}
 
 

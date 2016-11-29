@@ -49,8 +49,8 @@ void AOrchestrator::Spectra()
 
 	userRadiusToCube = masterLocation - userLocation;
 	userRotation = UKismetMathLibrary::FindLookAtRotation(masterLocation, userLocation);
-	DrawDebugSphere(GetWorld(), masterLocation, 450, 32, FColor(255, 0, 0));
-	DrawDebugSphere(GetWorld(), masterLocation, 100, 32, FColor(160, 160, 0));
+	//DrawDebugSphere(GetWorld(), masterLocation, 450, 32, FColor(255, 0, 0));
+	//DrawDebugSphere(GetWorld(), masterLocation, 100, 32, FColor(160, 160, 0));
 
 	currentAggro = InverseLerp(450, 0, (sqrt((pow(userRadiusToCube.X, 2)) + (pow(userRadiusToCube.Y, 2)))));
 	currentAggro = FMath::Clamp(currentAggro, 0.f, 1.f);
@@ -80,7 +80,7 @@ void AOrchestrator::Spectra()
 
 	Master->SpectrumUpdate(userRotation, currentBeatProgress, currentAggro, avgAggro);
 	Master->MoveCube();
-	//SpectrumMusic(currentAggro, avgAggro);
+	SpectrumMusic(currentAggro, avgAggro);
 
 }
 
@@ -133,6 +133,7 @@ void AOrchestrator::SpectrumMusic(float current, float avg)
 
 	}
 
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" beatProgression: %f"), beatProgression));
 
 	if (beatProgression >= (beatProgressionLimit / 8) * currentBeatProgress && beatProgression < (beatProgressionLimit / 8) * (currentBeatProgress + 1))
 	{

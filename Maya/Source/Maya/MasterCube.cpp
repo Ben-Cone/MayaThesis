@@ -695,6 +695,13 @@ void AMasterCube::CubeMovementLinear(FRotator movementAngle, float currentAggro)
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
 }
 
+
+
+
+
+
+
+
 void AMasterCube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)
 {
 	DirectionToMoveXYZ = FMath::RandRange(0, 1);
@@ -743,20 +750,27 @@ void AMasterCube::Movement_A_Linear(FRotator movementAngle, float currentAggro)
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("section A ")));
 
-	CubeMovementSinWave(movementAngle, currentAggro);
+	//CubeMovementSinWave(movementAngle, currentAggro);
 
-	//if (distanceComplete < distanceMultiplier)
-	//{
-	//	CurrentLocation[DirectionToMoveXYZ] += (12 * currentAggro * nextAxisDirection[DirectionToMoveXYZ]);
-	//	distanceComplete += (12 * currentAggro);
-	//}
-	//else if (distanceComplete >= distanceMultiplier)
-	//{
-	//	CurrentLocation = TargetLocation;
-	//	CubeMovementNewLocation(movementAngle, currentAggro);
-	//}
+	if (distanceComplete < distanceMultiplier)
+	{
+		CurrentLocation[DirectionToMoveXYZ] += (12 * currentAggro * nextAxisDirection[DirectionToMoveXYZ]);
+		distanceComplete += (12 * currentAggro);
+	}
+	else if (distanceComplete >= distanceMultiplier)
+	{
+		CurrentLocation = TargetLocation;
+		CubeMovementNewLocation(movementAngle, currentAggro);
+	}
 
 }
+
+
+
+
+
+
+
 
 void AMasterCube::CubeMovementDiscrete(FRotator movementAngle, float currentAggro) 
 {
@@ -832,6 +846,9 @@ void AMasterCube::Movement_B_Discrete(FRotator movementAngle, float currentAggro
 
 void AMasterCube::CubeMovementSquareWave(FRotator movementAngle, float currentAggro)
 {
+
+	// drive XY direction by DirectionXYZ , controlled by user position
+	// more like a 90* turn, 3d, not just linear 2d
 
 	switch (upOverDownOver) {
 

@@ -85,7 +85,6 @@ void AMaster::Movement_A_LinearPulse()
 	currentLocation[directionXYZ] = currentLocation[directionXYZ] + (interpValue * posNegDirection);
 	if (interpValue >= distanceMultiplier)
 	{
-
 		isMoving = false;
 	}
 
@@ -93,13 +92,157 @@ void AMaster::Movement_A_LinearPulse()
 
 void AMaster::Movement_B_Discrete()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" Section 2 -- Discrete ")));
+	
+	if (interpValue < distanceMultiplier * 10)
+	{
+		currentLocation[directionXYZ] += (12 * currentAggro * posNegDirection);
+		interpValue += (12 * currentAggro);
+	}
+	else if (interpValue >= distanceMultiplier * 10)
+	{
+		currentLocation = targetLocation;
+		isMoving = false;
+	}
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" Section 2 -- Discrete ")));
 }
+
+void AMaster::Movement_C_SquareWave()
+{
+	if (interpValue < distanceMultiplier * 10)
+	{
+		currentLocation[directionXYZ] += (12 * currentAggro * posNegDirection);
+		interpValue += (12 * currentAggro);
+	}
+	else if (interpValue >= distanceMultiplier * 10)
+	{
+		//currentLocation = targetLocation;
+		isMoving = false;
+
+		switch (upOverDownOver) {
+
+		case 0:
+			directionXYZ = 2;
+			posNegDirection = 1;
+			upOverDownOver = 1;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 0 - up ")));
+			break;
+
+		case 1:
+			// -- "OVER" param currently PERMANENTLY set to Y, should be driven by user
+			directionXYZ = 1;
+			posNegDirection = 1;
+			upOverDownOver = 2;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 1 - over ")));
+			break;
+
+		case 2:
+			directionXYZ = 2;
+			posNegDirection = -1;
+			upOverDownOver = 3;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 2 - down ")));
+			break;
+
+		case 3:
+			// -- "OVER" param currently PERMANENTLY set to Y, should be driven by user
+			directionXYZ = 1;
+			posNegDirection = 1;
+			upOverDownOver = 0;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" current location : %f"), currentLocation.Z));
+			break;
+		}
+	}
+}
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" Section 3 -- Square Wave ")));
+
+void AMaster::RotateAroundPoint()
+{
+	currentLocation[directionXYZ] 
+}
+
+void AMaster::Movement_D_SinWave()
+{
+	interpValue += interpSpeed;
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" interpValue : %f"), interpValue));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" upOverDownOver : %d"), upOverDownOver));
+	switch (upOverDownOver) {
+	
+	case 0: // -- up  + over
+		if (interpValue < 90)
+		{
+			currentLocation.Z = (((startLocation.Z - rotator.Z) * FMath::Cos(interpValue * 0.0174553)) - ((startLocation.X - rotator.X) * FMath::Sin(interpValue * 0.0174553))) + rotator.Z;
+			currentLocation.X = (((startLocation.X - rotator.X) * FMath::Cos(interpValue * 0.0174553)) - ((startLocation.Z - rotator.Z) * FMath::Sin(interpValue * 0.0174553))) + rotator.X;
+		}
+		else if (interpValue >= 90)
+		{
+			isMoving = false;
+		}
+		break;
+
+	case 1: // -- over + down
+		if (interpValue >= 90 && interpValue < 180)
+		{
+			currentLocation.Z = (((startLocation.Z - rotator.Z) * FMath::Cos(interpValue * 0.0174553)) - ((startLocation.X - rotator.X) * FMath::Sin(interpValue * 0.0174553))) + rotator.Z;
+			currentLocation.X = (((startLocation.X - rotator.X) * FMath::Cos(interpValue * -0.0174553)) - ((startLocation.Z - rotator.Z) * FMath::Sin(interpValue * -0.0174553))) + rotator.X;
+		}
+		else if (interpValue >= 180)
+		{
+			isMoving = false;
+		}
+		break;
+
+
+	case 2: // -- down + over
+		if (interpValue >= 90 && interpValue < 180)
+		{
+			currentLocation.Z = (((startLocation.Z - rotator.Z) * FMath::Cos(interpValue * 0.0174553)) - ((startLocation.X - rotator.X) * FMath::Sin(interpValue * 0.0174553))) + rotator.Z;
+			currentLocation.X = (((startLocation.X - rotator.X) * FMath::Cos(interpValue * -0.0174553)) - ((startLocation.Z - rotator.Z) * FMath::Sin(interpValue * -0.0174553))) + rotator.X;
+		}
+		else if (interpValue >= 180)
+		{
+			isMoving = false;
+		}
+		break;
+
+	case 3: // -- over
+		if (interpValue < 90)
+		{
+			currentLocation.Z = (((startLocation.Z - rotator.Z) * FMath::Cos(interpValue * 0.0174553)) - ((startLocation.X - rotator.X) * FMath::Sin(interpValue * 0.0174553))) + rotator.Z;
+			currentLocation.X = (((startLocation.X - rotator.X) * FMath::Cos(interpValue * -0.0174553)) - ((startLocation.Z - rotator.Z) * FMath::Sin(interpValue * -0.0174553))) + rotator.X;
+		}
+		else if (interpValue >= 90)
+		{
+			isMoving = false;
+		}
+
+		break;
+
+	}
+}
+
+void AMaster::Movement_E_Spiral3D()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" Section 5 -- Spiral ")));
+}
+
+void AMaster::Movement_F_Swimming()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" Section 6 -- Swimming ")));
+}
+
+void AMaster::Movement_G_Bouncing()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" Section 7 -- Bouncing ")));
+}
+
 
 void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentA, float avgA)
 {
 	userAngleToCube.Yaw = movementAngle.Yaw + 180;
-	currentSection = currentBeatProgress;
+	//currentSection = currentBeatProgress;
+	currentSection = 3;
 	currentAggro = currentA;
 	avgAggro = avgA;
 
@@ -107,8 +250,8 @@ void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, fl
 
 	switch (currentSection) {
 
-	case 0:
-
+	case 0: // -- Linear Pulse
+	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 000 ")));
 		if (isMoving == true)
 		{
 			SpawnAlongTrail();
@@ -120,25 +263,21 @@ void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, fl
 			{
 				if (userAngleToCube.Yaw >= 315.f || userAngleToCube.Yaw < 45.f)
 				{
-					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 000 ")));
 					directionXYZ = 0;
 					posNegDirection = 1;
 				}
 				else if (userAngleToCube.Yaw >= 135.f && userAngleToCube.Yaw < 225.f)
 				{
-					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 001 ")));
 					directionXYZ = 0;
 					posNegDirection = -1;
 				}
 				else if (userAngleToCube.Yaw >= 225.f && userAngleToCube.Yaw < 315.f)
 				{
-					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 002 ")));
 					directionXYZ = 1;
 					posNegDirection = -1;
 				}
 				else if (userAngleToCube.Yaw <= 135.f && userAngleToCube.Yaw  >= 45.f)
 				{
-					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 003 ")));
 					directionXYZ = 1;
 					posNegDirection = 1;
 				}
@@ -146,7 +285,6 @@ void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, fl
 				currentCurve = SpawnDefaultClasses();
 				startLocation = currentLocation;
 				interpValue = 0;
-				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), interpValue));
 				isMoving = true;
 
 			}
@@ -154,28 +292,142 @@ void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, fl
 
 		break;
 
-	case 1:
-		Movement_B_Discrete();
+	case 1: // -- Discrete Steps
+		if (isMoving == true)
+		{
+			Movement_B_Discrete();
+		}
+		else if (isMoving == false)
+		{
+			directionXYZ = FMath::RandRange(0, 2);
+			interpValue = 0.f;
+
+
+			switch (directionXYZ) {
+
+			case 0:
+				// new X direction
+
+				if (userAngleToCube.Yaw >= 315 || userAngleToCube.Yaw < 45)
+				{
+					posNegDirection = 1;
+				}
+				else if (userAngleToCube.Yaw >= 135 && userAngleToCube.Yaw < 225)
+				{
+					posNegDirection = -1;
+				}
+
+				break;
+
+			case 1:
+				// new y direction
+
+				if (userAngleToCube.Yaw < 135 && userAngleToCube.Yaw >= 45)
+				{
+					posNegDirection = 1;
+				}
+				else if (userAngleToCube.Yaw >= 225 && userAngleToCube.Yaw < 315)
+				{
+					posNegDirection = -1;
+				}
+
+				break;
+
+			case 2:
+				// new z direction
+
+				if (currentLocation.Z >= 160)
+				{
+					posNegDirection = -1;
+				}
+				else if (currentLocation.Z <= 0)
+				{
+					posNegDirection = 1;
+				}
+
+			}
+
+			targetLocation[directionXYZ] = currentLocation[directionXYZ] + (distanceMultiplier * 10 * posNegDirection);
+		}
+
+		isMoving = true;
 		break;
 
-	case 2:
-		//Movement_C_SquareWave(movementAngle, currentAggro);
+	case 2: // -- Square Wave
+
+		if (isMoving == true)
+		{
+			Movement_C_SquareWave();
+		}
+		else if (isMoving == false)
+		{
+			interpValue = 0;
+			targetLocation[directionXYZ] = currentLocation[directionXYZ] + (distanceMultiplier * 10);
+
+			isMoving = true;
+		}
 		break;
 
-	case 3:
-		//Movement_D_SinWave(movementAngle, currentAggro);
+	case 3: // -- Sin Wave
+
+
+
+
 		break;
 
-	case 4:
-		//Movement_E_Spiral3D(movementAngle, currentAggro);
+
+		//if (isMoving == true)
+		//{
+		//	Movement_D_SinWave();
+		//}
+		//else if (isMoving == false)
+		//{
+		//	switch (upOverDownOver) {
+		//	case 0:
+		//		interpValue = 90;
+		//		upOverDownOver = 1;
+
+		//		break;
+
+		//	case 1:
+		//		interpValue = 180;
+		//		upOverDownOver = 2;
+		//		break;
+
+		//	case 2:
+		//		interpValue = 90;
+		//		upOverDownOver = 3;
+		//		break;
+
+		//	case 3:
+		//		interpValue = 0;
+		//		upOverDownOver = 0;
+		//		break;
+
+
+		//	}
+
+		//	rotator = FVector(0.f, 0.f, 100.f);
+		//	startLocation = FVector(0.f, 0.f, 0.f);
+		//	currentLocation = startLocation;
+
+		//	//targetLocation.X = currentLocation.X + (distanceMultiplier * 10);
+		//	//targetLocation.Z = currentLocation.Z + (distanceMultiplier * 10);
+
+		//	isMoving = true;
+		//}
+		//break;
+
+	case 4: // -- Spiral 3D
+		Movement_E_Spiral3D();
 		break;
 
-	case 5:
-		//Movement_F_Swimming(movementAngle, currentAggro);
+	case 5: // -- Swimming
+		Movement_F_Swimming();
 		break;
 
-	case 6:
-		//Movement_G_Bouncing(movementAngle, currentAggro);
+	case 6: // -- Bouncing
+		Movement_G_Bouncing();
 		break;
 	}
 

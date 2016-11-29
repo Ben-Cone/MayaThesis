@@ -51,19 +51,35 @@ public:
 	void SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentAggro, float avgAggro);
 	void MoveCube();
 
+	void RotateAroundPoint();
+
 	void Movement_A_LinearPulse();
 	void Movement_B_Discrete();
+	void Movement_C_SquareWave();
+	void Movement_D_SinWave();
+	void Movement_E_Spiral3D();
+	void Movement_F_Swimming();
+	void Movement_G_Bouncing();
+
 
 	float interpValue;
 	bool isMoving = false;
 	int currentCurve;
 	int posNegDirection;
 	int directionXYZ;
+	int upOverDownOver;
+	FVector rotator;
+
+	float throwAway;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Master Spawn")
+	float interpSpeed;
 
 	float spawningDelay;
 	UPROPERTY(EditDefaultsOnly, Category = "Master Spawn")
 	float spawningOffset;
 
+	// --set distanceMultiplier dynamically
 	UPROPERTY(EditDefaultsOnly, Category = "Speed")
 	float distanceMultiplier;
 	UPROPERTY(EditDefaultsOnly, Category = "Speed")

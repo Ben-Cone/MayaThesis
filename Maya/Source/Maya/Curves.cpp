@@ -18,6 +18,8 @@ ACurves::ACurves(const FObjectInitializer& ObjectInitializer)
 
 	InterpFunction.BindUFunction(this, FName{ TEXT("TimelineFloatReturn") });
 
+	static ConstructorHelpers::FObjectFinder<UMaterialInstanceDynamic> MatFinder(TEXT("MaterialInstanceConstant'/Game/Shapes/M_LineColor_Inst.M_LineColor_Inst'"));
+
 
 }
 
