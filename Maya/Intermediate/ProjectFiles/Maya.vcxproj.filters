@@ -127,12 +127,18 @@
     <ClInclude Include="..\..\Source\Maya\Orchestrator.h">
       <Filter>Source\Maya</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\AnimationsPlanar.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Master.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Maya\Orchestrator.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\AnimationsPlanar.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
   </ItemGroup>

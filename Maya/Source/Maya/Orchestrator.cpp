@@ -133,19 +133,8 @@ void AOrchestrator::SpectrumMusic(float current, float avg)
 
 	}
 
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" beatProgression: %f"), beatProgression));
-
-	if (beatProgression >= (beatProgressionLimit / 8) * currentBeatProgress && beatProgression < (beatProgressionLimit / 8) * (currentBeatProgress + 1))
+	if (beatProgression >= (beatProgressionLimit / 8) * (currentBeatProgress + 1))
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" 000 ")));
-	}
-	else if (beatProgression < beatProgressionLimit / 8)
-	{
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" 001 ")));
-	}
-	else if (beatProgression >= (beatProgressionLimit / 8) * (currentBeatProgress + 1))
-	{
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" 002 ")));
 		currentBeatProgress++;
 	}
 

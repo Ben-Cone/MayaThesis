@@ -5,6 +5,9 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
+#ifndef MAYA_AnimationsPlanar_generated_h
+	#include "AnimationsPlanar.h"
+#endif
 #ifndef MAYA_Cube_generated_h
 	#include "Cube.h"
 #endif

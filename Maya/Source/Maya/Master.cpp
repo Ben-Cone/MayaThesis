@@ -80,7 +80,7 @@ void AMaster::Movement_A_LinearPulse()
 {
 	targetLocation[directionXYZ] = startLocation[directionXYZ] + (distanceMultiplier * posNegDirection);
 
-	interpValue = (CurveArray[currentCurve]->InterpAlongCurve(lengthSeconds, timeDelta) * distanceMultiplier);
+	interpValue = (CurveArray[currentCurve]->InterpAlongCurve(lengthSeconds, timeDelta, 0) * distanceMultiplier);
 
 	currentLocation[directionXYZ] = currentLocation[directionXYZ] + (interpValue * posNegDirection);
 	if (interpValue >= distanceMultiplier)
@@ -158,7 +158,7 @@ void AMaster::Movement_C_SquareWave()
 
 void AMaster::RotateAroundPoint()
 {
-	currentLocation[directionXYZ] 
+	targetLocation[directionXYZ] = currentLocation[directionXYZ];
 }
 
 void AMaster::Movement_D_SinWave()
@@ -241,8 +241,8 @@ void AMaster::Movement_G_Bouncing()
 void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentA, float avgA)
 {
 	userAngleToCube.Yaw = movementAngle.Yaw + 180;
-	//currentSection = currentBeatProgress;
-	currentSection = 3;
+	currentSection = currentBeatProgress;
+	//currentSection = 3;
 	currentAggro = currentA;
 	avgAggro = avgA;
 
@@ -251,7 +251,6 @@ void AMaster::SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, fl
 	switch (currentSection) {
 
 	case 0: // -- Linear Pulse
-	//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 000 ")));
 		if (isMoving == true)
 		{
 			SpawnAlongTrail();

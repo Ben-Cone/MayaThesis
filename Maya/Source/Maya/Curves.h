@@ -25,13 +25,18 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Curves")
 		UCurveFloat* FCurve_001;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Curves")
+		UCurveFloat* FCurve_002;
+
 	FOnTimelineFloat InterpFunction{};
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
 		void TestEvent(float pointOnCurve);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
-		float InterpAlong(float speedX, float lengthSeconds);
+		float InterpAlong(float speedX, float lengthSeconds, int curveType);
+	
+	void SetCurveType(int curveType);
 
 	float interpInput;
 
@@ -44,7 +49,11 @@ public:
 
 	float interpolated;
 
-	float InterpAlongCurve(float lengthSeconds, float timeDelta);
+	float InterpAlongCurve(float lengthSeconds, float timeDelta, int curveType);
+
+	TArray<UCurveFloat*> curveArray;
+
+	int curveIndex;
 
 };
  

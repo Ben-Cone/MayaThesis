@@ -1,8 +1,8 @@
 {
 	"Changelist" : 3142249,
-	"BuildId" : "211a0542-7e11-415c-b33b-a8f5aabe76bd",
+	"BuildId" : "4ff2c457-9745-4ae6-85b4-0877bdd70189",
 	"Modules" : 
 	{
-		"Maya" : "UE4Editor-Maya-5085.dll"
+		"Maya" : "UE4Editor-Maya-1512.dll"
 	}
 }
