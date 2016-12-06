@@ -41,7 +41,7 @@ void AAnimationsPlanar::Tick( float DeltaTime )
 
 	Dynamic_Circle->SetVectorParameterValue(FName("CircleMaskScale"), maskScale);
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" current location : %f"), interpValue));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" current location : %f"), interpValue));
 
 	rotator += .001;
 

@@ -31,7 +31,8 @@ void AOrchestrator::Tick( float DeltaTime )
 	Master->SpawnTrail();
 	masterLocation = Master->GetCurrentLoc();
 	userLocation = userClass->GetActorLocation();
-	Spectra();
+
+	// -- BLOCKED FOR TESTING // Spectra();
 }
 
 void AOrchestrator::SpawnDefaultClasses()

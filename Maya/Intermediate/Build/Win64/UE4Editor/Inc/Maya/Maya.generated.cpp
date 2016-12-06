@@ -73,7 +73,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void AMaster::StaticRegisterNativesAMaster()
 	{
 	}
-	IMPLEMENT_CLASS(AMaster, 3385902221);
+	IMPLEMENT_CLASS(AMaster, 2986455196);
 	void AMayaGameMode::StaticRegisterNativesAMayaGameMode()
 	{
 	}
@@ -709,8 +709,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_polygonSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("polygonSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(polygonSubClass, AMaster), 0x0014000000010001, Z_Construct_UClass_APolygon_NoRegister(), UClass::StaticClass());
-				UProperty* NewProp_lengthSeconds = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("lengthSeconds"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(lengthSeconds, AMaster), 0x0010000000010001);
-				UProperty* NewProp_distanceMultiplier = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("distanceMultiplier"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(distanceMultiplier, AMaster), 0x0010000000010001);
 				UProperty* NewProp_spawningOffset = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("spawningOffset"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(spawningOffset, AMaster), 0x0010000000010001);
 				UProperty* NewProp_interpSpeed = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("interpSpeed"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(interpSpeed, AMaster), 0x0010000000010001);
 				UProperty* NewProp_SpawnedTrail = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpawnedTrail"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(SpawnedTrail, AMaster), 0x0014000000010001, Z_Construct_UClass_AMasterTrail_NoRegister(), UClass::StaticClass());
@@ -724,11 +722,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Master.h"));
 				MetaData->SetValue(NewProp_polygonSubClass, TEXT("Category"), TEXT("Spawn"));
 				MetaData->SetValue(NewProp_polygonSubClass, TEXT("ModuleRelativePath"), TEXT("Master.h"));
-				MetaData->SetValue(NewProp_lengthSeconds, TEXT("Category"), TEXT("Speed"));
-				MetaData->SetValue(NewProp_lengthSeconds, TEXT("ModuleRelativePath"), TEXT("Master.h"));
-				MetaData->SetValue(NewProp_distanceMultiplier, TEXT("Category"), TEXT("Speed"));
-				MetaData->SetValue(NewProp_distanceMultiplier, TEXT("ModuleRelativePath"), TEXT("Master.h"));
-				MetaData->SetValue(NewProp_distanceMultiplier, TEXT("ToolTip"), TEXT("--set distanceMultiplier dynamically"));
 				MetaData->SetValue(NewProp_spawningOffset, TEXT("Category"), TEXT("Master Spawn"));
 				MetaData->SetValue(NewProp_spawningOffset, TEXT("ModuleRelativePath"), TEXT("Master.h"));
 				MetaData->SetValue(NewProp_interpSpeed, TEXT("Category"), TEXT("Master Spawn"));
@@ -912,7 +905,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xE507F9ED;
+			Guid.A = 0x1C7D3580;
 			Guid.B = 0x21D90F1D;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;

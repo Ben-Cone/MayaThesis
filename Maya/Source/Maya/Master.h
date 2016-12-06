@@ -27,6 +27,7 @@ public:
 	FActorSpawnParameters SpawnInfo;
 	float timeDelta;
 	int SpawnDefaultClasses();
+
 	ACurves* Curve;
 	TArray<ACurves*> CurveArray;
 
@@ -53,6 +54,11 @@ public:
 
 	void RotateAroundPoint();
 
+	void Movement_0_NewLocation();
+
+	int bull;
+
+	void Movement_0_Ambient();
 	void Movement_A_LinearPulse();
 	void Movement_B_Discrete();
 	void Movement_C_SquareWave();
@@ -79,10 +85,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Master Spawn")
 	float spawningOffset;
 
-	// --set distanceMultiplier dynamically
-	UPROPERTY(EditDefaultsOnly, Category = "Speed")
+	// -- set distanceMultiplier dynamically
+	//UPROPERTY(EditDefaultsOnly, Category = "Speed")
 	float distanceMultiplier;
-	UPROPERTY(EditDefaultsOnly, Category = "Speed")
+	//UPROPERTY(EditDefaultsOnly, Category = "Speed")
 	float lengthSeconds;
 
 

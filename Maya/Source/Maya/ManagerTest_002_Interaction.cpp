@@ -60,8 +60,8 @@ void AManagerTest_002_Interaction::Spectra()
 	userRadiusToCube = userLocation - cubeLocation;
 	userRotation = UKismetMathLibrary::FindLookAtRotation(cubeLocation, userLocation);
 	userRotation.Yaw += 180.f;
-	DrawDebugSphere(GetWorld(), cubeLocation, 450, 32, FColor(255, 0, 0));
-	DrawDebugSphere(GetWorld(), cubeLocation, 100, 32, FColor(160, 160, 0));
+	//DrawDebugSphere(GetWorld(), cubeLocation, 450, 32, FColor(255, 0, 0));
+	//DrawDebugSphere(GetWorld(), cubeLocation, 100, 32, FColor(160, 160, 0));
 
 
 
@@ -156,11 +156,11 @@ void AManagerTest_002_Interaction::SpectrumMusic(float current, float avg)
 
 	if (beatProgression >= (beatProgressionLimit / 8) * currentBeatProgress && beatProgression < (beatProgressionLimit / 8) * (currentBeatProgress + 1))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" %d "), currentBeatProgress));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT(" %d "), currentBeatProgress));
 	}
 	else if (beatProgression < beatProgressionLimit / 8)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 001 ")));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" 001 ")));
 	}
 	else if (beatProgression >= (beatProgressionLimit / 8) * (currentBeatProgress + 1))
 	{

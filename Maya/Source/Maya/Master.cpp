@@ -15,8 +15,6 @@ AMaster::AMaster()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	RootComponent = RootNull;
-
-
 }
 
 // Called when the game starts or when spawned
@@ -36,6 +34,17 @@ void AMaster::Tick( float DeltaTime )
 
 	UpdatePolygonAnimations();
 
+	if (isMoving)
+	{
+		Movement_0_Ambient();
+	}
+	else
+	{
+		Movement_0_NewLocation();
+	}
+
+	MoveCube();
+	SpawnTrail();
 }
 
 int AMaster::SpawnDefaultClasses()
@@ -466,4 +475,67 @@ void AMaster::UpdatePolygonAnimations()
 	{
 		shapes[i]->Update();
 	}
+}
+
+void AMaster::Movement_0_Ambient()
+{
+
+	interpValue = (CurveArray[currentCurve]->InterpAlongCurve(lengthSeconds, timeDelta, 0));
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT(" interp : %f "), interpValue));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" distance : %f "), distanceMultiplier));
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("  : %d "), posNegDirection));
+
+	currentLocation[directionXYZ] = startLocation[directionXYZ] + (interpValue * posNegDirection * distanceMultiplier);
+	if (interpValue >= 1)
+	{
+		isMoving = false;
+	}
+
+	// -- fill in animations planar -- //
+
+
+
+
+
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" targetLocation : %f "), targetLocation[directionXYZ]));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" currentLocation : %f "), currentLocation[directionXYZ]));
+}
+
+void AMaster::Movement_0_NewLocation()
+{
+
+	lengthSeconds = FMath::RandRange(1.4f, 2.3f);
+	distanceMultiplier = FMath::RandRange(10.f, 100.f);
+	interpValue = 0;
+
+	if (directionXYZ == 1) 
+	{
+		directionXYZ = 0;
+	}
+	else if (directionXYZ == 0)
+	{
+		directionXYZ = 1;
+	}
+
+	bool posNegSwitch = FMath::RandBool();
+	if (posNegSwitch == 1)
+	{
+		posNegDirection = 1;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" 1 ")));
+	}
+	else if (posNegSwitch == 0)
+	{
+		posNegDirection = -1;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" -1 ")));
+	}
+
+	isMoving = true;
+	currentCurve = SpawnDefaultClasses();
+
+	startLocation = currentLocation;
+	targetLocation[directionXYZ] = startLocation[directionXYZ] + (distanceMultiplier * posNegDirection);
+
 }
