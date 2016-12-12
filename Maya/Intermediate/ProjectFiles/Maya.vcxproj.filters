@@ -130,6 +130,21 @@
     <ClInclude Include="..\..\Source\Maya\AnimationsPlanar.h">
       <Filter>Source\Maya</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\OrchestratorOld.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Beats.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Listener.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Music.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Environment.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Master.cpp">
@@ -139,6 +154,21 @@
       <Filter>Source\Maya</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Maya\AnimationsPlanar.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\OrchestratorOld.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Beats.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Listener.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Music.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Environment.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
   </ItemGroup>

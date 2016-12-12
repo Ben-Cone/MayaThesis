@@ -5,9 +5,6 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-#ifndef MAYA_AnimationsPlanar_generated_h
-	#include "AnimationsPlanar.h"
-#endif
 #ifndef MAYA_Cube_generated_h
 	#include "Cube.h"
 #endif
@@ -32,23 +29,41 @@
 #ifndef MAYA_FP_FirstPersonHUD_generated_h
 	#include "FP_FirstPerson/FP_FirstPersonHUD.h"
 #endif
+#ifndef MAYA_Listener_generated_h
+	#include "Listener.h"
+#endif
+#ifndef MAYA_AnimationsPlanar_generated_h
+	#include "AnimationsPlanar.h"
+#endif
+#ifndef MAYA_Beats_generated_h
+	#include "Beats.h"
+#endif
+#ifndef MAYA_Environment_generated_h
+	#include "Environment.h"
+#endif
+#ifndef MAYA_Master_generated_h
+	#include "Master.h"
+#endif
+#ifndef MAYA_Movement_generated_h
+	#include "Movement.h"
+#endif
+#ifndef MAYA_Music_generated_h
+	#include "Music.h"
+#endif
 #ifndef MAYA_Manager_generated_h
 	#include "Manager.h"
 #endif
 #ifndef MAYA_ManagerTest_002_Interaction_generated_h
 	#include "ManagerTest_002_Interaction.h"
 #endif
-#ifndef MAYA_Master_generated_h
-	#include "Master.h"
-#endif
 #ifndef MAYA_MayaGameMode_generated_h
 	#include "MayaGameMode.h"
 #endif
-#ifndef MAYA_Movement_generated_h
-	#include "Movement.h"
-#endif
 #ifndef MAYA_Orchestrator_generated_h
 	#include "Orchestrator.h"
+#endif
+#ifndef MAYA_OrchestratorOld_generated_h
+	#include "OrchestratorOld.h"
 #endif
 #ifndef MAYA_Polygon_generated_h
 	#include "Polygon.h"

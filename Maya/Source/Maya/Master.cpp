@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Maya.h"
 #include "Curves.h"
@@ -7,17 +6,15 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Master.h"
 
-
-// Sets default values
-AMaster::AMaster()
+AMaster::AMaster(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+
 	PrimaryActorTick.bCanEverTick = true;
 	
 	RootComponent = RootNull;
 }
 
-// Called when the game starts or when spawned
+
 void AMaster::BeginPlay()
 {
 	Super::BeginPlay();
@@ -25,14 +22,13 @@ void AMaster::BeginPlay()
 
 }
 
-// Called every frame
 void AMaster::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
 	timeDelta = DeltaTime;
 
-	UpdatePolygonAnimations();
+	//UpdatePolygonAnimations();
 
 	if (isMoving)
 	{
@@ -45,6 +41,11 @@ void AMaster::Tick( float DeltaTime )
 
 	MoveCube();
 	SpawnTrail();
+}
+
+void AMaster::UpdateTrigger(int eventIndex)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" awesome ")));
 }
 
 int AMaster::SpawnDefaultClasses()
@@ -485,7 +486,7 @@ void AMaster::Movement_0_Ambient()
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT(" interp : %f "), interpValue));
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" distance : %f "), distanceMultiplier));
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("  : %d "), posNegDirection));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" %d "), directionXYZ));
 
 	currentLocation[directionXYZ] = startLocation[directionXYZ] + (interpValue * posNegDirection * distanceMultiplier);
 	if (interpValue >= 1)
@@ -508,7 +509,7 @@ void AMaster::Movement_0_NewLocation()
 {
 
 	lengthSeconds = FMath::RandRange(1.4f, 2.3f);
-	distanceMultiplier = FMath::RandRange(10.f, 100.f);
+	distanceMultiplier = FMath::RandRange(50.f, 100.f);
 	interpValue = 0;
 
 	if (directionXYZ == 1) 
@@ -538,4 +539,14 @@ void AMaster::Movement_0_NewLocation()
 	startLocation = currentLocation;
 	targetLocation[directionXYZ] = startLocation[directionXYZ] + (distanceMultiplier * posNegDirection);
 
+}
+
+int AMaster::GetDirection()
+{
+	return directionXYZ;
+}
+
+float AMaster::GetInterpValue()
+{
+	return interpValue;
 }

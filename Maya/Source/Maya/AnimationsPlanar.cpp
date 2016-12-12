@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Maya.h"
 #include "Curves.h"
@@ -6,47 +5,48 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "AnimationsPlanar.h"
 
-
-// Sets default values
-AAnimationsPlanar::AAnimationsPlanar()
+AAnimationsPlanar::AAnimationsPlanar(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	RootComponent = RootNull;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
-	static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("Material'/Game/Cube/AP_Circles.AP_Circles'"));
+	static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("Material'/Game/Unused/Cube/AP_Circles.AP_Circles'"));
 
 }
 
-// Called when the game starts or when spawned
 void AAnimationsPlanar::BeginPlay()
 {
 	Super::BeginPlay();
 	SpawnDefaultClasses();
 
+	//Dynamic_001->SetScalarParameterValue(FName("OnOff"), 1.f);
+	//Dynamic_000->SetScalarParameterValue(FName("OnOff"), 1.f);
+	//Dynamic_000->SetScalarParameterValue(FName("circleLineWeight"), 1.f);
 }
 
-// Called every frame
 void AAnimationsPlanar::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 	timeDelta = DeltaTime;
 
-	interpValue = Curve->InterpAlongCurve(lengthSeconds, timeDelta, 0);
-	
-	maskScale.X = interpValue * 2;
-	maskScale.Y = interpValue * 2;
+	//interpValue = Curve->InterpAlongCurve(lengthSeconds, timeDelta, 0);
+	//
+	//maskScale.X = interpValue * 2;
+	//maskScale.Y = interpValue * 2;
 
-	Dynamic_Circle->SetVectorParameterValue(FName("CircleMaskScale"), maskScale);
+	//Dynamic_000->SetVectorParameterValue(FName("CircleMaskScale"), FLinearColor(maskScale.X, maskScale.Y, 0.f, 0.f));
 
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT(" current location : %f"), interpValue));
+	//rotator += .001;
 
-	rotator += .001;
+	//RotateShape(rotator);
 
-	RotateShape(rotator);
+}
 
+void AAnimationsPlanar::UpdateTrigger(int eventIndex)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("test")));
 }
 
 void AAnimationsPlanar::SpawnDefaultClasses()
@@ -56,7 +56,7 @@ void AAnimationsPlanar::SpawnDefaultClasses()
 
 	Curve->SetCurveType(0);
 
-	Dynamic_Circle = StaticMesh->CreateAndSetMaterialInstanceDynamic(0);
+	Dynamic_000 = StaticMesh->CreateAndSetMaterialInstanceDynamic(0);
 	Dynamic_001 = StaticMesh->CreateAndSetMaterialInstanceDynamic(1);
 	Dynamic_002 = StaticMesh->CreateAndSetMaterialInstanceDynamic(2);
 	Dynamic_003 = StaticMesh->CreateAndSetMaterialInstanceDynamic(3);
@@ -72,4 +72,12 @@ void AAnimationsPlanar::SpawnDefaultClasses()
 void AAnimationsPlanar::RotateShape(float rotationAngle)
 {
 	Dynamic_001->SetScalarParameterValue(FName("RotationAngle"), rotationAngle);
+}
+
+void AAnimationsPlanar::AnimationPicker(int animIndex)
+{
+	switch (animIndex)
+
+		case 0: 
+			Dynamic_001->SetScalarParameterValue(FName("OnOff"), 1);
 }

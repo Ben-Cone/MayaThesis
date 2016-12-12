@@ -13,7 +13,7 @@ APolygon::APolygon(const FObjectInitializer& ObjectInitializer)
 
 	RootComponent = RootNull;
 
-	ConstructorHelpers::FObjectFinder<UParticleSystem> line(TEXT("ParticleSystem'/Game/Shapes/BeamLine.BeamLine'"));
+	ConstructorHelpers::FObjectFinder<UParticleSystem> line(TEXT("ParticleSystem'/Game/Unused/Shapes/BeamLine.BeamLine'"));
 	lineComponent = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this, TEXT("Line"));
 
 	if (line.Succeeded())

@@ -2,23 +2,21 @@
 
 #include "GameFramework/Actor.h"
 #include "MasterTrail.h"
+#include "Listener.h"
 #include "Master.generated.h"
 
 UCLASS()
-class MAYA_API AMaster : public AActor
+class MAYA_API AMaster : public AListener
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
-	AMaster();
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	void UpdateTrigger(int eventIndex) override;
 
 	// -- Defaults -- //
 
@@ -46,6 +44,8 @@ public:
 	FVector targetLocation;
 	FVector GetCurrentLoc();
 	FVector GetTargetLoc();
+	int GetDirection();
+	float GetInterpValue();
 
 	// -- Spectrum -- //
 
@@ -108,6 +108,8 @@ public:
 	void SpawnPolygon(int forwardVec);
 	void UpdatePolygonAnimations();
 	void SpawnAlongTrail();
+
+
 
 
 };

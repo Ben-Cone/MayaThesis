@@ -1,24 +1,24 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "Listener.h"
 #include "AnimationsPlanar.generated.h"
 
 UCLASS()
-class MAYA_API AAnimationsPlanar : public AActor
+class MAYA_API AAnimationsPlanar : public AListener
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
+
 	AAnimationsPlanar();
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	void UpdateTrigger(int eventIndex) override;
 
 	UPROPERTY(EditAnywhere, Category = Spawn)
 		USphereComponent* RootNull;
@@ -28,7 +28,7 @@ public:
 
 	FVector maskScale;
 
-	UMaterialInstanceDynamic* Dynamic_Circle;
+	UMaterialInstanceDynamic* Dynamic_000;
 	UMaterialInstanceDynamic* Dynamic_001;
 	UMaterialInstanceDynamic* Dynamic_002;
 	UMaterialInstanceDynamic* Dynamic_003;
@@ -38,7 +38,6 @@ public:
 	UMaterialInstanceDynamic* Dynamic_007;
 	UMaterialInstanceDynamic* Dynamic_008;
 	UMaterialInstanceDynamic* Dynamic_009;
-
 
 	void RotateShape(float rotationAngle);
 
@@ -60,5 +59,7 @@ public:
 	ACurves* Curve;
 	
 	TArray<ACurves*> CurveArray;
+
+	void AnimationPicker(int animIndex);
 
 };

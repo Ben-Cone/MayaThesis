@@ -1,21 +1,24 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Maya.h"
 #include "Engine.h"
 #include "Master.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "AnimationsPlanar.h"
+#include "Beats.h"
+#include "Movement.h"
+#include "Music.h"
+#include "Environment.h"
+#include "Curves.h"
 #include "Orchestrator.h"
 
 
-// Sets default values
 AOrchestrator::AOrchestrator()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+
 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-// Called when the game starts or when spawned
 void AOrchestrator::BeginPlay()
 {
 	Super::BeginPlay();
@@ -23,7 +26,6 @@ void AOrchestrator::BeginPlay()
 
 }
 
-// Called every frame
 void AOrchestrator::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
@@ -32,7 +34,13 @@ void AOrchestrator::Tick( float DeltaTime )
 	masterLocation = Master->GetCurrentLoc();
 	userLocation = userClass->GetActorLocation();
 
-	// -- BLOCKED FOR TESTING // Spectra();
+	Beats->BeatCalculator(DeltaTime, bpm);
+	SetBeatValues();
+
+	Music->UpdateTrigger(1);
+
+	Environment->UpdateTrigger(1);
+
 }
 
 void AOrchestrator::SpawnDefaultClasses()
@@ -40,103 +48,57 @@ void AOrchestrator::SpawnDefaultClasses()
 	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	Master = GetWorld()->SpawnActor<AMaster>(MasterClass[0], SpawnInfo);
 
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Beats = GetWorld()->SpawnActor<ABeats>(BeatsClass[0], SpawnInfo);
+
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Movement = GetWorld()->SpawnActor<AMovement>(MovementClass[0], SpawnInfo);
+
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	AnimationPlane = GetWorld()->SpawnActor<AAnimationsPlanar>(AnimationsPlanarClass[0], SpawnLoc, SpawnRot, SpawnInfo);
+
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Music = GetWorld()->SpawnActor<AMusic>(MusicClass[0], SpawnInfo);
+
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Environment = GetWorld()->SpawnActor<AEnvironment>(EnvironmentClass[0], SpawnInfo);
+
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	Curve = GetWorld()->SpawnActor<ACurves>(CurvesClass[0], SpawnInfo);
+
 	userClass = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 
 }
 
-void AOrchestrator::Spectra()
+void AOrchestrator::SectionProgress()
 {
-
-
-	userRadiusToCube = masterLocation - userLocation;
-	userRotation = UKismetMathLibrary::FindLookAtRotation(masterLocation, userLocation);
-	//DrawDebugSphere(GetWorld(), masterLocation, 450, 32, FColor(255, 0, 0));
-	//DrawDebugSphere(GetWorld(), masterLocation, 100, 32, FColor(160, 160, 0));
-
-	currentAggro = InverseLerp(450, 0, (sqrt((pow(userRadiusToCube.X, 2)) + (pow(userRadiusToCube.Y, 2)))));
-	currentAggro = FMath::Clamp(currentAggro, 0.f, 1.f);
-
-	if (currentAggro > 0)
-	{
-
-		if (aggroCount < 1000)
-		{
-			aggroCount++;
-		}
-
-		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + currentAggro / aggroCount;
-
+	if (userProgress < ((timeLimit / currentSection) / 4)) {
+		currentSection--;
 	}
-	else if (currentAggro < 0)
-	{
-		if (aggroCount < 1000)
-		{
-			aggroCount++;
-		}
-
-		avgAggro = avgAggro *  (aggroCount - 1) / aggroCount + 0 / aggroCount;
-
-	}
-
-
-	Master->SpectrumUpdate(userRotation, currentBeatProgress, currentAggro, avgAggro);
-	Master->MoveCube();
-	SpectrumMusic(currentAggro, avgAggro);
-
-}
-
-
-float AOrchestrator::InverseLerp(float A, float B, float Value)
-{
-	if (FMath::IsNearlyEqual(A, B))
-	{
-		if (Value < A)
-		{
-			return 0;
-		}
-		else
-		{
-			return 1;
-		}
-	}
-	else
-	{
-		return ((Value - A) / (B - A));
+	else if (userProgress > ((timeLimit / currentSection) / 4)) {
+		currentSection++;
 	}
 }
 
-
-void AOrchestrator::SpectrumRoughness(float current, float avg)
+void AOrchestrator::SetBeatValues()
 {
-	roughness = (current * .4f) + (avg * .7f);
-	roughness = FMath::Clamp(roughness, 0.f, 1.f);
+
+	wholeBeat = Beats->GetWholeBeat();
+	halfBeat = Beats->GetHalfBeat();
+	quarterBeat = Beats->GetQuarterBeat();
+	eighthBeat = Beats->GetEighthBeat();
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" wholeBeat: %f "), wholeBeat));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" halfBeat: %f "), halfBeat));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" quarterBeat: %f "), quarterBeat));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" eighthBeat: %f "), eighthBeat));
+
 }
 
-void AOrchestrator::SpectrumJitteriness(float current, float avg)
+void AOrchestrator::AggroUpdate()
 {
-	jitter = (current * .6f) + (avg * .2f);
-	jitter = FMath::Clamp(roughness, 0.f, 1.f);
-}
 
-void AOrchestrator::SpectrumCurviness(float current, float avg)
-{
-	curviness = (current * .1f) + (avg * .85f);
-	curviness = FMath::Clamp(roughness, 0.f, 1.f);
-}
-
-
-void AOrchestrator::SpectrumMusic(float current, float avg)
-{
-	if (currentAggro > 0)
-	{
-		beatProgression += current * .9f;
-		beatProgression = FMath::Clamp(beatProgression, 0.f, beatProgressionLimit);
-
-	}
-
-	if (beatProgression >= (beatProgressionLimit / 8) * (currentBeatProgress + 1))
-	{
-		currentBeatProgress++;
-	}
+	masterLocation = Master->GetCurrentLoc();
+	userLocation = userClass->GetActorLocation();
 
 }

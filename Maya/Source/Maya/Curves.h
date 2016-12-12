@@ -10,13 +10,11 @@ class MAYA_API ACurves : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
+
 	ACurves(const FObjectInitializer& ObjectInitializer);
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Curves")
@@ -54,6 +52,10 @@ public:
 	TArray<UCurveFloat*> curveArray;
 
 	int curveIndex;
+
+	// -- Math Functions -- //
+
+	float InverseLerp(float A, float B, float Value);
 
 };
  

@@ -3,22 +3,21 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "Listener.h"
 #include "Movement.generated.h"
 
 UCLASS()
-class MAYA_API AMovement : public AActor
+class MAYA_API AMovement : public AListener
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
-	AMovement();
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	void UpdateTrigger(int eventIndex) override;
 
 	FVector NewPointBDiscrete(FVector directionXYZ, FVector currentLoc);
 	FVector DiscretePathing(FVector currentLoc, FVector endLocation);

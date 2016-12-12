@@ -6,9 +6,6 @@
 AMasterCube::AMasterCube(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 
-
-	// -- Movement Initializaiton -- //
-
 	RootComponent = RootNull;
 
 	CurrentLocation = FVector(0.f, 0.f, 0.f);
@@ -694,12 +691,6 @@ void AMasterCube::CubeMovementLinear(FRotator movementAngle, float currentAggro)
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), distanceComplete));
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" %f "), MoveDistance));
 }
-
-
-
-
-
-
 
 
 void AMasterCube::CubeMovementNewLocation(FRotator movementAngle, float currentAggro)

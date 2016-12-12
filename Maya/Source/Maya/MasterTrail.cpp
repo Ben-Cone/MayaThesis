@@ -11,7 +11,7 @@ AMasterTrail::AMasterTrail()
 	RootComponent = RootNull;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
-	static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("Material'/Game/Trail/Base_Trail.Base_Trail'"));
+	static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("Material'/Game/Unused/Trail/Base_Trail.Base_Trail'"));
 
 }
 

@@ -1,19 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Maya.h"
 #include "Curves.h"
 #include "Movement.h"
 
-
-// Sets default values
-AMovement::AMovement()
+AMovement::AMovement(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	
 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-// Called when the game starts or when spawned
 void AMovement::BeginPlay()
 {
 	Super::BeginPlay();
@@ -28,16 +24,19 @@ void AMovement::SpawnDefaults()
 	Curves = GetWorld()->SpawnActor<ACurves>(CurvesSubClass, SpawnInfo);
 }
 
-// Called every frame
 void AMovement::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
 }
 
-FVector AMovement::NewPointBDiscrete(FVector directionXYZ, FVector currentLoc)
+void AMovement::UpdateTrigger(int eventIndex)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("test")));
+}
+
+FVector AMovement::NewPointBDiscrete(FVector directionXYZ, FVector currentLoc)
+{
 
 	pointA = currentLoc;
 	pointB = pointA;

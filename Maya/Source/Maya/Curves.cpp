@@ -2,17 +2,15 @@
 #include "Engine.h"
 #include "Curves.h"
 
-
-// Sets default values
 ACurves::ACurves(const FObjectInitializer& ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	
 	PrimaryActorTick.bCanEverTick = true;
 
-	static ConstructorHelpers::FObjectFinder<UCurveFloat> Curve1(TEXT("CurveFloat'/Game/Curves/FCurve_001.FCurve_001'"));
+	static ConstructorHelpers::FObjectFinder<UCurveFloat> Curve1(TEXT("CurveFloat'/Game/Unused/Curves/FCurve_001.FCurve_001'"));
 	FCurve_001 = Curve1.Object;
 
-	static ConstructorHelpers::FObjectFinder<UCurveFloat> Curve2(TEXT("CurveFloat'/Game/Curves/FCurve_002.FCurve_002'"));
+	static ConstructorHelpers::FObjectFinder<UCurveFloat> Curve2(TEXT("CurveFloat'/Game/Unused/Curves/FCurve_002.FCurve_002'"));
 	FCurve_002 = Curve2.Object;
 
 
@@ -31,14 +29,13 @@ void ACurves::SetCurveType(int curveType)
 {
 	Timeline_001->AddInterpFloat(curveArray[curveType], InterpFunction, FName{ TEXT("InterpFloat") });
 }
-// Called when the game starts or when spawned
+
 void ACurves::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void ACurves::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
@@ -59,5 +56,21 @@ float ACurves::InterpAlongCurve(float lengthSeconds, float timeDelta, int curveT
 
 }
 
-
-
+float ACurves::InverseLerp(float A, float B, float Value)
+{
+	if (FMath::IsNearlyEqual(A, B))
+	{
+		if (Value < A)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	else
+	{
+		return ((Value - A) / (B - A));
+	}
+}

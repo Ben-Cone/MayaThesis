@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -11,27 +10,60 @@ class MAYA_API AOrchestrator : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
+
 	AOrchestrator();
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	// -- Default Classes -- // 
 
-	// -- Spawning -- //
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+	TArray<TSubclassOf<class AMaster> > MasterClass;
 
-	UPROPERTY(EditAnywhere, Category = "Master Spawn")
-		TArray<TSubclassOf<class AMaster> > MasterClass;
-	FActorSpawnParameters SpawnInfo;
+	AMaster* Master;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class ABeats> > BeatsClass;
+
+	ABeats* Beats;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class AMovement> > MovementClass;
+
+	AMovement* Movement;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class AAnimationsPlanar> > AnimationsPlanarClass;
+
+	AAnimationsPlanar* AnimationPlane;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class AMusic> > MusicClass;
+
+	AMusic* Music;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class AEnvironment> > EnvironmentClass;
+
+	AEnvironment* Environment;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class ACurves> > CurvesClass;
+
+	ACurves* Curve;
 
 	void SpawnDefaultClasses();
-	AMaster* Master;
-	ACharacter* userClass;
+	FActorSpawnParameters SpawnInfo;
+	FVector SpawnLoc = FVector(0.f, 0.f, 0.f);
+	FRotator SpawnRot;
 	
 	// -- User / Aggro -- //
+
+	ACharacter* userClass;
+
+	void AggroUpdate();
 
 	FVector userLocation;
 	FVector masterLocation;
@@ -41,8 +73,6 @@ public:
 
 	int aggroCount;
 	void Spectra();
-
-	float InverseLerp(float A, float B, float Value);
 
 	float currentTempAggro;
 	float currentAggro;
@@ -66,7 +96,40 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Variables")
 		float beatProgressionLimit;
 
+	// -- animation planes -- // 
 
+	void SpawnAnimPlane(/*FVector fVec, float fSpeed, int animType, int animCurve, float animSpeed, float lifetime*/);
+
+	void AnimationPlaneControl();
+
+	FVector masterCurrentLoc;
+	FVector masterTargetLoc;
+	int masterDirection;
+	float masterInterpValue;
+
+	// -- sections -- // 
+
+	void SectionProgress();
+
+	float userProgress;
+	float timeLimit;
+
+	int currentSection;
+
+	// -- listeners -- // 
+
+
+
+
+	void SetBeatValues();
+
+	float wholeBeat;
+	float halfBeat;
+	float quarterBeat;
+	float eighthBeat;
+
+	UPROPERTY(EditAnywhere, Category = "Variables")
+	float bpm;
 
 
 };
