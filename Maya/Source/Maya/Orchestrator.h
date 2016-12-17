@@ -17,6 +17,8 @@ public:
 	
 	virtual void Tick( float DeltaSeconds ) override;
 
+	float timeDelta;
+
 	// -- Default Classes -- // 
 
 	UPROPERTY(EditAnywhere, Category = "Default Classes")
@@ -52,7 +54,13 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Default Classes")
 		TArray<TSubclassOf<class ACurves> > CurvesClass;
 
-	ACurves* Curve;
+	ACurves* AggroCurve;
+	ACurves* PointCurve;
+
+	UPROPERTY(EditAnywhere, Category = "Default Classes")
+		TArray<TSubclassOf<class ASpectrum> > SpectrumClass;
+
+	ASpectrum* Spectrum;
 
 	void SpawnDefaultClasses();
 	FActorSpawnParameters SpawnInfo;
@@ -69,6 +77,7 @@ public:
 	FVector masterLocation;
 	FVector userRadiusToCube;
 	FRotator userRotation;
+	float userAngleToCube;
 	TArray<float> aggroHistory;
 
 	int aggroCount;
@@ -82,6 +91,18 @@ public:
 	bool overwriteArray = false;
 
 	// -- spectra -- //
+
+	float points;
+	UPROPERTY(EditAnywhere, Category = "Variables")
+	float maxPoints;
+	UPROPERTY(EditAnywhere, Category = "Variables")
+	float decayRate;
+	float pointsNormalized;
+
+	float decay;
+
+	int currentSection;
+
 
 	void SpectraMaster();
 	void SpectrumRoughness(float current, float avg);
@@ -102,7 +123,7 @@ public:
 
 	void AnimationPlaneControl();
 
-	FVector masterCurrentLoc;
+	FVector masterCurrentLocation;
 	FVector masterTargetLoc;
 	int masterDirection;
 	float masterInterpValue;
@@ -114,22 +135,40 @@ public:
 	float userProgress;
 	float timeLimit;
 
-	int currentSection;
-
 	// -- listeners -- // 
 
-
-
-
-	void SetBeatValues();
-
+	TArray<float> currentBeat;
 	float wholeBeat;
 	float halfBeat;
 	float quarterBeat;
 	float eighthBeat;
 
+	TArray<float> previousBeat;
+	float previousWholeBeat;
+	float previousHalfBeat;
+	float previousQuarterBeat;
+	float previousEighthBeat;
+
+	// -- beats -- //
+
 	UPROPERTY(EditAnywhere, Category = "Variables")
 	float bpm;
 
+	float elapsedTime;
+
+	void BeatCalculator(float deltaTime);
+
+	void PointProgress();
+
+	int wholeNote;
+	int halfNote;
+	int quarterNote;
+	int eighthNote;
+
+	void NoteArpeggiator();
+
+	int note_1_value;
+
+	int beatDelay;
 
 };

@@ -15,18 +15,21 @@ void AMovement::BeginPlay()
 	Super::BeginPlay();
 	
 	SpawnDefaults();
-
+	Movement_0_NewLocation();
 }
 
 void AMovement::SpawnDefaults()
 {
 	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	Curves = GetWorld()->SpawnActor<ACurves>(CurvesSubClass, SpawnInfo);
+	Curve = GetWorld()->SpawnActor<ACurves>(CurvesSubClass, SpawnInfo);
 }
 
 void AMovement::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
+
+	timeDelta = DeltaTime;
+
 
 }
 
@@ -35,93 +38,76 @@ void AMovement::UpdateTrigger(int eventIndex)
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("test")));
 }
 
-FVector AMovement::NewPointBDiscrete(FVector directionXYZ, FVector currentLoc)
+FVector AMovement::GetCubeLocation()
 {
-
-	pointA = currentLoc;
-	pointB = pointA;
-
-	// which direction isn't 0, (0, 1, 0)
-	// pointB = direction + moveDistance
-
-	if (directionXYZ.X != 0)
-	{
-		pointB.X = currentLoc.X + (moveDistance * directionXYZ.X);
-	}
-	else if (directionXYZ.Y != 0)
-	{
-		pointB.Y = currentLoc.Y + (moveDistance * directionXYZ.Y);
-	}
-	else if (directionXYZ.Z != 0)
-	{
-		pointB.Z = currentLoc.Z + (moveDistance * directionXYZ.Z);
-	}
-
-	return pointB;
+	return currentLocation;
 }
 
-FVector AMovement::DiscretePathing(FVector currentLoc, FVector endLocation)
+void AMovement::Movement_A_LinearPulse(float userRotation)
 {
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("current: %f"), currentLocation[directionXYZ]));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("target: %f"), targetLocation[directionXYZ]));
 
-	DirectionToMoveXYZ = FMath::RandRange(0, 2);
-	
-	directionAmplitude = FVector(0.f, 0.f, 0.f);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("interp: %f"), interpolated));
 
-	switch (DirectionToMoveXYZ) {
+	interpValue = Curve->DistanceBetweenFloats(currentLocation[directionXYZ], targetLocation[directionXYZ]);
 
-	case 0:
-
-		if (endLocation.X - currentLoc.X > 0)
-		{
-			directionAmplitude.X = 1.f;
-		}
-		else if (endLocation.X - currentLoc.X < 0)
-		{
-			directionAmplitude.X = -1.f;
-		}
-
-		if (currentLoc.X + moveDistance > endLocation.X)
-		{
-			NewPointBDiscrete(directionAmplitude, currentLoc);
-		}
-		else if (currentLoc.X + moveDistance <= endLocation.X)
-		{
-			NewPointBDiscrete(directionAmplitude, currentLoc);
-		}
-
-		break;
-
-	case 1:
-
-		if (endLocation.Y - currentLoc.Y > 0)
-		{
-			directionAmplitude.Y = 1.f;
-		}
-		else if (endLocation.Y - currentLoc.Y < 0)
-		{
-			directionAmplitude.Y = -1.f;
-		}
-			break;
-	case 2:
-
-		if (endLocation.Z - currentLoc.Z > 0)
-		{
-			directionAmplitude.Z = 1.f;
-		}
-		else if (endLocation.Z - currentLoc.Z < 0)
-		{
-			directionAmplitude.Z = -1.f;
-		}
-
+	if (interpolated < 1.f) {
+		interpolated = Curve->InterpAlongCurve(lengthSeconds, timeDelta, 0);
+		currentLocation[directionXYZ] = startLocation[directionXYZ] + (interpolated * posNegDirection * distanceMultiplier);
+	}
+	else if (interpolated >= 1.f) {
+		currentLocation[directionXYZ] = targetLocation[directionXYZ]; 
 	}
 
-	NewPointBDiscrete(directionAmplitude, currentLoc);
-
-
-	return currentLoc;
 
 }
 
+void AMovement::Movement_0_NewLocation()
+{
+
+	lengthSeconds = FMath::RandRange(1.4f, 3.3f);
+	distanceMultiplier = FMath::RandRange(50.f, 100.f);
+	interpolated = 0;
+
+	if (directionXYZ == 1) 
+	{
+		directionXYZ = 0;
+	}
+	else if (directionXYZ == 0)
+	{
+		directionXYZ = 1;
+	}
+
+	posNegSwitch = FMath::RandBool();
+	if (posNegSwitch == 1)
+	{
+		posNegDirection = 1;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT(" 1 ")));
+	}
+	else if (posNegSwitch == 0)
+	{
+		posNegDirection = -1;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT(" -1 ")));
+	}
+
+	isMoving = true;
+	Curve->SetCurveStart(0);
+
+	startLocation[directionXYZ] = currentLocation[directionXYZ];
+	targetLocation[directionXYZ] = startLocation[directionXYZ] + (distanceMultiplier * posNegDirection);
+
+}
+
+int AMovement::GetDirection()
+{
+	return directionXYZ;
+}
+
+float AMovement::GetInterpValue()
+{
+	return interpolated;
+}
 
 
 

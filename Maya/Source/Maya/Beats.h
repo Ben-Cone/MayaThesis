@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -17,18 +16,24 @@ public:
 
 	float elapsedTime;
 
-	float wholeBeat;
-	float halfBeat;
-	float quarterBeat;
-	float eighthBeat;
-
 	void BeatCalculator(float deltaTime, float bpm);
 	float GetWholeBeat();
 	float GetHalfBeat();
 	float GetQuarterBeat();
 	float GetEighthBeat();
 
+	TArray<float> currentBeat;
+	float wholeBeat;
+	float halfBeat;
+	float quarterBeat;
+	float eighthBeat;
 
-	TArray<float> beats;
+	TArray<float> previousBeat;
+	float previousWholeBeat;
+	float previousHalfBeat;
+	float previousQuarterBeat;
+	float previousEighthBeat;
+
+	
 	
 };

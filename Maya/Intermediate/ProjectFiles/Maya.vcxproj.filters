@@ -145,6 +145,9 @@
     <ClInclude Include="..\..\Source\Maya\Environment.h">
       <Filter>Source\Maya</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Maya\Spectrum.h">
+      <Filter>Source\Maya</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Maya\Master.cpp">
@@ -169,6 +172,9 @@
       <Filter>Source\Maya</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Maya\Environment.cpp">
+      <Filter>Source\Maya</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Maya\Spectrum.cpp">
       <Filter>Source\Maya</Filter>
     </ClCompile>
   </ItemGroup>

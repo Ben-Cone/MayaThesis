@@ -10,6 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCode1Maya() {}
 FName MAYA_InterpAlong = FName(TEXT("InterpAlong"));
+FName MAYA_InterpNotes = FName(TEXT("InterpNotes"));
 FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void ACube::StaticRegisterNativesACube()
 	{
@@ -36,6 +37,13 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 		ProcessEvent(FindFunctionChecked(MAYA_InterpAlong),&Parms);
 		return Parms.ReturnValue;
 	}
+	float ACurves::InterpNotes(float points)
+	{
+		Curves_eventInterpNotes_Parms Parms;
+		Parms.points=points;
+		ProcessEvent(FindFunctionChecked(MAYA_InterpNotes),&Parms);
+		return Parms.ReturnValue;
+	}
 	void ACurves::TestEvent(float pointOnCurve)
 	{
 		Curves_eventTestEvent_Parms Parms;
@@ -45,7 +53,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void ACurves::StaticRegisterNativesACurves()
 	{
 	}
-	IMPLEMENT_CLASS(ACurves, 847925760);
+	IMPLEMENT_CLASS(ACurves, 583321513);
 	void AFP_FirstPersonCharacter::StaticRegisterNativesAFP_FirstPersonCharacter()
 	{
 	}
@@ -81,11 +89,15 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void AMovement::StaticRegisterNativesAMovement()
 	{
 	}
-	IMPLEMENT_CLASS(AMovement, 681676863);
+	IMPLEMENT_CLASS(AMovement, 2265648570);
 	void AMusic::StaticRegisterNativesAMusic()
 	{
 	}
-	IMPLEMENT_CLASS(AMusic, 2264888400);
+	IMPLEMENT_CLASS(AMusic, 2466449040);
+	void ASpectrum::StaticRegisterNativesASpectrum()
+	{
+	}
+	IMPLEMENT_CLASS(ASpectrum, 2715699333);
 	void AManager::StaticRegisterNativesAManager()
 	{
 	}
@@ -101,11 +113,11 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void AOrchestrator::StaticRegisterNativesAOrchestrator()
 	{
 	}
-	IMPLEMENT_CLASS(AOrchestrator, 4005781570);
+	IMPLEMENT_CLASS(AOrchestrator, 1176443265);
 	void AOrchestratorOld::StaticRegisterNativesAOrchestratorOld()
 	{
 	}
-	IMPLEMENT_CLASS(AOrchestratorOld, 2437975315);
+	IMPLEMENT_CLASS(AOrchestratorOld, 288623508);
 	void APolygon::StaticRegisterNativesAPolygon()
 	{
 	}
@@ -115,7 +127,6 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
 	ENGINE_API class UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
-	ENGINE_API class UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_UTimelineComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API class UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
@@ -125,6 +136,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	ENGINE_API class UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AGameMode();
 	ENGINE_API class UClass* Z_Construct_UClass_AHUD();
+	ENGINE_API class UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	COREUOBJECT_API class UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 
@@ -137,6 +149,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMasterCube();
 	MAYA_API class UFunction* Z_Construct_UFunction_ACurves_InterpAlong();
+	MAYA_API class UFunction* Z_Construct_UFunction_ACurves_InterpNotes();
 	MAYA_API class UFunction* Z_Construct_UFunction_ACurves_TestEvent();
 	MAYA_API class UClass* Z_Construct_UClass_ACurves_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_ACurves();
@@ -160,6 +173,8 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	MAYA_API class UClass* Z_Construct_UClass_AMovement();
 	MAYA_API class UClass* Z_Construct_UClass_AMusic_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AMusic();
+	MAYA_API class UClass* Z_Construct_UClass_ASpectrum_NoRegister();
+	MAYA_API class UClass* Z_Construct_UClass_ASpectrum();
 	MAYA_API class UClass* Z_Construct_UClass_AManager_NoRegister();
 	MAYA_API class UClass* Z_Construct_UClass_AManager();
 	MAYA_API class UClass* Z_Construct_UClass_AManagerTest_002_Interaction_NoRegister();
@@ -361,6 +376,25 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		}
 		return ReturnFunction;
 	}
+	UFunction* Z_Construct_UFunction_ACurves_InterpNotes()
+	{
+		UObject* Outer=Z_Construct_UClass_ACurves();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("InterpNotes"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x08020800, 65535, sizeof(Curves_eventInterpNotes_Parms));
+			UProperty* NewProp_ReturnValue = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("ReturnValue"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(ReturnValue, Curves_eventInterpNotes_Parms), 0x0010000000000580);
+			UProperty* NewProp_points = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("points"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(points, Curves_eventInterpNotes_Parms), 0x0010000000000080);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("Curves"));
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+#endif
+		}
+		return ReturnFunction;
+	}
 	UFunction* Z_Construct_UFunction_ACurves_TestEvent()
 	{
 		UObject* Outer=Z_Construct_UClass_ACurves();
@@ -397,15 +431,32 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->ClassFlags |= 0x20900080;
 
 				OuterClass->LinkChild(Z_Construct_UFunction_ACurves_InterpAlong());
+				OuterClass->LinkChild(Z_Construct_UFunction_ACurves_InterpNotes());
 				OuterClass->LinkChild(Z_Construct_UFunction_ACurves_TestEvent());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_timeLength = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("timeLength"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(timeLength, ACurves), 0x0010000000000001);
-				UProperty* NewProp_FCurve_002 = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FCurve_002"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FCurve_002, ACurves), 0x0010000000010001, Z_Construct_UClass_UCurveFloat_NoRegister());
-				UProperty* NewProp_FCurve_001 = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("FCurve_001"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(FCurve_001, ACurves), 0x0010000000010001, Z_Construct_UClass_UCurveFloat_NoRegister());
+				UProperty* NewProp_noteProbability_4_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_4_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_4_iv, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_4_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_4_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_4_iii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_4_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_4_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_4_ii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_4_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_4_i"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_4_i, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_3_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_3_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_3_iv, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_3_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_3_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_3_iii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_3_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_3_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_3_ii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_3_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_3_i"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_3_i, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_2_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_2_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_2_iv, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_2_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_2_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_2_iii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_2_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_2_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_2_ii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_2_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_2_i"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_2_i, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_1_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_1_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_1_iv, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_1_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_1_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_1_iii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_1_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_1_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_1_ii, ACurves), 0x0010000000000005);
+				UProperty* NewProp_noteProbability_1_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("noteProbability_1_i"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(noteProbability_1_i, ACurves), 0x0010000000000005);
+				UProperty* NewProp_Timeline_Points = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Timeline_Points"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Timeline_Points, ACurves), 0x0010000000090009, Z_Construct_UClass_UTimelineComponent_NoRegister());
 				UProperty* NewProp_Timeline_001 = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Timeline_001"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Timeline_001, ACurves), 0x0010000000090009, Z_Construct_UClass_UTimelineComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_InterpAlong(), "InterpAlong"); // 3442064994
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_InterpNotes(), "InterpNotes"); // 664672730
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_TestEvent(), "TestEvent"); // 2626672573
 				OuterClass->StaticLink();
 #if WITH_METADATA
@@ -415,10 +466,41 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("ObjectInitializerConstructorDeclared"), TEXT(""));
 				MetaData->SetValue(NewProp_timeLength, TEXT("Category"), TEXT("Interpolation"));
 				MetaData->SetValue(NewProp_timeLength, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
-				MetaData->SetValue(NewProp_FCurve_002, TEXT("Category"), TEXT("Curves"));
-				MetaData->SetValue(NewProp_FCurve_002, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
-				MetaData->SetValue(NewProp_FCurve_001, TEXT("Category"), TEXT("Curves"));
-				MetaData->SetValue(NewProp_FCurve_001, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_4_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_4_iv, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_4_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_4_iii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_4_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_4_ii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_4_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_4_i, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_3_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_3_iv, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_3_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_3_iii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_3_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_3_ii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_3_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_3_i, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_2_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_2_iv, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_2_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_2_iii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_2_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_2_ii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_2_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_2_i, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_1_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_1_iv, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_1_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_1_iii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_1_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_1_ii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_1_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_noteProbability_1_i, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_Timeline_Points, TEXT("Category"), TEXT("Curves"));
+				MetaData->SetValue(NewProp_Timeline_Points, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_Timeline_Points, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
 				MetaData->SetValue(NewProp_Timeline_001, TEXT("Category"), TEXT("Curves"));
 				MetaData->SetValue(NewProp_Timeline_001, TEXT("EditInline"), TEXT("true"));
 				MetaData->SetValue(NewProp_Timeline_001, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
@@ -792,7 +874,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_CurvesSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurvesSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(CurvesSubClass, AMovement), 0x0014000000010001, Z_Construct_UClass_ACurves_NoRegister(), UClass::StaticClass());
-				UProperty* NewProp_moveDistance = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("moveDistance"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(moveDistance, AMovement), 0x0010000000000001);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
 #if WITH_METADATA
@@ -801,8 +882,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
 				MetaData->SetValue(NewProp_CurvesSubClass, TEXT("Category"), TEXT("Curves"));
 				MetaData->SetValue(NewProp_CurvesSubClass, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
-				MetaData->SetValue(NewProp_moveDistance, TEXT("Category"), TEXT("Movement"));
-				MetaData->SetValue(NewProp_moveDistance, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
 #endif
 			}
 		}
@@ -829,11 +908,61 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->ClassFlags |= 0x20900080;
 
 
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_cue_4_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_4_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_4_iv, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_4_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_4_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_4_iii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_4_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_4_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_4_ii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_4_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_4_i"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_4_i, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_3_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_3_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_3_iv, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_3_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_3_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_3_iii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_3_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_3_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_3_ii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_3_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_3_i"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_3_i, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_2_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_2_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_2_iv, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_2_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_2_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_2_iii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_2_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_2_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_2_ii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_2_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_2_i"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_2_i, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_1_iv = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_1_iv"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_1_iv, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_1_iii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_1_iii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_1_iii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_1_ii = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_1_ii"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_1_ii, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_cue_1_i = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("cue_1_i"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(cue_1_i, AMusic), 0x0010000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
 #if WITH_METADATA
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Music.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_4_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_4_iv, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_4_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_4_iii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_4_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_4_ii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_4_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_4_i, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_3_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_3_iv, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_3_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_3_iii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_3_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_3_ii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_3_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_3_i, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_2_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_2_iv, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_2_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_2_iii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_2_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_2_ii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_2_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_2_i, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_1_iv, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_1_iv, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_1_iii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_1_iii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_1_ii, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_1_ii, TEXT("ModuleRelativePath"), TEXT("Music.h"));
+				MetaData->SetValue(NewProp_cue_1_i, TEXT("Category"), TEXT("Notes"));
+				MetaData->SetValue(NewProp_cue_1_i, TEXT("ModuleRelativePath"), TEXT("Music.h"));
 #endif
 			}
 		}
@@ -842,6 +971,37 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AMusic(Z_Construct_UClass_AMusic, &AMusic::StaticClass, TEXT("AMusic"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AMusic);
+	UClass* Z_Construct_UClass_ASpectrum_NoRegister()
+	{
+		return ASpectrum::StaticClass();
+	}
+	UClass* Z_Construct_UClass_ASpectrum()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AListener();
+			Z_Construct_UPackage__Script_Maya();
+			OuterClass = ASpectrum::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Spectrum.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Spectrum.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_ASpectrum(Z_Construct_UClass_ASpectrum, &ASpectrum::StaticClass, TEXT("ASpectrum"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(ASpectrum);
 	UClass* Z_Construct_UClass_AManager_NoRegister()
 	{
 		return AManager::StaticClass();
@@ -989,6 +1149,10 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_bpm = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("bpm"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(bpm, AOrchestrator), 0x0010000000000001);
 				UProperty* NewProp_beatProgressionLimit = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("beatProgressionLimit"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(beatProgressionLimit, AOrchestrator), 0x0010000000000001);
+				UProperty* NewProp_decayRate = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("decayRate"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(decayRate, AOrchestrator), 0x0010000000000001);
+				UProperty* NewProp_maxPoints = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("maxPoints"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(maxPoints, AOrchestrator), 0x0010000000000001);
+				UProperty* NewProp_SpectrumClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SpectrumClass"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(SpectrumClass, AOrchestrator), 0x0014000000000001);
+				UProperty* NewProp_SpectrumClass_Inner = new(EC_InternalUseOnlyConstructor, NewProp_SpectrumClass, TEXT("SpectrumClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_ASpectrum_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_CurvesClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurvesClass"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(CurvesClass, AOrchestrator), 0x0014000000000001);
 				UProperty* NewProp_CurvesClass_Inner = new(EC_InternalUseOnlyConstructor, NewProp_CurvesClass, TEXT("CurvesClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_ACurves_NoRegister(), UClass::StaticClass());
 				UProperty* NewProp_EnvironmentClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("EnvironmentClass"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(EnvironmentClass, AOrchestrator), 0x0014000000000001);
@@ -1011,8 +1175,15 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
 				MetaData->SetValue(NewProp_bpm, TEXT("Category"), TEXT("Variables"));
 				MetaData->SetValue(NewProp_bpm, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_bpm, TEXT("ToolTip"), TEXT("-- beats --"));
 				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("Category"), TEXT("Variables"));
 				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_decayRate, TEXT("Category"), TEXT("Variables"));
+				MetaData->SetValue(NewProp_decayRate, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_maxPoints, TEXT("Category"), TEXT("Variables"));
+				MetaData->SetValue(NewProp_maxPoints, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
+				MetaData->SetValue(NewProp_SpectrumClass, TEXT("Category"), TEXT("Default Classes"));
+				MetaData->SetValue(NewProp_SpectrumClass, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
 				MetaData->SetValue(NewProp_CurvesClass, TEXT("Category"), TEXT("Default Classes"));
 				MetaData->SetValue(NewProp_CurvesClass, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
 				MetaData->SetValue(NewProp_EnvironmentClass, TEXT("Category"), TEXT("Default Classes"));
@@ -1054,26 +1225,11 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->ClassFlags |= 0x20900080;
 
 
-PRAGMA_DISABLE_DEPRECATION_WARNINGS
-				UProperty* NewProp_AnimPlane = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("AnimPlane"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(AnimPlane, AOrchestratorOld), 0x0014000000000001);
-				UProperty* NewProp_AnimPlane_Inner = new(EC_InternalUseOnlyConstructor, NewProp_AnimPlane, TEXT("AnimPlane"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_AAnimationsPlanar_NoRegister(), UClass::StaticClass());
-				UProperty* NewProp_beatProgressionLimit = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("beatProgressionLimit"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(beatProgressionLimit, AOrchestratorOld), 0x0010000000000001);
-				UProperty* NewProp_MasterClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MasterClass"), RF_Public|RF_Transient|RF_MarkAsNative) UArrayProperty(CPP_PROPERTY_BASE(MasterClass, AOrchestratorOld), 0x0014000000000001);
-				UProperty* NewProp_MasterClass_Inner = new(EC_InternalUseOnlyConstructor, NewProp_MasterClass, TEXT("MasterClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0004000000000000, Z_Construct_UClass_AMaster_NoRegister(), UClass::StaticClass());
-PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
 #if WITH_METADATA
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("OrchestratorOld.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("OrchestratorOld.h"));
-				MetaData->SetValue(NewProp_AnimPlane, TEXT("Category"), TEXT("AnimationPlane Spawn"));
-				MetaData->SetValue(NewProp_AnimPlane, TEXT("ModuleRelativePath"), TEXT("OrchestratorOld.h"));
-				MetaData->SetValue(NewProp_AnimPlane, TEXT("ToolTip"), TEXT("-- animation planes --"));
-				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("Category"), TEXT("Variables"));
-				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("ModuleRelativePath"), TEXT("OrchestratorOld.h"));
-				MetaData->SetValue(NewProp_MasterClass, TEXT("Category"), TEXT("Master Spawn"));
-				MetaData->SetValue(NewProp_MasterClass, TEXT("ModuleRelativePath"), TEXT("OrchestratorOld.h"));
-				MetaData->SetValue(NewProp_MasterClass, TEXT("ToolTip"), TEXT("-- Spawning --"));
 #endif
 			}
 		}
@@ -1134,8 +1290,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x54ADF18C;
-			Guid.B = 0xC9FA84FA;
+			Guid.A = 0xFBCFF3BC;
+			Guid.B = 0xF8EE2285;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

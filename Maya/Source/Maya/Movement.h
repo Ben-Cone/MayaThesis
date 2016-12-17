@@ -19,27 +19,50 @@ public:
 
 	void UpdateTrigger(int eventIndex) override;
 
-	FVector NewPointBDiscrete(FVector directionXYZ, FVector currentLoc);
-	FVector DiscretePathing(FVector currentLoc, FVector endLocation);
+	float timeDelta;
 
-	FVector pointA;
-	FVector pointB;
-
-
-	UPROPERTY(EditAnywhere)
-	float moveDistance;
-
-	UPROPERTY(EditDefaultsOnly, Category = Curves)
-	TSubclassOf<class ACurves> CurvesSubClass;
-	
-	ACurves* Curves;
+	// -- defaults -- // 
 
 	void SpawnDefaults();
 	FActorSpawnParameters SpawnInfo;
 
-	float returnTest;
-	float movementAmount;
-	int DirectionToMoveXYZ;
-	FVector directionAmplitude;
+	UPROPERTY(EditDefaultsOnly, Category = Curves)
+		TSubclassOf<class ACurves> CurvesSubClass;
+
+	ACurves* Curve;
+
+	// -- variables -- //
+
+	float distanceMultiplier;
+
+	FVector startLocation;
+	FVector targetLocation;
+	FVector currentLocation;
+
+	FVector GetCubeLocation();
+
+	void Movement_A_LinearPulse(float userRotation);
+
+	FVector directionDiscrete;
 	
+	int directionXYZ;
+	int posNegDirection;
+
+	// -- Movement -- //
+
+	void Movement_0_NewLocation();
+
+	int GetDirection();
+
+	float GetInterpValue();
+	
+	// -- timing -- //
+
+	float lengthSeconds;
+
+	float interpValue;
+	float interpolated;
+	bool isMoving;
+	bool posNegSwitch;
+
 };

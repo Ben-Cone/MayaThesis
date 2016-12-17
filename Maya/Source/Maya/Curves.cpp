@@ -7,27 +7,10 @@ ACurves::ACurves(const FObjectInitializer& ObjectInitializer)
  	
 	PrimaryActorTick.bCanEverTick = true;
 
-	static ConstructorHelpers::FObjectFinder<UCurveFloat> Curve1(TEXT("CurveFloat'/Game/Unused/Curves/FCurve_001.FCurve_001'"));
-	FCurve_001 = Curve1.Object;
-
-	static ConstructorHelpers::FObjectFinder<UCurveFloat> Curve2(TEXT("CurveFloat'/Game/Unused/Curves/FCurve_002.FCurve_002'"));
-	FCurve_002 = Curve2.Object;
-
-
-	curveArray.Add(FCurve_001);
-	curveArray.Add(FCurve_002);
-
-	curveIndex = curveArray.Num();
-
 	Timeline_001 = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, TEXT("timeline"));
 
 	InterpFunction.BindUFunction(this, FName{ TEXT("TimelineFloatReturn") });
 
-}
-
-void ACurves::SetCurveType(int curveType)
-{
-	Timeline_001->AddInterpFloat(curveArray[curveType], InterpFunction, FName{ TEXT("InterpFloat") });
 }
 
 void ACurves::BeginPlay()
@@ -39,6 +22,10 @@ void ACurves::BeginPlay()
 void ACurves::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("noteProbability_1_i: %f "), noteProbability_1_i));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("noteProbability_1_ii: %f "), noteProbability_1_ii));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("noteProbability_1_iii: %f "), noteProbability_1_iii));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, FString::Printf(TEXT("noteProbability_1_iv: %f "), noteProbability_1_iv));
 
 }
 
@@ -55,6 +42,18 @@ float ACurves::InterpAlongCurve(float lengthSeconds, float timeDelta, int curveT
 	return interpolated;
 
 }
+
+float ACurves::GetInterpInput()
+{
+	return interpInput;
+}
+
+void ACurves::SetCurveStart(float startPoint)
+{
+	interpInput = startPoint;
+}
+
+// -- MATH -- //
 
 float ACurves::InverseLerp(float A, float B, float Value)
 {
@@ -73,4 +72,52 @@ float ACurves::InverseLerp(float A, float B, float Value)
 	{
 		return ((Value - A) / (B - A));
 	}
+}
+
+int ACurves::NoteProbability(int noteType)
+{
+	switch (noteType) {
+
+	case 1:
+
+		noteProbability_1_sum =
+			noteProbability_1_i
+			+ noteProbability_1_ii
+			+ noteProbability_1_iii
+
+			+ noteProbability_1_iv;
+
+		note_1 = FMath::RandRange(0.f, noteProbability_1_sum);
+
+		if (note_1 < noteProbability_1_i) {
+			noteToPlay_1 = 0;
+		}
+		else if (note_1  >= noteProbability_1_i && note_1 < (noteProbability_1_ii + noteProbability_1_i)) {
+			noteToPlay_1 = 1;
+		}
+		else if (note_1 >= (noteProbability_1_ii + noteProbability_1_i) && note_1 < (noteProbability_1_iii + noteProbability_1_ii + noteProbability_1_i)) {
+			noteToPlay_1 = 2;
+		}
+		else if (note_1 >= (noteProbability_1_sum - noteProbability_1_iv)) {
+			noteToPlay_1 = 3;
+		}
+
+		break;
+	}
+
+
+
+	return noteToPlay_1;
+
+}
+
+float ACurves::DistanceBetweenFloats(float A, float B)
+{
+	if (A > B) {
+		return (FMath::Abs(A) - FMath::Abs(B));
+	}
+	else {
+		return (FMath::Abs(B) - FMath::Abs(A));
+	}
+
 }

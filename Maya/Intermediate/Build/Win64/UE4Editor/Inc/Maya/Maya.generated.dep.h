@@ -50,6 +50,9 @@
 #ifndef MAYA_Music_generated_h
 	#include "Music.h"
 #endif
+#ifndef MAYA_Spectrum_generated_h
+	#include "Spectrum.h"
+#endif
 #ifndef MAYA_Manager_generated_h
 	#include "Manager.h"
 #endif

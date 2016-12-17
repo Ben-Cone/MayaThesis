@@ -54,8 +54,6 @@ void AAnimationsPlanar::SpawnDefaultClasses()
 	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	Curve = GetWorld()->SpawnActor<ACurves>(CurvesClass[0], SpawnInfo);
 
-	Curve->SetCurveType(0);
-
 	Dynamic_000 = StaticMesh->CreateAndSetMaterialInstanceDynamic(0);
 	Dynamic_001 = StaticMesh->CreateAndSetMaterialInstanceDynamic(1);
 	Dynamic_002 = StaticMesh->CreateAndSetMaterialInstanceDynamic(2);

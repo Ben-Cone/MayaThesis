@@ -21,10 +21,7 @@ public:
 		UTimelineComponent* Timeline_001;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Curves")
-		UCurveFloat* FCurve_001;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Curves")
-		UCurveFloat* FCurve_002;
+		UTimelineComponent* Timeline_Points;
 
 	FOnTimelineFloat InterpFunction{};
 
@@ -33,8 +30,54 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
 		float InterpAlong(float speedX, float lengthSeconds, int curveType);
-	
-	void SetCurveType(int curveType);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
+		float InterpNotes(float points);
+
+	// -- Note Probability -- //
+
+	int NoteProbability(int noteType);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_1_i;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_1_ii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_1_iii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_1_iv;
+
+	float noteProbability_1_sum;
+	float note_1;
+	int noteToPlay_1;
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_2_i;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_2_ii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_2_iii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_2_iv;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_3_i;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_3_ii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_3_iii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_3_iv;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_4_i;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_4_ii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_4_iii;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
+		float noteProbability_4_iv;
 
 	float interpInput;
 
@@ -49,13 +92,15 @@ public:
 
 	float InterpAlongCurve(float lengthSeconds, float timeDelta, int curveType);
 
-	TArray<UCurveFloat*> curveArray;
+	void SetCurveStart(float startPoint);
 
-	int curveIndex;
+	float GetInterpInput();
 
 	// -- Math Functions -- //
 
 	float InverseLerp(float A, float B, float Value);
+
+	float DistanceBetweenFloats(float A, float B);
 
 };
  

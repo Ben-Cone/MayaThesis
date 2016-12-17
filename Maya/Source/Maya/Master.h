@@ -23,8 +23,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Master Spawn")
 		TArray<TSubclassOf<class ACurves> > CurvesClass;
 	FActorSpawnParameters SpawnInfo;
-	float timeDelta;
-	int SpawnDefaultClasses();
+	void SpawnCurve();
 
 	ACurves* Curve;
 	TArray<ACurves*> CurveArray;
@@ -38,19 +37,13 @@ public:
 	void SpawnTrail();
 
 
-
-	FVector currentLocation;
-	FVector startLocation;
-	FVector targetLocation;
-	FVector GetCurrentLoc();
-	FVector GetTargetLoc();
-	int GetDirection();
 	float GetInterpValue();
 
 	// -- Spectrum -- //
 
 	void SpectrumUpdate(FRotator movementAngle, int currentBeatProgress, float currentAggro, float avgAggro);
-	void MoveCube();
+	void MoveCube(FVector currentLocation);
+	FVector currentLocation;
 
 	void RotateAroundPoint();
 

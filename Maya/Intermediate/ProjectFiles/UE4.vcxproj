@@ -8,7 +8,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{479A7321-EFAA-46C3-9753-F100EFC21903}</ProjectGuid>
+		<ProjectGuid>{6AACF561-2345-4FBF-96C7-47D69BAE3FB3}</ProjectGuid>
 		<Keyword>MakeFileProj</Keyword>
 		<RootNamespace>UE4</RootNamespace>
        <PlatformToolset>v140</PlatformToolset>
