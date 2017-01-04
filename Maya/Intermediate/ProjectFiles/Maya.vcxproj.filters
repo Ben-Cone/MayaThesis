@@ -1,181 +1,178 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <None Include="..\..\Maya.uproject" />
-    <Filter Include="Source">
-      <UniqueIdentifier>{35997BB7-22D2-448A-8B39-933A28DCCB72}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\Maya.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <None Include="..\..\Source\MayaEditor.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <Filter Include="Config">
-      <UniqueIdentifier>{FD10A871-3B80-43BB-B6E8-C7C7E2CE9FBD}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Config\DefaultGame.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultInput.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEditor.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEngine.ini">
-      <Filter>Config</Filter>
-    </None>
-    <Filter Include="Source\Maya">
-      <UniqueIdentifier>{47B2AD58-E2D0-443D-99A9-78652759B9C9}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\Maya\Maya.Build.cs">
-      <Filter>Source\Maya</Filter>
-    </None>
-    <ClInclude Include="..\..\Source\Maya\Maya.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\Maya.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\MayaGameMode.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\MayaGameMode.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Curves.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\Manager.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\MasterCube.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\Cube.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Movement.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\Cube.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\Curves.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\Movement.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\ManagerTest_001_Movement.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\MasterCube.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\MasterTrail.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\MasterTrail.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Polygon.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\Polygon.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Manager.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <Filter Include="Source\Maya\FP_FirstPerson">
-      <UniqueIdentifier>{C484DB72-F794-4A93-95EC-F1B03DFE9577}</UniqueIdentifier>
-    </Filter>
-    <ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.cpp">
-      <Filter>Source\Maya\FP_FirstPerson</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.h">
-      <Filter>Source\Maya\FP_FirstPerson</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonHUD.cpp">
-      <Filter>Source\Maya\FP_FirstPerson</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonHUD.h">
-      <Filter>Source\Maya\FP_FirstPerson</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonCharacter.cpp">
-      <Filter>Source\Maya\FP_FirstPerson</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonCharacter.h">
-      <Filter>Source\Maya\FP_FirstPerson</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\Maya\Master.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Orchestrator.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\AnimationsPlanar.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\OrchestratorOld.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Beats.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Listener.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Music.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Environment.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Maya\Spectrum.h">
-      <Filter>Source\Maya</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\Maya\Master.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Orchestrator.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\AnimationsPlanar.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\OrchestratorOld.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Beats.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Listener.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Music.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Environment.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Maya\Spectrum.cpp">
-      <Filter>Source\Maya</Filter>
-    </ClCompile>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\Maya.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{EA1DCC67-707C-4CEF-A26A-F8ACEC6985EC}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Maya.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\MayaEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{111DB69A-D690-48A2-83DC-381B8AE68BBE}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Maya">
+			<UniqueIdentifier>{83EB2771-5324-483E-AB1A-82ADE9088A88}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Maya\Maya.Build.cs">
+			<Filter>Source\Maya</Filter>
+		</None >
+		<ClInclude Include="..\..\Source\Maya\Maya.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Maya.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\MayaGameMode.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\MayaGameMode.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Master.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\Manager.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\Curves.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Environment.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Music.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Movement.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\MasterCube.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Cube.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\ManagerTest_001_Movement.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\ManagerTest_001_Movement.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\ManagerTest_002_Interaction.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Manager.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Cube.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Polygon.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Movement.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Beats.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\MasterTrail.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\MasterTrail.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Spectrum.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Music.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\MasterCube.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\AnimationsPlanar.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Polygon.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\AnimationsPlanar.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Listener.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\OrchestratorOld.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\ManagerTest_002_Interaction.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Orchestrator.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\Listener.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Master.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\Maya\Curves.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\Beats.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\Spectrum.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\Environment.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\Orchestrator.cpp">
+			<Filter>Source\Maya</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\OrchestratorOld.h">
+			<Filter>Source\Maya</Filter>
+		</ClInclude >
+		<Filter Include="Source\Maya\FP_FirstPerson">
+			<UniqueIdentifier>{72704A9A-971D-4CEF-A89C-BFF40FB883FA}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.cpp">
+			<Filter>Source\Maya\FP_FirstPerson</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonGameMode.h">
+			<Filter>Source\Maya\FP_FirstPerson</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonHUD.h">
+			<Filter>Source\Maya\FP_FirstPerson</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonCharacter.cpp">
+			<Filter>Source\Maya\FP_FirstPerson</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonCharacter.h">
+			<Filter>Source\Maya\FP_FirstPerson</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Maya\FP_FirstPerson\FP_FirstPersonHUD.cpp">
+			<Filter>Source\Maya\FP_FirstPerson</Filter>
+		</ClCompile >
+	</ItemGroup>
 </Project>

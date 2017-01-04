@@ -32,16 +32,21 @@ public:
 	ACurves* Curve;
 
 	// -- variables -- //
-
+	UPROPERTY(EditDefaultsOnly, Category = Variables)
+	float boundary;
+	UPROPERTY(EditDefaultsOnly, Category = Variables)
+	float boundaryBuffer;
+	
 	float distanceMultiplier;
 
 	FVector startLocation;
 	FVector targetLocation;
 	FVector currentLocation;
 
-	FVector GetCubeLocation();
+	FVector GetCurrentLocation();
 
-	void Movement_A_LinearPulse(float userRotation);
+	FRotator userRotation;
+	int rotationQuadrant;
 
 	FVector directionDiscrete;
 	
@@ -49,12 +54,19 @@ public:
 	int posNegDirection;
 
 	// -- Movement -- //
+	int Movement_0_LinearPulse(float userRot);
+	int Movement_1_Discrete(float userRot);
+
 
 	void Movement_0_NewLocation();
+	void Movement_1_NewLocation(float userRot);
 
 	int GetDirection();
 
 	float GetInterpValue();
+
+	FRotator forwardAngle;
+
 	
 	// -- timing -- //
 
@@ -64,5 +76,8 @@ public:
 	float interpolated;
 	bool isMoving;
 	bool posNegSwitch;
+
+	TArray<FString> xyz;
+	FString direction;
 
 };

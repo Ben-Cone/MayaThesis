@@ -12,7 +12,7 @@ AAnimationsPlanar::AAnimationsPlanar(const FObjectInitializer& ObjectInitializer
 	RootComponent = RootNull;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
-	static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("Material'/Game/Unused/Cube/AP_Circles.AP_Circles'"));
+	static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("Material'/Game/Unused/Cube/M_AnimPlane.M_AnimPlane'"));
 
 }
 
@@ -21,61 +21,90 @@ void AAnimationsPlanar::BeginPlay()
 	Super::BeginPlay();
 	SpawnDefaultClasses();
 
-	//Dynamic_001->SetScalarParameterValue(FName("OnOff"), 1.f);
-	//Dynamic_000->SetScalarParameterValue(FName("OnOff"), 1.f);
-	//Dynamic_000->SetScalarParameterValue(FName("circleLineWeight"), 1.f);
 }
 
 void AAnimationsPlanar::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 	timeDelta = DeltaTime;
-
-	//interpValue = Curve->InterpAlongCurve(lengthSeconds, timeDelta, 0);
-	//
-	//maskScale.X = interpValue * 2;
-	//maskScale.Y = interpValue * 2;
-
-	//Dynamic_000->SetVectorParameterValue(FName("CircleMaskScale"), FLinearColor(maskScale.X, maskScale.Y, 0.f, 0.f));
-
-	//rotator += .001;
-
-	//RotateShape(rotator);
+	Update();
 
 }
 
 void AAnimationsPlanar::UpdateTrigger(int eventIndex)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("test")));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("test")));
 }
 
 void AAnimationsPlanar::SpawnDefaultClasses()
 {
 	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	Curve = GetWorld()->SpawnActor<ACurves>(CurvesClass[0], SpawnInfo);
+	ScaleCurve = GetWorld()->SpawnActor<ACurves>(CurvesClass[0], SpawnInfo);
+
+	SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	StrokeCurve = GetWorld()->SpawnActor<ACurves>(CurvesClass[0], SpawnInfo);
 
 	Dynamic_000 = StaticMesh->CreateAndSetMaterialInstanceDynamic(0);
-	Dynamic_001 = StaticMesh->CreateAndSetMaterialInstanceDynamic(1);
-	Dynamic_002 = StaticMesh->CreateAndSetMaterialInstanceDynamic(2);
-	Dynamic_003 = StaticMesh->CreateAndSetMaterialInstanceDynamic(3);
-	Dynamic_004 = StaticMesh->CreateAndSetMaterialInstanceDynamic(4);
-	Dynamic_005 = StaticMesh->CreateAndSetMaterialInstanceDynamic(5);
-	Dynamic_006 = StaticMesh->CreateAndSetMaterialInstanceDynamic(6);
-	Dynamic_007 = StaticMesh->CreateAndSetMaterialInstanceDynamic(7);
-	Dynamic_008 = StaticMesh->CreateAndSetMaterialInstanceDynamic(8);
-	Dynamic_009 = StaticMesh->CreateAndSetMaterialInstanceDynamic(9);
 
 }
 
 void AAnimationsPlanar::RotateShape(float rotationAngle)
 {
-	Dynamic_001->SetScalarParameterValue(FName("RotationAngle"), rotationAngle);
+	Dynamic_000->SetScalarParameterValue(FName("RotationAngle"), rotationAngle);
 }
 
-void AAnimationsPlanar::AnimationPicker(int animIndex)
+void AAnimationsPlanar::AnimationPicker(float fSpeed_in, int animType_in, int animCurve_in, float animSpeed_in, float lifeTime_in)
 {
-	switch (animIndex)
+	fSpeed = fSpeed_in;
+	animType = animType_in;
+	animCurve = animCurve_in;
+	animSpeed = animSpeed_in;
+	lifeTime = lifeTime_in;
+}
 
-		case 0: 
-			Dynamic_001->SetScalarParameterValue(FName("OnOff"), 1);
+void AAnimationsPlanar::Update()
+{
+	lifeSpan += timeDelta;
+
+	if (lifeSpan > lifeTime) {
+		Destroy();
+	}
+
+	if (updateScale == true) {
+		ScaleSquare(scaleStart, scaleEnd, scaleSeconds);
+	}
+	
+	if (updateStroke == true) {
+		StrokeSquare(strokeStart, strokeEnd, strokeSeconds);
+	}
+
+}
+
+void AAnimationsPlanar::ScaleSquare(float start, float end, float seconds)
+{
+	scaleStart = start;
+	scaleEnd = end;
+	scaleSeconds = seconds;
+
+	squareScale = FMath::Lerp(start, end, ScaleCurve->InterpAlongCurve(seconds, timeDelta, 0));
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("squareScale : %f"), squareScale));
+
+	Dynamic_000->SetScalarParameterValue(FName("Rect_Scale_X"), squareScale);
+	Dynamic_000->SetScalarParameterValue(FName("Rect_Scale_Y"), squareScale);
+
+	updateScale = true;
+}
+
+void AAnimationsPlanar::StrokeSquare(float startWidth, float endWidth, float seconds)
+{
+	strokeStart = startWidth;
+	strokeEnd = endWidth;
+	strokeSeconds = seconds;
+
+	strokeScale = FMath::Lerp(startWidth, endWidth, StrokeCurve->InterpAlongCurve(seconds, timeDelta, 0));
+
+	Dynamic_000->SetScalarParameterValue(FName("Rect_Stroke"), strokeScale);
+
+	updateStroke = true;
 }

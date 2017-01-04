@@ -53,7 +53,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void ACurves::StaticRegisterNativesACurves()
 	{
 	}
-	IMPLEMENT_CLASS(ACurves, 583321513);
+	IMPLEMENT_CLASS(ACurves, 971326147);
 	void AFP_FirstPersonCharacter::StaticRegisterNativesAFP_FirstPersonCharacter()
 	{
 	}
@@ -89,7 +89,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void AMovement::StaticRegisterNativesAMovement()
 	{
 	}
-	IMPLEMENT_CLASS(AMovement, 2265648570);
+	IMPLEMENT_CLASS(AMovement, 3752530101);
 	void AMusic::StaticRegisterNativesAMusic()
 	{
 	}
@@ -113,7 +113,7 @@ FName MAYA_TestEvent = FName(TEXT("TestEvent"));
 	void AOrchestrator::StaticRegisterNativesAOrchestrator()
 	{
 	}
-	IMPLEMENT_CLASS(AOrchestrator, 1176443265);
+	IMPLEMENT_CLASS(AOrchestrator, 2016798631);
 	void AOrchestratorOld::StaticRegisterNativesAOrchestratorOld()
 	{
 	}
@@ -409,6 +409,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
 			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("Curves"));
 			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+			MetaData->SetValue(ReturnFunction, TEXT("ToolTip"), TEXT("-- blueprint functions --"));
 #endif
 		}
 		return ReturnFunction;
@@ -457,7 +458,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_InterpAlong(), "InterpAlong"); // 3442064994
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_InterpNotes(), "InterpNotes"); // 664672730
-				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_TestEvent(), "TestEvent"); // 2626672573
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ACurves_TestEvent(), "TestEvent"); // 3193591798
 				OuterClass->StaticLink();
 #if WITH_METADATA
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
@@ -498,6 +499,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(NewProp_noteProbability_1_ii, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
 				MetaData->SetValue(NewProp_noteProbability_1_i, TEXT("Category"), TEXT("Notes"));
 				MetaData->SetValue(NewProp_noteProbability_1_i, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
+				MetaData->SetValue(NewProp_noteProbability_1_i, TEXT("ToolTip"), TEXT("probability of each note per section (1 / 2 / 3 / 4)"));
 				MetaData->SetValue(NewProp_Timeline_Points, TEXT("Category"), TEXT("Curves"));
 				MetaData->SetValue(NewProp_Timeline_Points, TEXT("EditInline"), TEXT("true"));
 				MetaData->SetValue(NewProp_Timeline_Points, TEXT("ModuleRelativePath"), TEXT("Curves.h"));
@@ -873,6 +875,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_boundaryBuffer = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("boundaryBuffer"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(boundaryBuffer, AMovement), 0x0010000000010001);
+				UProperty* NewProp_boundary = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("boundary"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(boundary, AMovement), 0x0010000000010001);
 				UProperty* NewProp_CurvesSubClass = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurvesSubClass"), RF_Public|RF_Transient|RF_MarkAsNative) UClassProperty(CPP_PROPERTY_BASE(CurvesSubClass, AMovement), 0x0014000000010001, Z_Construct_UClass_ACurves_NoRegister(), UClass::StaticClass());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				OuterClass->StaticLink();
@@ -880,6 +884,11 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Movement.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
+				MetaData->SetValue(NewProp_boundaryBuffer, TEXT("Category"), TEXT("Variables"));
+				MetaData->SetValue(NewProp_boundaryBuffer, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
+				MetaData->SetValue(NewProp_boundary, TEXT("Category"), TEXT("Variables"));
+				MetaData->SetValue(NewProp_boundary, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
+				MetaData->SetValue(NewProp_boundary, TEXT("ToolTip"), TEXT("-- variables --"));
 				MetaData->SetValue(NewProp_CurvesSubClass, TEXT("Category"), TEXT("Curves"));
 				MetaData->SetValue(NewProp_CurvesSubClass, TEXT("ModuleRelativePath"), TEXT("Movement.h"));
 #endif
@@ -1175,7 +1184,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
 				MetaData->SetValue(NewProp_bpm, TEXT("Category"), TEXT("Variables"));
 				MetaData->SetValue(NewProp_bpm, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
-				MetaData->SetValue(NewProp_bpm, TEXT("ToolTip"), TEXT("-- beats --"));
 				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("Category"), TEXT("Variables"));
 				MetaData->SetValue(NewProp_beatProgressionLimit, TEXT("ModuleRelativePath"), TEXT("Orchestrator.h"));
 				MetaData->SetValue(NewProp_decayRate, TEXT("Category"), TEXT("Variables"));
@@ -1290,7 +1298,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Maya")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xFBCFF3BC;
+			Guid.A = 0xDDE23815;
 			Guid.B = 0xF8EE2285;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;

@@ -74,9 +74,9 @@ float ACurves::InverseLerp(float A, float B, float Value)
 	}
 }
 
-int ACurves::NoteProbability(int noteType)
+int ACurves::NoteProbability(int section)
 {
-	switch (noteType) {
+	switch (section) {
 
 	case 1:
 
@@ -84,7 +84,6 @@ int ACurves::NoteProbability(int noteType)
 			noteProbability_1_i
 			+ noteProbability_1_ii
 			+ noteProbability_1_iii
-
 			+ noteProbability_1_iv;
 
 		note_1 = FMath::RandRange(0.f, noteProbability_1_sum);
@@ -104,8 +103,6 @@ int ACurves::NoteProbability(int noteType)
 
 		break;
 	}
-
-
 
 	return noteToPlay_1;
 

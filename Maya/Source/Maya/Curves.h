@@ -25,18 +25,27 @@ public:
 
 	FOnTimelineFloat InterpFunction{};
 
+	// -- blueprint functions -- //
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
 		void TestEvent(float pointOnCurve);
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
 		float InterpAlong(float speedX, float lengthSeconds, int curveType);
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Curves")
 		float InterpNotes(float points);
 
-	// -- Note Probability -- //
+	// -- note probability -- //
 
-	int NoteProbability(int noteType);
+	int NoteProbability(int section);
+
+	// note probabilities to randomize
+	float noteProbability_1_sum;
+	// point chosen from note probability sum
+	float note_1;
+	// note actually played
+	int noteToPlay_1;
+
+
+	// probability of each note per section (1 / 2 / 3 / 4)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
 		float noteProbability_1_i;
@@ -46,11 +55,6 @@ public:
 		float noteProbability_1_iii;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
 		float noteProbability_1_iv;
-
-	float noteProbability_1_sum;
-	float note_1;
-	int noteToPlay_1;
-
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Notes)
 		float noteProbability_2_i;
